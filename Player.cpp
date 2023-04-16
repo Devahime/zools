@@ -9,6 +9,7 @@
 Player::Player::Player(std::string name) {
     m_name = name;
     m_health = 100;
+    m_maxHealth = 100;
     m_armor = 0;
     m_strenght = 10;
     m_abilities = {};
@@ -34,7 +35,15 @@ void Player::Player::equipArmor(Armor *armor) {
 }
 
 void Player::Player::dropArmor() {
-    m_armor -= m_armorSlot->getArmor;
+    m_armor -= m_armorSlot->getArmorBonus;
     m_armorSlot = nullptr;
 }
 
+void Player::Player::equipRelic(Relic *relic) {
+    m_relicSlot = relic;
+}
+
+void Player::Player::dropRelic() {
+    m_strenght -= m_relicSlot->getStrenghtBonus;
+    m_maxHealth -= m_relicSlot->getHealthBonus;
+}
