@@ -46,4 +46,5 @@ void Player::Player::equipRelic(Relic *relic) {
 void Player::Player::dropRelic() {
     m_strenght -= m_relicSlot->getStrenghtBonus;
     m_maxHealth -= m_relicSlot->getHealthBonus;
+    m_relicSlot = nullptr;
 }

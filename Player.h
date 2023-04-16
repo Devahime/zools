@@ -14,7 +14,7 @@ namespace Player {
 class Player{
 private:
     std::string m_name;
-    int m_maxhealth;
+    int m_maxHealth;
     int m_health;
     int m_armor;
     int m_strenght;
