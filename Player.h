@@ -9,13 +9,15 @@
 #include <vector>
 
 
+
+namespace Player {
 class Player{
 private:
     std::string m_name;
     int m_health;
     int m_armor;
     int m_strenght;
-    std::vector<Ability*>;
+    std::vector<Ability*> m_abilities;
     Armor* m_armorSlot;
     Relic* m_relicSlot;
     Weapon* m_weaponSlot;
@@ -42,7 +44,7 @@ public:
 
 
 
-};
+}}
 
 
 
