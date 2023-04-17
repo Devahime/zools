@@ -61,6 +61,12 @@ build CMakeFiles/zools2023_xkaderk2.dir/Player.cpp.obj: CXX_COMPILER__zools2023_
   OBJECT_DIR = CMakeFiles\zools2023_xkaderk2.dir
   OBJECT_FILE_DIR = CMakeFiles\zools2023_xkaderk2.dir
 
+build CMakeFiles/zools2023_xkaderk2.dir/Enemy.cpp.obj: CXX_COMPILER__zools2023_xkaderk2_Debug C$:/Users/xkapp/zools2023_xkaderk2/Enemy.cpp || cmake_object_order_depends_target_zools2023_xkaderk2
+  DEP_FILE = CMakeFiles\zools2023_xkaderk2.dir\Enemy.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\zools2023_xkaderk2.dir
+  OBJECT_FILE_DIR = CMakeFiles\zools2023_xkaderk2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target zools2023_xkaderk2
@@ -69,7 +75,7 @@ build CMakeFiles/zools2023_xkaderk2.dir/Player.cpp.obj: CXX_COMPILER__zools2023_
 #############################################
 # Link the executable zools2023_xkaderk2.exe
 
-build zools2023_xkaderk2.exe: CXX_EXECUTABLE_LINKER__zools2023_xkaderk2_Debug CMakeFiles/zools2023_xkaderk2.dir/main.cpp.obj CMakeFiles/zools2023_xkaderk2.dir/Player.cpp.obj
+build zools2023_xkaderk2.exe: CXX_EXECUTABLE_LINKER__zools2023_xkaderk2_Debug CMakeFiles/zools2023_xkaderk2.dir/main.cpp.obj CMakeFiles/zools2023_xkaderk2.dir/Player.cpp.obj CMakeFiles/zools2023_xkaderk2.dir/Enemy.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\zools2023_xkaderk2.dir

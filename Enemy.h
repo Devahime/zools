@@ -15,7 +15,7 @@ namespace GameLogic {
         int m_health;
         int m_armor;
         int m_strenght;
-        std::vector<Ability *>;
+        std::vector<Ability *> m_abilites;
         Item *m_itemDrop;
 
     public:
