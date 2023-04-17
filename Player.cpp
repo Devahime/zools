@@ -77,7 +77,18 @@ void Player::Player::takeDamage(int damage) {
 
 }
 
+bool Player::Player::isAlive() {
+    if(m_health>=0) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
+
+void Player::Player::addAbility(int *ability) {
+    m_abilities.push_back(ability);
+}
 
 
 

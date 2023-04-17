@@ -51,6 +51,8 @@ namespace Player {
         void takeDamage(int damage);
 
         bool isAlive();
+
+        void addAbility(Ability * ability);
     };
 }
 

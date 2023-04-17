@@ -13,3 +13,11 @@ GameLogic::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_itemDrop = nullptr;
     m_abilites = {};
 }
+
+void GameLogic::Enemy::addItemDrop(int *item) {
+    m_itemDrop = item;
+}
+
+void GameLogic::Enemy::addAbility(int *ability) {
+    m_abilites.push_back(ability);
+}
