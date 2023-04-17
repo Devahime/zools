@@ -70,10 +70,14 @@ void Player::Player::takeDamage(int damage) {
         m_health - damageWithArmor;
     }
 
-    if (m_health <= 0)
-        
+    if (m_health <= 0) {
+        //solve how to make player dead
+    }
+
 
 }
+
+
 
 
 
