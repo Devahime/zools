@@ -16,6 +16,7 @@ Player::Player::Player(std::string name) {
     m_armorSlot = nullptr;
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;
+    m_inventory = {};
 }
 
 int Player::Player::getHealth() {
@@ -48,3 +49,31 @@ void Player::Player::dropRelic() {
     m_maxHealth -= m_relicSlot->getHealthBonus;
     m_relicSlot = nullptr;
 }
+
+void Player::Player::equipWeapon(Weapon *weapon) {
+    m_weaponSlot = weapon;
+}
+
+void Player::Player::dropWeapon() {
+    m_weaponSlot = nullptr;
+}
+
+std::string Player::Player::getName() {
+    return m_name;
+}
+
+void Player::Player::takeDamage(int damage) {
+    int damageWithArmor = damage - m_armor;
+    if (damageWithArmor<=0) {
+        nullptr;
+    } else {
+        m_health - damageWithArmor;
+    }
+
+    if (m_health <= 0)
+        
+
+}
+
+
+

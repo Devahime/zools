@@ -11,41 +11,48 @@
 
 
 namespace Player {
-class Player{
-private:
-    std::string m_name;
-    int m_maxHealth;
-    int m_health;
-    int m_armor;
-    int m_strenght;
-    std::vector<Ability*> m_abilities;
-    Armor* m_armorSlot;
-    Relic* m_relicSlot;
-    Weapon* m_weaponSlot;
+    class Player {
+    private:
+        std::string m_name;
+        int m_maxHealth;
+        int m_health;
+        int m_armor;
+        int m_strenght;
+        std::vector<Ability *> m_abilities;
+        Armor *m_armorSlot;
+        Relic *m_relicSlot;
+        Weapon *m_weaponSlot;
+        std::vector<Item *> m_inventory;
 
-public:
+    public:
 
-    Player(std::string name);
+        Player(std::string name);
 
-    int getHealth();
+        int getHealth();
 
-    int getStrenght();
+        int getStrenght();
 
-    int getArmor();
+        int getArmor();
 
-    void equipArmor(Armor* armor);
+        void equipArmor(Armor *armor);
 
-    void dropArmor();
+        void dropArmor();
 
-    void equipRelic(Relic* relic);
+        void equipRelic(Relic *relic);
 
-    void dropRelic();
+        void dropRelic();
 
-    void equipWeapon(Weapon* weapon);
+        void equipWeapon(Weapon *weapon);
 
+        void dropWeapon();
 
+        string getName();
 
-}}
+        void takeDamage(int damage);
+
+        bool isAlive();
+    };
+}
 
 
 
