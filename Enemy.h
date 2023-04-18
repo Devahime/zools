@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace GameLogic {
+namespace Entities {
     class Enemy {
     private:
         std::string m_name;

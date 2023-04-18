@@ -5,7 +5,7 @@
 
 #include "Enemy.h"
 
-GameLogic::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
+Entities::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_name = name;
     m_health = health;
     m_armor = armor;
@@ -14,10 +14,10 @@ GameLogic::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_abilites = {};
 }
 
-void GameLogic::Enemy::addItemDrop(int *item) {
+void Entities::Enemy::addItemDrop(int *item) {
     m_itemDrop = item;
 }
 
-void GameLogic::Enemy::addAbility(int *ability) {
+void Entities::Enemy::addAbility(int *ability) {
     m_abilites.push_back(ability);
 }
