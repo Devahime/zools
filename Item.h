@@ -9,6 +9,7 @@
 
 namespace Entities {
     class Item {
+    protected:
         std::string m_name;
         std::string m_info;
 
