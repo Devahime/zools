@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace Entitites {
+namespace Entities {
     class Item {
         std::string m_name;
         std::string m_info;
