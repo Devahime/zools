@@ -44,6 +44,8 @@ namespace Player {
 
         void equipWeapon(Weapon *weapon);
 
+        int getWeaponDamage();
+
         void dropWeapon();
 
         string getName();
@@ -53,6 +55,8 @@ namespace Player {
         bool isAlive();
 
         void addAbility(Ability * ability);
+
+        std::vector<Ability*> getAbilities();
     };
 }
 

@@ -3,6 +3,10 @@
 //
 
 #include "Player.h"
+#include "Item.h"
+#include "Weapon.h"
+#include "Relic.h"
+#include "Armor.h"
 
 
 
@@ -88,6 +92,17 @@ bool Player::Player::isAlive() {
 
 void Player::Player::addAbility(int *ability) {
     m_abilities.push_back(ability);
+}
+
+
+int Player::Player::getWeaponDamage() {
+    if (m_weaponSlot != nullptr) {
+        return m_weaponSlot->getDamage();
+    }
+}
+
+std::vector<Ability *> Player::Player::getAbilities() {
+    return m_abilities;
 }
 
 
