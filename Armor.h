@@ -9,6 +9,11 @@
 
 namespace Entities {
     class Armor : public Item {
+        /**
+         * Child of class Item.
+         * This class represents and armor set which Player can equip, giving him armor bonus.
+         */
+
         int m_armorValue;
 
     public:

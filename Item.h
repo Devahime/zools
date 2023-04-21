@@ -9,6 +9,12 @@
 
 namespace Entities {
     class Item {
+        /**
+         * This class represents an item, which can do several things.
+         * This class is only a "template" with basic variables that all Children of this class will inherit.
+         * The only fucntions are getters for the basic variables.
+         * Each type of items has its own children class which does all the fucntionality.
+         */
     protected:
         std::string m_name;
         std::string m_info;
