@@ -1,3 +1,0 @@
-C:/Users/xkapp/zools2023_xkaderk2/cmake-build-debug/CMakeFiles/zools2023_xkaderk2.dir
-C:/Users/xkapp/zools2023_xkaderk2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/xkapp/zools2023_xkaderk2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
