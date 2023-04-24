@@ -11,7 +11,7 @@
 namespace Player {
     class Punch : public Ability {
     public:
-        Punch(std::string name, std::string description);
+        Punch(std::string description);
 
         int doDamage(int damage, int strenght);
 

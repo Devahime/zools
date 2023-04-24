@@ -18,7 +18,7 @@ Player::Player::Player(std::string name) {
     m_maxHealth = 100;
     m_armor = 0;
     m_strenght = 10;
-    m_abilities = {new Player::Punch};
+    m_abilities = {new ::Player::Punch("Punch", "Punch the enemy with your fists")};
     m_armorSlot = nullptr;
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;

@@ -21,8 +21,6 @@ namespace Player {
 
             virtual int doDamage(int damage, int strenght) = 0;
 
-            virtual int doDamage(int stenght) = 0;
-
             std::string getName();
 
             std::string getDescription();

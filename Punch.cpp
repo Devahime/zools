@@ -5,7 +5,8 @@
 #include "Punch.h"
 #include <string>
 
-Player::Punch::Punch(std::string name, std::string description): Ability(name, description) {
+Player::Punch::Punch(std::string description): Ability("Punch", description) {
+
     m_cooldown = 0;
     m_cooldownTimer = 0;
     m_type = "Punch";
