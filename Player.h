@@ -12,6 +12,7 @@
 #include "Relic.h"
 #include "Armor.h"
 #include "Ability.h"
+#include "Consumable.h"
 
 
 
@@ -67,6 +68,10 @@ namespace Player {
         void addAbility(Ability * ability);
 
         std::vector<Ability*> getAbilities();
+
+        void useReplenishment(Entities::Consumable *consumable);
+
+        void setHealth(int health); //debug
     };
 }
 

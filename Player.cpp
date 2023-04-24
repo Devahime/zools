@@ -9,6 +9,7 @@
 #include "Armor.h"
 #include "Ability.h"
 #include "Punch.h"
+#include "Consumable.h"
 
 
 
@@ -106,6 +107,17 @@ int Player::Player::getWeaponDamage() {
     return m_abilities;
 }
 
+void Player::Player::useReplenishment(Entities::Consumable *consumable) {
+    if (m_health+consumable->getReplenishemntValue()>m_maxHealth) {
+        m_health = m_maxHealth;
+    } else {
+        m_health += consumable->getReplenishemntValue();
+    }
+}
+
+void Player::Player::setHealth(int health) {
+    m_health = health;
+}
 
 
 
