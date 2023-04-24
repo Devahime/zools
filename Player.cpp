@@ -7,6 +7,7 @@
 #include "Weapon.h"
 #include "Relic.h"
 #include "Armor.h"
+#include "Ability.h"
 
 
 
@@ -77,7 +78,6 @@ void Player::Player::takeDamage(int damage) {
     if (m_health <= 0) {
         //solve how to make player dead
     }
-
 
 }
 
