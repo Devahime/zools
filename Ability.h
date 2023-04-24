@@ -14,7 +14,6 @@ namespace Player {
         std::string m_description;
         int m_cooldown;
         int m_cooldownTimer;
-        std::string m_type;
 
     public:
             Ability(std::string name, std::string description);

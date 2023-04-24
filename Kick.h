@@ -2,23 +2,23 @@
 // Created by xkapp on 24.04.2023.
 //
 
-#ifndef ZOOLS2023_XKADERK2_PUNCH_H
-#define ZOOLS2023_XKADERK2_PUNCH_H
+#ifndef ZOOLS2023_XKADERK2_KICK_H
+#define ZOOLS2023_XKADERK2_KICK_H
 
 #include "Ability.h"
 #include <string>
 
+
 namespace Player {
-    class Punch : public Ability {
+    class Kick : public Ability {
     public:
-        Punch();
+        Kick();
 
         int doDamage(int damage, int strenght);
-
     };
+
+
 }
 
 
-
-
-#endif //ZOOLS2023_XKADERK2_PUNCH_H
+#endif //ZOOLS2023_XKADERK2_KICK_H

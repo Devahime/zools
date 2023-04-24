@@ -5,11 +5,10 @@
 #include "Punch.h"
 #include <string>
 
-Player::Punch::Punch(std::string description): Ability("Punch", description) {
+Player::Punch::Punch(): Ability("Punch", "Punch the sould out of your enemy") {
 
     m_cooldown = 0;
     m_cooldownTimer = 0;
-    m_type = "Punch";
 }
 
 int Player::Punch::doDamage(int damage, int strenght) {
