@@ -13,7 +13,7 @@ namespace Player {
     public:
         Punch();
 
-        int doDamage(int damage, int strenght);
+        int doDamage(int damage, int strenght) override;
 
     };
 }

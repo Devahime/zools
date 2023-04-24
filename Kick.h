@@ -14,7 +14,7 @@ namespace Player {
     public:
         Kick();
 
-        int doDamage(int damage, int strenght);
+        int doDamage(int damage, int strenght) override;
     };
 
 
