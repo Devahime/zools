@@ -11,6 +11,12 @@
 
 namespace Player {
     class Kick : public Ability {
+        /**
+         * Child class of Ability.
+         * Basic ability which player gets at the beggining od the game.
+         * This ability has 1 turn cooldown
+         * The damage output of this ability is the strenght of the user * 1.2 .
+         */
     public:
         Kick();
 

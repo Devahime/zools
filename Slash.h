@@ -9,6 +9,13 @@
 
 namespace Player {
     class Slash : public Ability {
+        /**
+         * Child class of Ability.
+         * This ability is only available when Player has equipped weapon.
+         * This ability has no cooldown.
+         * The damage output of this ability is damage of the weapon + strenght * 0.7
+         */
+
     public:
         Slash();
 

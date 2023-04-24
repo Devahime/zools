@@ -10,6 +10,13 @@
 
 namespace Player {
     class Punch : public Ability {
+        /**
+         * Child class of Ability.
+         * Basic ability which player gets at the beggining od the game.
+         * Thos ability has noo cooldown.
+         * The damage output of this ability is the strenght of the user.
+         */
+
     public:
         Punch();
 

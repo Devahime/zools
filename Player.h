@@ -17,6 +17,11 @@
 
 namespace Player {
     class Player {
+        /**
+         * Class which represent player controlled Character.
+         * When making player, the only atribute that needs to be specified is the name.
+         */
+
     private:
         std::string m_name;
         int m_maxHealth;
@@ -28,7 +33,7 @@ namespace Player {
         Entities::Relic *m_relicSlot;
         Entities::Weapon *m_weaponSlot;
         std::vector<Entities::Item *> m_inventory;
-
+//todo - player coordinates
     public:
 
         Player(std::string name);
