@@ -62,11 +62,6 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="zools2023_xkaderk2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="zools2023_xkaderk2" TARGET_NAME="zools2023_xkaderk2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="zools2023_xkaderk2" RUN_TARGET_NAME="zools2023_xkaderk2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -82,7 +77,8 @@
       <option name="presentableId" value="Default" />
       <updated>1681653721544</updated>
       <workItem from="1681653723496" duration="13230000" />
-      <workItem from="1682084780509" duration="4980000" />
+      <workItem from="1682084780509" duration="5250000" />
+      <workItem from="1682325973194" duration="95000" />
     </task>
     <servers />
   </component>

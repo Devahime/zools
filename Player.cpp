@@ -35,7 +35,7 @@ int Player::Player::getStrenght() {
     return m_strenght;
 }
 
-void Player::Player::equipArmor(Armor *armor) {
+void Player::Player::equipArmor(Entities::Armor *armor) {
     m_armorSlot = armor;
 }
 
@@ -44,7 +44,7 @@ void Player::Player::dropArmor() {
     m_armorSlot = nullptr;
 }
 
-void Player::Player::equipRelic(Relic *relic) {
+void Player::Player::equipRelic(Entities::Relic *relic) {
     m_relicSlot = relic;
 }
 
@@ -54,7 +54,7 @@ void Player::Player::dropRelic() {
     m_relicSlot = nullptr;
 }
 
-void Player::Player::equipWeapon(Weapon *weapon) {
+void Player::Player::equipWeapon(Entities::Weapon *weapon) {
     m_weaponSlot = weapon;
 }
 
@@ -101,9 +101,10 @@ int Player::Player::getWeaponDamage() {
     }
 }
 
-std::vector<Ability *> Player::Player::getAbilities() {
+/*std::vector<Ability *> Player::Player::getAbilities() {
     return m_abilities;
 }
 
+*/
 
 
