@@ -8,6 +8,7 @@
 #include "Relic.h"
 #include "Armor.h"
 #include "Ability.h"
+#include "Punch.h"
 
 
 
@@ -17,7 +18,7 @@ Player::Player::Player(std::string name) {
     m_maxHealth = 100;
     m_armor = 0;
     m_strenght = 10;
-    m_abilities = {};
+    m_abilities = {new Player::Punch};
     m_armorSlot = nullptr;
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;
@@ -41,7 +42,7 @@ void Player::Player::equipArmor(Entities::Armor *armor) {
 }
 
 void Player::Player::dropArmor() {
-    m_armor -= m_armorSlot->getArmorBonus;
+    m_armor -= m_armorSlot->getArmorValue();
     m_armorSlot = nullptr;
 }
 
@@ -50,8 +51,8 @@ void Player::Player::equipRelic(Entities::Relic *relic) {
 }
 
 void Player::Player::dropRelic() {
-    m_strenght -= m_relicSlot->getStrenghtBonus;
-    m_maxHealth -= m_relicSlot->getHealthBonus;
+    m_strenght -= m_relicSlot->getStrenghtBonus();
+    m_maxHealth -= m_relicSlot->getHealthBonus();
     m_relicSlot = nullptr;
 }
 
@@ -90,7 +91,7 @@ bool Player::Player::isAlive() {
 }
 
 
-void Player::Player::addAbility(int *ability) {
+void Player::Player::addAbility(::Player::Ability *ability) {
     m_abilities.push_back(ability);
 }
 

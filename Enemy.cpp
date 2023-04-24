@@ -14,10 +14,10 @@ Entities::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_abilites = {};
 }
 
-void Entities::Enemy::addItemDrop(int *item) {
+void Entities::Enemy::addItemDrop(Entities::Item *item) {
     m_itemDrop = item;
 }
 
-void Entities::Enemy::addAbility(int *ability) {
+void Entities::Enemy::addAbility(Player::Ability *ability) {
     m_abilites.push_back(ability);
 }
