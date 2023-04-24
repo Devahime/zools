@@ -101,10 +101,10 @@ int Player::Player::getWeaponDamage() {
     }
 }
 
-/*std::vector<Ability *> Player::Player::getAbilities() {
+    std::vector<Player::Ability *> Player::Player::getAbilities() {
     return m_abilities;
 }
 
-*/
+
 
 

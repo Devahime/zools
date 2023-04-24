@@ -7,6 +7,8 @@
 
 #include <string>
 #include <vector>
+#include "Item.h"
+#include "Ability.h"
 
 namespace Entities {
     class Enemy {
@@ -15,7 +17,7 @@ namespace Entities {
         int m_health;
         int m_armor;
         int m_strenght;
-        std::vector<Ability *> m_abilites;
+        std::vector<Player::Ability *> m_abilites;
         Item *m_itemDrop;
 
     public:
@@ -23,7 +25,7 @@ namespace Entities {
 
         void addItemDrop(Item* item);
 
-        void addAbility(Ability* ability);
+        void addAbility(Player::Ability* ability);
 
         int getHealth();
 

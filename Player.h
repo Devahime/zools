@@ -7,6 +7,11 @@
 
 #include <string>
 #include <vector>
+#include "Item.h"
+#include "Weapon.h"
+#include "Relic.h"
+#include "Armor.h"
+#include "Ability.h"
 
 
 
@@ -19,10 +24,10 @@ namespace Player {
         int m_armor;
         int m_strenght;
         std::vector<Ability *> m_abilities;
-        Armor *m_armorSlot;
-        Relic *m_relicSlot;
-        Weapon *m_weaponSlot;
-        std::vector<Item *> m_inventory;
+        Entities::Armor *m_armorSlot;
+        Entities::Relic *m_relicSlot;
+        Entities::Weapon *m_weaponSlot;
+        std::vector<Entities::Item *> m_inventory;
 
     public:
 
@@ -34,21 +39,21 @@ namespace Player {
 
         int getArmor();
 
-        void equipArmor(Armor *armor);
+        void equipArmor(Entities::Armor *armor);
 
         void dropArmor();
 
-        void equipRelic(Relic *relic);
+        void equipRelic(Entities::Relic *relic);
 
         void dropRelic();
 
-        void equipWeapon(Weapon *weapon);
+        void equipWeapon(Entities::Weapon *weapon);
 
         int getWeaponDamage();
 
         void dropWeapon();
 
-        string getName();
+        std::string getName();
 
         void takeDamage(int damage);
 
