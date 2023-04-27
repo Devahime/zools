@@ -1,5 +1,5 @@
 //
-// Created by aerin on 27.04.2023.
+// Created by xinsanic on 27.04.2023.
 //
 
 #ifndef ZOOLS2023_XKADERK2_TILE_H
@@ -9,6 +9,8 @@
 class Tile {
 protected:
     Tile();
+public:
+    virtual void print() = 0;
 
 };
 

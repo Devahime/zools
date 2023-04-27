@@ -1,5 +1,5 @@
 //
-// Created by aerin on 27.04.2023.
+// Created by xinsanic on 27.04.2023.
 //
 
 #ifndef ZOOLS2023_XKADERK2_MAP_H
@@ -24,7 +24,7 @@ public:
     void replaceTile(int x, int y, Tile* tile){
     }*/
 
-    virtual void print(){
+    void print(){
 
     }
 

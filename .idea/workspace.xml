@@ -22,7 +22,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Map.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/Map.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tile.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +101,7 @@
       <workItem from="1681653723496" duration="13230000" />
       <workItem from="1682084780509" duration="5250000" />
       <workItem from="1682325973194" duration="10819000" />
-      <workItem from="1682605769697" duration="1549000" />
+      <workItem from="1682605769697" duration="3761000" />
     </task>
     <servers />
   </component>
