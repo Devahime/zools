@@ -7,6 +7,8 @@
 
 
 class Tile {
+protected:
+    Tile();
 
 };
 
