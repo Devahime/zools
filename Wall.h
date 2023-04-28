@@ -5,10 +5,14 @@
 #ifndef ZOOLS2023_XKADERK2_WALL_H
 #define ZOOLS2023_XKADERK2_WALL_H
 
+namespace Map{
+    class Wall {
+    public:
+        void print(){
 
-class Wall {
+        }
 
-};
-
+    };
+}
 
 #endif //ZOOLS2023_XKADERK2_WALL_H
