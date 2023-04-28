@@ -1,14 +1,18 @@
 //
-// Created by aerin on 28.04.2023.
+// Created by xinsanic on 28.04.2023.
 //
 
 #ifndef ZOOLS2023_XKADERK2_FLOOR_H
 #define ZOOLS2023_XKADERK2_FLOOR_H
 
+namespace Map{
+    class Floor {
+    public:
+        void print(){
 
-class Floor {
-
-};
+        }
+    };
+}
 
 
 #endif //ZOOLS2023_XKADERK2_FLOOR_H
