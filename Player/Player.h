@@ -7,12 +7,12 @@
 
 #include <string>
 #include <vector>
-#include "Item.h"
-#include "Weapon.h"
-#include "Relic.h"
-#include "Armor.h"
+#include "../Entitites/Item.h"
+#include "../Entitites/Weapon.h"
+#include "../Entitites/Relic.h"
+#include "../Entitites/Armor.h"
 #include "Ability.h"
-#include "Consumable.h"
+#include "../Entitites/Consumable.h"
 
 
 
