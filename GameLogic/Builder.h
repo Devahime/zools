@@ -12,11 +12,16 @@ namespace GameLogic {
     private:
         Game* m_game;
 
+        Player::Player* buildPlayer();
+
+        //buildMap();
 
     public:
         Builder();
 
         Game* buildGame();
+
+
     };
 }
 

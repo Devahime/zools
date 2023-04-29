@@ -16,7 +16,7 @@ namespace GameLogic {
         int m_currentMap;
         GameLogic::Combat* m_combat;
     public:
-        Game();
+        Game(Player::Player* player, GameLogic::Combat* combat/*, Map::Level* level*/);
 
 
         void clearScreen();
@@ -24,6 +24,8 @@ namespace GameLogic {
         void printMap();
 
         void printInventory();
+
+        void printPlayer();
 
 
 
