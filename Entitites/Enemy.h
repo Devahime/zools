@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include "Item.h"
-#include "Ability.h"
+#include "../Player/Ability.h"
 
 namespace Entities {
     class Enemy {

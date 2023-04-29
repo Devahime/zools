@@ -4,7 +4,7 @@
 
 #ifndef ZOOLS2023_XKADERK2_ENEMYTILE_H
 #define ZOOLS2023_XKADERK2_ENEMYTILE_H
-#include "Enemy.h"
+#include "../Entitites/Enemy.h"
 
 namespace Map{
     class EnemyTile {
