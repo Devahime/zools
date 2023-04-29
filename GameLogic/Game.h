@@ -25,7 +25,7 @@ namespace GameLogic {
 
         void printInventory();
 
-        
+
 
     };
 }
