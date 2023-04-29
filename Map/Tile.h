@@ -7,7 +7,7 @@
 
 namespace Map{
     class Tile {
-    protected:
+    public:
         Tile();
     public:
         virtual void print() = 0;
