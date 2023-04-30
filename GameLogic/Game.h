@@ -20,7 +20,7 @@ namespace GameLogic {
     public:
         Game(Player::Player* player, GameLogic::Combat* combat/*, Map::Level* level*/);
 
-        void checkForAction(char input);
+        bool checkForAction(char input);
 
         void clearScreen();
 

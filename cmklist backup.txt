@@ -9,3 +9,33 @@ set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 add_executable(zools2023_xkaderk2 main.cpp Player/Player.h Player/Player.cpp Entitites/Enemy.h Entitites/Enemy.cpp Entitites/Item.h Entitites/Item.cpp Entitites/Armor.h Entitites/Armor.cpp Entitites/Weapon.h Entitites/Weapon.cpp Entitites/Relic.h Entitites/Relic.cpp Entitites/Consumable.h Entitites/Consumable.cpp Player/Ability.h Player/Ability.cpp Player/Punch.h Player/Punch.cpp Player/Kick.h Player/Kick.cpp Player/Slash.h Player/Slash.h.cpp GameLogic/Combat.h GameLogic/Combat.cpp Map/Map.cpp Map/Map.h Map/Tile.cpp Map/Tile.h Map/Floor.cpp Map/Floor.h Map/Door.cpp Map/Door.h Map/Wall.cpp Map/Wall.h Map/EnemyTile.cpp Map/EnemyTile.h Map/ItemTile.cpp Map/ItemTile.h Map/PlayerTile.cpp Map/PlayerTile.h Map/Point.h GameLogic/Builder.h GameLogic/Game.h GameLogic/Builder.cpp GameLogic/Game.cpp Map/Level.h)
 
+
+add_compile_definitions(IS_WINDOWS)
+
+# add_link_options(-municode)
+include(FetchContent)
+FetchContent_Declare(
+        pdcurses
+        GIT_REPOSITORY https://github.com/wmcbrine/PDCurses.git
+)
+FetchContent_Populate(pdcurses)
+file(GLOB pdcurses_SRC
+        ${pdcurses_SOURCE_DIR}/pdcurses/*.c
+        ${pdcurses_SOURCE_DIR}/wincon/*.c
+        )
+add_library(PDcurses
+        ${pdcurses_SRC}
+        )
+target_include_directories(PDcurses
+        PUBLIC
+        ${pdcurses_SOURCE_DIR}
+        )
+target_compile_definitions(PDcurses PUBLIC PDC_WIDE PDC_UTF8)
+target_link_libraries(zools2023_xkaderk2
+        PRIVATE
+        PDcurses
+        )
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
