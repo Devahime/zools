@@ -13,6 +13,22 @@ GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat) {
     m_currentMap = 0;
 }
 
+void GameLogic::Game::checkForAction(char input) {
+    //first version, to by rewrited later
+    if (input == 'w') {
+        std::cout << "Nahoru" << std::endl;
+    } else if(input == 'a') {
+        std::cout << "Doleva" << std::endl;
+    } else if(input == 's') {
+        std::cout << "Dolu" << std::endl;
+    } else if(input == 'd') {
+        std::cout << "Doprava" << std::endl;
+    } else if(input == 'x') {
+        std::cout << "Exit" << std::endl;
+    }
+}
+
+
 void GameLogic::Game::printMap() {
     std::cout << "yoooo" << std::endl; //debug
 

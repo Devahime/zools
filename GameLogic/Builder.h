@@ -14,7 +14,7 @@ namespace GameLogic {
 
         Player::Player* buildPlayer();
 
-        //buildMap();
+        //Map::Level buildMap();
 
     public:
         Builder();

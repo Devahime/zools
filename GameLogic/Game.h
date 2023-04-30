@@ -5,9 +5,11 @@
 #ifndef ZOOLS2023_XKADERK2_GAME_H
 #define ZOOLS2023_XKADERK2_GAME_H
 
+
 //#include "../Map/Level.h"
 #include "../Player/Player.h"
 #include "Combat.h"
+
 
 namespace GameLogic {
     class Game {
@@ -18,6 +20,7 @@ namespace GameLogic {
     public:
         Game(Player::Player* player, GameLogic::Combat* combat/*, Map::Level* level*/);
 
+        void checkForAction(char input);
 
         void clearScreen();
 
