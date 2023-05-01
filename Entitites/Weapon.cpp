@@ -4,7 +4,7 @@
 
 #include "Weapon.h"
 
-Entities::Weapon::Weapon(std::string name, std::string info, int damage): Item(name, info) {
+Entities::Weapon::Weapon(std::string name, std::string info, int damage): Item(name, info, ItemType::weapon) {
     m_damage = damage;
 }
 

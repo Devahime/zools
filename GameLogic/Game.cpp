@@ -5,7 +5,8 @@
 #include "Game.h"
 #include <iostream>
 #include <stdlib.h>
-#define ASCII_ESC 27
+//#define ASCII_ESC 27
+#include "../Entitites/ItemType.h"
 
 GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat) {
     m_player = player;
@@ -60,15 +61,30 @@ bool GameLogic::Game::combat() {
 }
 
 
+
 void GameLogic::Game::InventoryGUI() {
     clearScreen();
-    std::vector<Entities::Item*> invenotry = m_player->getInvenotry();
-
+    std::vector<Entities::Item*> inventory = m_player->getInvenotry();
+    std::cout << "Write number of item you want to use \n" << std::endl;
     std::cout << "Item number    Item name" << std::endl;
 
-    for (int i = 0; i < invenotry.size(); ++i) {
-        std::cout <<"          " << i << "    " << invenotry[i]->getName() << std::endl;
+    for (int i = 0; i < inventory.size(); ++i) {
+        std::cout <<"          " << i << "    " << inventory[i]->getName() << std::endl;
     }
+
+    std::string input;
+    std::cout << "\nEnter item number or 'q' to exit: ";
+    std::cin >> input;
+
+    if (input=="q") {
+
+    } else if (std::stoi(input) >=0 and std::stoi(input) <= inventory.size()) {
+        clearScreen();
+        if (inventory[std::stoi(input)]->getItemType() == Entities::ItemType::armor) {
+            
+        }
+    }
+
 
 
 }
