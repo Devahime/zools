@@ -72,6 +72,10 @@ namespace Player {
         void useReplenishment(Entities::Consumable *consumable);
 
         void setHealth(int health); //debug
+
+        void lowerAbilityCooldown();
+
+        std::vector<Entities::Item*> getInvenotry();
     };
 }
 

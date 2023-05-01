@@ -33,6 +33,12 @@ namespace GameLogic {
         void beginCombat(Player::Player* player, Entities::Enemy* enemy);
 
         void reset(); //maybe will be set as private
+
+        void nextTurn();
+
+        std::string checkAliveStatus();
+
+
     };
 }
 

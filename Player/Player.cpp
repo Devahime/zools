@@ -113,3 +113,7 @@ void Player::Player::useReplenishment(Entities::Consumable *consumable) {
 void Player::Player::setHealth(int health) {
     m_health = health;
 }
+
+void Player::Player::lowerAbilityCooldown() {
+
+}

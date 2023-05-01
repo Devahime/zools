@@ -4,6 +4,7 @@
 
 
 #include "Enemy.h"
+#include "../Player/Punch.h"
 
 Entities::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_name = name;
@@ -11,7 +12,7 @@ Entities::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_armor = armor;
     m_strenght = strenght;
     m_itemDrop = nullptr;
-    m_abilites = {};
+    m_abilites = {new Player::Punch()};
 }
 
 void Entities::Enemy::addItemDrop(Entities::Item *item) {

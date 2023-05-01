@@ -36,6 +36,8 @@ namespace Player {
 
             std::string getDescription();
 
+            int getCooldown();
+
 
 
     };

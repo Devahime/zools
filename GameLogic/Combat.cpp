@@ -21,3 +21,17 @@ void GameLogic::Combat::reset() {
     m_player = nullptr;
     m_enemy = nullptr;
 }
+
+void GameLogic::Combat::nextTurn() {
+
+}
+
+std::string GameLogic::Combat::checkAliveStatus() {
+    if (m_player->isAlive() and m_enemy->isAlive()) {
+        return "bothAlive";
+    } else if (!m_player->isAlive()) {
+        return "playerDead";
+    } else {
+        return "enemyDead";
+    }
+}

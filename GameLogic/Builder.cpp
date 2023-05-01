@@ -12,7 +12,7 @@ GameLogic::Builder::Builder() {
 }
 
 GameLogic::Game *GameLogic::Builder::buildGame() {
-    Game* game = new GameLogic::Game(buildPlayer(), new Combat());
+    Game* game = new GameLogic::Game(buildPlayer(), new Combat()); //add level
 
 
     return game;

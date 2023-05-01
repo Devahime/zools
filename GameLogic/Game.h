@@ -26,9 +26,11 @@ namespace GameLogic {
 
         void printMap();
 
-        void printInventory();
+        void InventoryGUI();
 
         void printPlayer();
+
+        bool combat();
 
 
 

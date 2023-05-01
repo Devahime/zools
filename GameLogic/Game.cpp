@@ -30,6 +30,8 @@ bool GameLogic::Game::checkForAction(char input) {
     } else if(input == 'x') {
         std::cout << "Exit" << std::endl;
         return false;
+    } else if(input == 'c') {  //debug
+
     }
 }
 
@@ -43,6 +45,21 @@ void GameLogic::Game::clearScreen() {
     system("cls"); //debug
 }
 
-void GameLogic::Game::printPlayer() {
+void GameLogic::Game::printPlayer() { //debug
     std::cout << m_player->getName();
+}
+
+bool GameLogic::Game::combat() {
+    bool combat = true;
+    m_combat->beginCombat(m_player,new Entities::Enemy("skeleton", 50, 10, 10)); //debug
+
+    while (combat) {
+
+    }
+
+}
+
+
+void GameLogic::Game::InventoryGUI() {
+    //std::vector<Entities::Item*> invenotry = m_player->
 }
