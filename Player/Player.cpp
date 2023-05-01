@@ -92,13 +92,13 @@ void Player::Player::addAbility(::Player::Ability *ability) {
 }
 
 
-int Player::Player::getWeaponDamage() {
+/*Player::Player::getWeaponDamage() {
     if (m_weaponSlot != nullptr) {
         return m_weaponSlot->getDamage();
     }
-}
+}*/
 
-    std::vector<Player::Ability *> Player::Player::getAbilities() {
+std::vector<Player::Ability *> Player::Player::getAbilities() {
     return m_abilities;
 }
 
@@ -125,4 +125,16 @@ void Player::Player::lowerAbilityCooldown() {
 
 std::vector<Entities::Item *> Player::Player::getInvenotry() {
     return m_inventory;
+}
+
+Entities::Armor* Player::Player::getEquippedArmor() {
+    return m_armorSlot;
+}
+
+Entities::Relic* Player::Player::getEquippedRelic() {
+    return m_relicSlot;
+}
+
+Entities::Weapon* Player::Player::getEquippedWeapon() {
+    return m_weaponSlot;
 }

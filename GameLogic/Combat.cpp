@@ -26,7 +26,7 @@ void GameLogic::Combat::nextTurn() {
 
 }
 
-std::string GameLogic::Combat::checkAliveStatus() {
+/*std::string GameLogic::Combat::checkAliveStatus() {
     if (m_player->isAlive() and m_enemy->isAlive()) {
         return "bothAlive";
     } else if (!m_player->isAlive()) {
@@ -34,4 +34,4 @@ std::string GameLogic::Combat::checkAliveStatus() {
     } else {
         return "enemyDead";
     }
-}
+} */

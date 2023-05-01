@@ -76,6 +76,12 @@ namespace Player {
         void lowerAbilityCooldown();
 
         std::vector<Entities::Item*> getInvenotry();
+
+        Entities::Armor* getEquippedArmor();
+
+        Entities::Weapon* getEquippedWeapon();
+
+        Entities::Relic* getEquippedRelic();
     };
 }
 
