@@ -61,5 +61,14 @@ bool GameLogic::Game::combat() {
 
 
 void GameLogic::Game::InventoryGUI() {
-    //std::vector<Entities::Item*> invenotry = m_player->
+    clearScreen();
+    std::vector<Entities::Item*> invenotry = m_player->getInvenotry();
+
+    std::cout << "Item number    Item name" << std::endl;
+
+    for (int i = 0; i < invenotry.size(); ++i) {
+        std::cout <<"          " << i << "    " << invenotry[i]->getName() << std::endl;
+    }
+
+
 }

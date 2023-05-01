@@ -110,10 +110,19 @@ void Player::Player::useReplenishment(Entities::Consumable *consumable) {
     }
 }
 
-void Player::Player::setHealth(int health) {
+void Player::Player::setHealth(int health) { //debug
     m_health = health;
 }
 
 void Player::Player::lowerAbilityCooldown() {
+    for (int i = 0; i < m_abilities.size(); ++i) {
+        if(m_abilities[i]->getCooldown() != 0) {
+            m_abilities[i]->lowerCooldown();
+        }
+    }
 
+}
+
+std::vector<Entities::Item *> Player::Player::getInvenotry() {
+    return m_inventory;
 }

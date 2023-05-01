@@ -9,6 +9,7 @@
 //#include "../Map/Level.h"
 #include "../Player/Player.h"
 #include "Combat.h"
+#include "../Entitites/Item.h"
 
 
 namespace GameLogic {

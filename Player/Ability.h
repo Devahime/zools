@@ -38,6 +38,10 @@ namespace Player {
 
             int getCooldown();
 
+            void lowerCooldown();
+
+            void resetCooldown();
+
 
 
     };

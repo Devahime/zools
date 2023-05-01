@@ -18,3 +18,20 @@ std::string Player::Ability::getDescription() {
     return m_description;
 }
 
+int Player::Ability::getCooldown() {
+    return m_cooldown;
+}
+
+void Player::Ability::lowerCooldown() {
+    if (m_cooldown != 0) {
+        if ((m_cooldownTimer-1)==-1) {
+
+        } else {
+            m_cooldownTimer -= 1;
+        }
+    }
+}
+
+void Player::Ability::resetCooldown() {
+    m_cooldownTimer = 0;
+}
