@@ -75,6 +75,8 @@ namespace Player {
 
         void lowerAbilityCooldown();
 
+        void deleteItemFromInvenotry(int itemIndex);
+
         std::vector<Entities::Item*> getInvenotry();
 
         Entities::Armor* getEquippedArmor();
@@ -82,6 +84,10 @@ namespace Player {
         Entities::Weapon* getEquippedWeapon();
 
         Entities::Relic* getEquippedRelic();
+
+        void addItem(Entities::Item * item);
+
+        Entities::Item* getItemFromInvenotry(int itemIndex);
     };
 }
 

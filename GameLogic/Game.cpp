@@ -66,7 +66,7 @@ void GameLogic::Game::printPlayer() { //debug
 void GameLogic::Game::InventoryGUI() {
     clearScreen();
     std::vector<Entities::Item*> inventory = m_player->getInvenotry();
-    std::cout << "Write number of item you want to use \n" << std::endl;
+    std::cout << "|-------------Inventory------------|\n" << std::endl;
     std::cout << "Item number    Item name" << std::endl;
 
     for (int i = 0; i < inventory.size(); ++i) {
@@ -82,51 +82,52 @@ void GameLogic::Game::InventoryGUI() {
     } else if (std::stoi(input) >=0 and std::stoi(input) <= inventory.size()) {
         clearScreen();
        // Entities::Item* pickedItem = inventory[input]; nefunguje
-       int pickedItemIndex = pickedItemIndex;
+       int pickedItemIndex = std::stoi(input);
 
         if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::armor) {
-            std::cout << "Item name: " << inventory[pickedItemIndex]->getName() << std::endl;
+            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
             std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type: armor" << std::endl;
+            std::cout << "Item type:        armor" << std::endl;
             if (inventory[pickedItemIndex] == m_player->getEquippedArmor()) {
-                std::cout << "Item status: Equipped" << std::endl;
+                std::cout << "Item status:      Equipped" << std::endl;
             } else {
                 std::cout << "Item status:    -    \n" << std::endl;
             }
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::relic) {
-            std::cout << "Item name: " << inventory[pickedItemIndex]->getName() << std::endl;
+            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
             std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type: relic" << std::endl;
+            std::cout << "Item type:        relic" << std::endl;
             if (inventory[pickedItemIndex] == m_player->getEquippedRelic()) {
-                std::cout << "Item status: Equipped" << std::endl;
+                std::cout << "Item status:      Equipped" << std::endl;
             } else {
-                std::cout << "Item status:    -    \n" << std::endl;
+                std::cout << "Item status:        -    \n" << std::endl;
             }
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::weapon) {
-            std::cout << "Item name: " << inventory[pickedItemIndex]->getName() << std::endl;
+            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
             std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type: weapon" << std::endl;
+            std::cout << "Item type:        weapon" << std::endl;
             if (inventory[pickedItemIndex] == m_player->getEquippedWeapon()) {
-                std::cout << "Item status: Equipped" << std::endl;
+                std::cout << "Item status:      Equipped" << std::endl;
             } else {
-                std::cout << "Item status:    -    \n" << std::endl;
+                std::cout << "Item status:      -    \n" << std::endl;
             }
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
-            std::cout << "Item name: " << inventory[pickedItemIndex]->getName() << std::endl;
+            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
             std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type: consumable\n" << std::endl;
+            std::cout << "Item type:        consumable\n" << std::endl;
         }
 
-        std::cout << "Enter 'u' to use or equip item or any other letter to exit" << std::endl;
+        std::cout << "Enter 'u' to use or equip item or any other letter to exit: ";
         std::cin >> input;
 
 
         if (input == "u") {
             if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
-               // m_player->useReplenishment(inventory[pickedItemIndex]);
+               m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
+               m_player->deleteItemFromInvenotry(pickedItemIndex);
 
 
             } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::weapon) {
@@ -134,7 +135,7 @@ void GameLogic::Game::InventoryGUI() {
                     m_player->dropWeapon();
                 } else {
                     m_player->dropWeapon();
-                    //m_player->equipWeapon(inventory[pickedItemIndex])
+                    m_player->equipWeapon(static_cast<Entities::Weapon*>(inventory[pickedItemIndex]));
                 }
 
 
@@ -143,7 +144,7 @@ void GameLogic::Game::InventoryGUI() {
                     m_player->dropArmor();
                 } else {
                     m_player->dropArmor();
-                   // m_player->equipWeapon(inventory[pickedItemIndex])
+                    m_player->equipWeapon(static_cast<Entities::Weapon*>(inventory[pickedItemIndex]));
                 }
 
 
@@ -152,7 +153,7 @@ void GameLogic::Game::InventoryGUI() {
                     m_player->dropRelic();
                 } else {
                     m_player->dropRelic();
-                    //m_player->equipRelic(inventory[pickedItemIndex]);
+                    m_player->equipRelic(static_cast<Entities::Relic*>(inventory[pickedItemIndex]));
                 }
             }
 

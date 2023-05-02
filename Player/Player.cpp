@@ -123,6 +123,11 @@ void Player::Player::lowerAbilityCooldown() {
 
 }
 
+void Player::Player::deleteItemFromInvenotry(int itemIndex) {
+    delete getItemFromInvenotry(itemIndex);
+    m_inventory.erase(itemIndex+m_inventory.begin());
+}
+
 std::vector<Entities::Item *> Player::Player::getInvenotry() {
     return m_inventory;
 }
@@ -137,4 +142,12 @@ Entities::Relic* Player::Player::getEquippedRelic() {
 
 Entities::Weapon* Player::Player::getEquippedWeapon() {
     return m_weaponSlot;
+}
+
+void Player::Player::addItem(Entities::Item *item) {
+    m_inventory.push_back(item);
+}
+
+Entities::Item *Player::Player::getItemFromInvenotry(int itemIndex) {
+    return m_inventory[itemIndex];
 }
