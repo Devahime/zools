@@ -23,7 +23,8 @@ void GameLogic::Combat::reset() {
 }
 
 void GameLogic::Combat::nextTurn() {
-
+    m_turn += 1;
+    m_playersTurn = !m_playersTurn;
 }
 
 std::string GameLogic::Combat::checkAliveStatus() {
@@ -38,4 +39,11 @@ std::string GameLogic::Combat::checkAliveStatus() {
 
 bool GameLogic::Combat::isPlayersTurn() {
     return m_playersTurn;
+}
+
+int GameLogic::Combat::enemyDamageFromAction(int abilityIndex) {
+
+    return m_enemy->getAbilities()[abilityIndex]->doDamage(0,m_enemy->getStrenght());
+
+
 }

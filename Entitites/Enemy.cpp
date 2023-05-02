@@ -31,3 +31,27 @@ int Entities::Enemy::getMaxHealth() {
 std::string Entities::Enemy::getName() {
     return m_name;
 }
+
+void Entities::Enemy::takeDamage(int damage) {
+    m_health -= damage;
+}
+
+std::vector<Player::Ability *> Entities::Enemy::getAbilities() {
+    return m_abilites;
+}
+
+bool Entities::Enemy::isAlive() {
+    if (m_health>0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+int Entities::Enemy::getStrenght() {
+    return m_strenght;
+}
+
+int Entities::Enemy::getHealth() {
+    return m_health;
+}

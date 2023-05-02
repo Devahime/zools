@@ -35,7 +35,7 @@ namespace GameLogic {
 
         bool combat();
 
-
+        void printAbilityOverview();
 
     };
 }

@@ -39,6 +39,10 @@ namespace Entities {
         int getMaxHealth();
 
         std::string getName();
+
+        void takeDamage(int damage);
+
+        std::vector<Player::Ability*> getAbilities();
     };
 
 

@@ -88,6 +88,10 @@ namespace Player {
         void addItem(Entities::Item * item);
 
         Entities::Item* getItemFromInvenotry(int itemIndex);
+
+        int getMaxHealth();
+
+        Ability* getAbility(int abilityIndex);
     };
 }
 

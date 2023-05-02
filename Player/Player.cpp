@@ -161,3 +161,11 @@ void Player::Player::addItem(Entities::Item *item) {
 Entities::Item *Player::Player::getItemFromInvenotry(int itemIndex) {
     return m_inventory[itemIndex];
 }
+
+int Player::Player::getMaxHealth() {
+    return m_maxHealth;
+}
+
+Player::Ability* Player::Player::getAbility(int abilityIndex) {
+    return m_abilities[abilityIndex];
+}
