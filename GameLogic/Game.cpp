@@ -34,6 +34,12 @@ bool GameLogic::Game::checkForAction(char input) {
     } else if(input == 'i') {  //debug
         InventoryGUI();
         return true;
+    } else if (input == 'e') { //debug
+        auto abilitites = m_player->getAbilities();
+        for (int i = 0; i < abilitites.size(); ++i) {
+            std::cout << abilitites[i]->getName() << std::endl;
+        }
+        return true;
     }
 }
 
@@ -51,15 +57,19 @@ void GameLogic::Game::printPlayer() { //debug
     std::cout << m_player->getName();
 }
 
-/*bool GameLogic::Game::combat() {
+bool GameLogic::Game::combat() {
     bool combat = true;
     m_combat->beginCombat(m_player,new Entities::Enemy("skeleton", 50, 10, 10)); //debug
 
     while (combat) {
 
+
+        if (m_combat->checkAliveStatus() != "bothAlive") {
+            combat = false;
+        }
     }
 
-} */
+}
 
 
 
@@ -163,6 +173,19 @@ void GameLogic::Game::InventoryGUI() {
     }
 
     clearScreen();
+
+
+}
+
+void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
+    if (m_combat->isPlayersTurn()) {
+        std::cout << "          |--------Combat--------|\n" << std::endl;
+        std::cout << "   Enemy: " << enemy->getName() << " [" << enemy->getHealth() << "/" << enemy->getMaxHealth() << "]\n\n\n" << std::endl;
+        std::
+
+
+    }
+
 
 
 

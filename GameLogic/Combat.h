@@ -38,7 +38,7 @@ namespace GameLogic {
 
         std::string checkAliveStatus();
 
-
+        bool isPlayersTurn();
     };
 }
 

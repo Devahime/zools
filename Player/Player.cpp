@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Ability.h"
 #include "Punch.h"
+#include "Slash.h"
 
 
 
@@ -54,10 +55,17 @@ void Player::Player::dropRelic() {
 
 void Player::Player::equipWeapon(Entities::Weapon *weapon) {
     m_weaponSlot = weapon;
+    addAbility(new Slash());
 }
 
 void Player::Player::dropWeapon() {
     m_weaponSlot = nullptr;
+    for (int i = 0; i < m_abilities.size(); ++i) {
+        if (m_abilities[i]->getName() == "Slash") {
+            delete m_abilities[i];
+            m_abilities.erase(i + m_abilities.begin());
+        }
+    }
 }
 
 std::string Player::Player::getName() {
@@ -92,11 +100,13 @@ void Player::Player::addAbility(::Player::Ability *ability) {
 }
 
 
-/*Player::Player::getWeaponDamage() {
+int Player::Player::getWeaponDamage() {
     if (m_weaponSlot != nullptr) {
         return m_weaponSlot->getDamage();
+    } else {
+        return 0;
     }
-}*/
+}
 
 std::vector<Player::Ability *> Player::Player::getAbilities() {
     return m_abilities;
