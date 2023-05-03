@@ -20,6 +20,7 @@ int main() {
     delete builder;
 
     bool gameRunning = true;
+    bool playerAlive = true;
     char input;
 
     game->printTutorial();
@@ -40,20 +41,30 @@ int main() {
         }
     }*/   //debug
 
-
-    while (gameRunning) {
+    //main game loop
+    while (gameRunning and playerAlive) {
 
 
         input = _getch();
         game->clearScreen();
         gameRunning = game->checkForAction(input);
 
+        if (!game->isPlayerAlive()) {
+            playerAlive = false;
+        }
+
     }
 
 
+    if (gameRunning == false and playerAlive == true) {
+        std::cout << "You ended the game, press any key to exit the aplication";
+        input = _getch();
+    } else {
+        std::cout << "You died! \nPress any key to exit!" << std::endl;
+        input = _getch();
+    }
 
-    std::cout << "You died the game, press any key to die the game completely" << std::endl;
-    input = _getch();
+
 
     /*game->printPlayer();
     game->clearScreen();

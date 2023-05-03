@@ -26,7 +26,9 @@ namespace GameLogic {
 
         void clearScreen();
 
-        void printMap();
+        void printMap(int mapNumber);
+
+        void printGameScreen(); // todo
 
         void InventoryGUI();
 
@@ -39,6 +41,10 @@ namespace GameLogic {
         void printAbilityOverview();
 
         void printTutorial();
+
+        bool isPlayerAlive();
+
+        void mapMovement(char pressedKey, int xPlayerCordinate, int yPlayerCordinate);
 
     private: //second private sections
         void printItemDetails(std::string type, Entities::Item *item);

@@ -19,19 +19,23 @@ GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat) {
 bool GameLogic::Game::checkForAction(char input) {
     //first version, to by rewrited later
     if (input == 'w') {
-        std::cout << "Nahoru" << std::endl;
+        //std::cout << "Nahoru" << std::endl;
+        printGameScreen();
         return true;
     } else if(input == 'a') {
-        std::cout << "Doleva" << std::endl;
+        //std::cout << "Doleva" << std::endl;
+        printGameScreen();
         return true;
     } else if(input == 's') {
-        std::cout << "Dolu" << std::endl;
+        //std::cout << "Dolu" << std::endl;
+        printGameScreen();
         return true;
     } else if(input == 'd') {
-        std::cout << "Doprava" << std::endl;
+        //std::cout << "Doprava" << std::endl;
+        printGameScreen();
         return true;
     } else if(input == 'x') {
-        std::cout << "Exit" << std::endl;
+        //std::cout << "Exit" << std::endl;
         return false;
     } else if(input == 'i') {  //debug
         InventoryGUI();
@@ -53,8 +57,15 @@ bool GameLogic::Game::checkForAction(char input) {
 }
 
 
-void GameLogic::Game::printMap() {
-    std::cout << "yoooo" << std::endl; //debug
+void GameLogic::Game::printMap(int mapNumber) {
+    std::cout << "##########D##########" << std::endl; //debug
+    std::cout << "#                   #" << std::endl;
+    std::cout << "#    P              #" << std::endl;
+    std::cout << "#                I  D" << std::endl;
+    std::cout << "#                   #" << std::endl;
+    std::cout << "#          E        #" << std::endl;
+    std::cout << "#####################" << std::endl;
+    //debug
 
 }
 
@@ -225,7 +236,6 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
 
 
 
-
 }
 
 void GameLogic::Game::printAbilityOverview() {
@@ -236,13 +246,16 @@ void GameLogic::Game::printAbilityOverview() {
     }
 }
 
+
+
 void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
 
     if (item->getItemType() != Entities::ItemType::relic) {
         std::cout << "Item name:        " << item->getName() << std::endl;
         std::cout << "Item description: " << item->getInfo() << std::endl;
         std::cout << "Item type:        " << type << std::endl;
-        if (item == m_player->getEquippedArmor()) {
+        if (item == m_player->getEquippedArmor() or item ==  m_player->getEquippedRelic() or item ==  m_player->getEquippedWeapon()) {
+            //this condition is not ideal, but because this fucntion accepts all four items, i need to check it like this.
             std::cout << "Item status:      Equipped" << std::endl;
         } else {
             std::cout << "Item status:    -    \n" << std::endl;
@@ -258,6 +271,7 @@ void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
 }
 
 
+
 void GameLogic::Game::printTutorial() {
     std::string input;
     std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
@@ -269,7 +283,7 @@ void GameLogic::Game::printTutorial() {
     clearScreen();
 
     std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
-    std::cout << "Map looks like this: " << std::endl;
+    std::cout << "    Map looks like this: " << std::endl;
     std::cout
     << "        ###############" << std::endl
     << "        #         E   #" << std::endl
@@ -277,7 +291,7 @@ void GameLogic::Game::printTutorial() {
     << "        #           I #" << std::endl
     << "        ###############\n" << std::endl;
 
-    std::cout << "        Symbol Legend:" << std::endl
+    std::cout << "        Map symbols legend:" << std::endl
     << "     # - Wall" << std::endl
     << "     E - Enemy" << std::endl
     << "     I - Item" << std::endl
@@ -289,8 +303,28 @@ void GameLogic::Game::printTutorial() {
     << "     x - Exit game" << std::endl
     << "     i - Inventory\n" << std::endl;
 
-    std::cout << "Press any key to continue: " << std::endl; //change to getch
+    std::cout << "Press any key to continue " << std::endl; //change to getch
     std::cin >> input;
     clearScreen();
+}
 
+bool GameLogic::Game::isPlayerAlive() {
+    return m_player->isAlive();
+}
+
+
+void GameLogic::Game::printGameScreen() {
+    std::cout << "\n" << "      Room " << m_currentMap+1 << std::endl;
+    std::cout << "\n";
+
+    printMap(m_currentMap);
+    std::cout << "\n";
+
+    std::cout << "    Player: " << m_player->getName() <<
+    "  [" << m_player->getHealth() << "/" << m_player->getMaxHealth() << "]\n" <<std::endl;
+
+    std::cout << "        Controls:" << std::endl
+              << "     w,a,s,d - Movement" << std::endl
+              << "     x - Exit game" << std::endl
+              << "     i - Inventory\n" << std::endl;
 }
