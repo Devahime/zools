@@ -204,7 +204,7 @@ void GameLogic::Game::InventoryGUI() {
 
 
 void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
-     std::string choice;
+    std::string choice;
 
     std::cout << "          |--------Combat--------|\n" << std::endl;
     std::cout << "   Enemy: " << enemy->getName() << " [" << enemy->getHealth() << "/" << enemy->getMaxHealth() << "]\n\n\n" << std::endl;
@@ -220,6 +220,7 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
 
         if (choice=="i") {
             InventoryGUI();
+
         } else if (std::stoi(choice) > 0 and std::stoi(choice) <= m_player->getAbilities().size()) {
             auto ability = m_player->getAbility(std::stoi(choice)-1);
             if (ability->getName()!="slash") {
@@ -233,9 +234,12 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
     } else {
         std::cout << "          Enemy turn" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        if (enemy->getAbilities().size()==1){
+        if (enemy->getAbilities().size()==1){   //debug
             m_player->takeDamage(m_combat->enemyDamageFromAction(0));
         }
+        std::cout << "\n          Enemy used Punch!" << std::endl; //debug
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+
     }
 
 
