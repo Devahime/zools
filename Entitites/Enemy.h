@@ -40,7 +40,7 @@ namespace Entities {
 
         void takeDamage(int damage);
 
-        Player::Ability* getAbilities();
+        Player::Ability* getAbility();
     };
 
 

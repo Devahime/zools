@@ -81,7 +81,7 @@ void GameLogic::Game::printPlayer() { //debug
 
 bool GameLogic::Game::combat() {
     bool combat = true;
-    auto enemy = new Entities::Enemy("skeleton", 50, 10, 5); //debug
+    auto enemy = new Entities::Enemy("skeleton", 80, 10, 5); //debug
     m_combat->beginCombat(m_player,enemy); //debug
 
     while (combat) {
@@ -91,7 +91,12 @@ bool GameLogic::Game::combat() {
             combat = false;
         }
 
-        m_combat->nextTurn();
+        /*if (m_combat->isPlayersTurn()) {
+
+        } else {
+            m_combat->nextTurn();
+        }*/
+
         clearScreen();
     }
 
@@ -114,7 +119,7 @@ void GameLogic::Game::InventoryGUI() {
     std::cout << "Item number    Item name" << std::endl;
 
     for (int i = 0; i < inventory.size(); ++i) {
-        std::cout <<"          " << i << "    " << inventory[i]->getName() << std::endl;
+        std::cout <<"          " << i+1 << "    " << inventory[i]->getName() << std::endl;
     }
 
     std::string input;
@@ -124,10 +129,10 @@ void GameLogic::Game::InventoryGUI() {
 
     if (input=="q") {
         //continue without action -> quit
-    } else if (std::stoi(input) >=0 and std::stoi(input) <= inventory.size()) {
+    } else if (std::stoi(input) >=1 and std::stoi(input) <= inventory.size()+1) {
         clearScreen();
        // Entities::Item* pickedItem = inventory[input]; nefunguje
-       int pickedItemIndex = std::stoi(input);
+       int pickedItemIndex = std::stoi(input) -1;
 
         if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::armor) {
             printItemDetails("armor", inventory[pickedItemIndex]);
@@ -212,26 +217,26 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
 
         } else if (std::stoi(choice) > 0 and std::stoi(choice) <= m_player->getAbilities().size()) {
             auto ability = m_player->getAbility(std::stoi(choice)-1);
-            if (ability->getName()!="slash") {
+            if (ability->getName()!="Slash") {
                 enemy->takeDamage(ability->doDamage(0,m_player->getStrenght()));
             } else {
                 enemy->takeDamage(ability->doDamage(m_player->getWeaponDamage(),m_player->getStrenght()));
             }
+            m_combat->nextTurn();
 
         }
 
     } else {
         std::cout << "          Enemy turn" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        if (enemy->getAbilities().size()==1){   //debug
-            m_player->takeDamage(m_combat->enemyDamageFromAction(0));
-        }
+
+        m_player->takeDamage(m_combat->enemyDamageFromAction());
+
         std::cout << "\n          Enemy used Punch!" << std::endl; //debug
         std::this_thread::sleep_for(std::chrono::seconds(2));
 
+        m_combat->nextTurn();
     }
-
-
 
 
 

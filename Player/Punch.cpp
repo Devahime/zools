@@ -4,6 +4,8 @@
 
 #include "Punch.h"
 #include <string>
+#include "math.h"
+#include "stdlib.h"
 
 Player::Punch::Punch(): Ability("Punch", "Punch the soul out of your enemy") {
 
@@ -11,6 +13,6 @@ Player::Punch::Punch(): Ability("Punch", "Punch the soul out of your enemy") {
     m_cooldownTimer = 0;
 }
 
-int Player::Punch::doDamage(int damage, int strenght) {
-    return strenght;
+int Player::Punch::doDamage(int damage, int strength) {
+    return strength; //() % int ((strength + round(0.2*strength)) + (strength - round(0.2*strength)));
 }

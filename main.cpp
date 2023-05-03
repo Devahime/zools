@@ -4,9 +4,14 @@
 #include "GameLogic/Builder.h"
 #include <unistd.h>
 #include "conio.h"
-
+#include "math.h"
+ //debug
 
 int main() {
+    //debug
+    //std::cout << 15 + round(10*0.9);
+
+
     //Creation of builder
     GameLogic::Builder* builder = new GameLogic::Builder();
 

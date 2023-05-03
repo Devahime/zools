@@ -13,16 +13,13 @@ Entities::Enemy::Enemy(std::string name, int health, int armor, int strenght) {
     m_armor = armor;
     m_strenght = strenght;
     m_itemDrop = nullptr;
-    m_abilites = {new Player::Punch()};
+    m_ability = {new Player::Punch()};
 }
 
 void Entities::Enemy::addItemDrop(Entities::Item *item) {
     m_itemDrop = item;
 }
 
-void Entities::Enemy::addAbility(Player::Ability *ability) {
-    m_abilites.push_back(ability);
-}
 
 int Entities::Enemy::getMaxHealth() {
     return m_maxHealth;
@@ -36,8 +33,8 @@ void Entities::Enemy::takeDamage(int damage) {
     m_health -= damage;
 }
 
-std::vector<Player::Ability *> Entities::Enemy::getAbilities() {
-    return m_abilites;
+Player::Ability * Entities::Enemy::getAbility() {
+    return m_ability;
 }
 
 bool Entities::Enemy::isAlive() {
