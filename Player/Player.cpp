@@ -77,7 +77,7 @@ void Player::Player::takeDamage(int damage) {
     if (damageWithArmor<=0) {
         nullptr;
     } else {
-        m_health - damageWithArmor;
+        m_health = m_health - damageWithArmor;
     }
 
     if (m_health <= 0) {
@@ -87,10 +87,10 @@ void Player::Player::takeDamage(int damage) {
 }
 
 bool Player::Player::isAlive() {
-    if(m_health>=0) {
-        return false;
-    } else {
+    if(m_health>0) {
         return true;
+    } else {
+        return false;
     }
 }
 

@@ -42,8 +42,9 @@ bool GameLogic::Combat::isPlayersTurn() {
 }
 
 int GameLogic::Combat::enemyDamageFromAction(int abilityIndex) {
-
-    return m_enemy->getAbilities()[abilityIndex]->doDamage(0,m_enemy->getStrenght());
-
-
+    int strength = m_enemy->getStrenght();
+    return m_enemy
+        ->getAbilities()
+        .at(abilityIndex)
+        ->doDamage(0,strength);
 }
