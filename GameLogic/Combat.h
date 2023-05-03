@@ -5,8 +5,8 @@
 #ifndef ZOOLS2023_XKADERK2_COMBAT_H
 #define ZOOLS2023_XKADERK2_COMBAT_H
 
-#include "Player.h"
-#include "Enemy.h"
+#include "../Player/Player.h"
+#include "../Entitites/Enemy.h"
 
 
 namespace GameLogic {
@@ -33,6 +33,14 @@ namespace GameLogic {
         void beginCombat(Player::Player* player, Entities::Enemy* enemy);
 
         void reset(); //maybe will be set as private
+
+        void nextTurn();
+
+        std::string checkAliveStatus();
+
+        bool isPlayersTurn();
+
+        int enemyDamageFromAction(int abilityIndex);
     };
 }
 

@@ -4,6 +4,6 @@
 
 #include "Tile.h"
 
-Tile::Tile() {
+Map::Tile::Tile() {
 
 }

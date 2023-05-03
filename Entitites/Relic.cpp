@@ -8,7 +8,7 @@
 #include <string>
 
 
-Entities::Relic::Relic(std::string name, std::string info, int healthBonus, int strenghtBonus): Item(name, info) {
+Entities::Relic::Relic(std::string name, std::string info, int healthBonus, int strenghtBonus): Item(name, info, ItemType::relic) {
     m_healthBonus = healthBonus;
     m_stenghtBonus = strenghtBonus;
 }

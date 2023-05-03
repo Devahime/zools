@@ -12,8 +12,8 @@ class Map {
 private:
     std::string m_mapName;
     //std::vector<Map::Tiles *> m_tiles;
-    //EntryPoint::Point* m_entryPoint;
-    //ExitPoint::Point* m_exitPoint;
+    //Point* m_entryPoint;
+    //Point* m_exitPoint;
 public:
     Map();
     ~Map();

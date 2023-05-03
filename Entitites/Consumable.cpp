@@ -6,7 +6,7 @@
 #include "Consumable.h"
 #include <string>
 
-Entities::Consumable::Consumable(std::string name, std::string info, int replenishmentValue): Item(name, info) {
+Entities::Consumable::Consumable(std::string name, std::string info, int replenishmentValue): Item(name, info, ItemType::consumable) {
     m_replenishmentValue = replenishmentValue;
 }
 

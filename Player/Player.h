@@ -7,12 +7,12 @@
 
 #include <string>
 #include <vector>
-#include "Item.h"
-#include "Weapon.h"
-#include "Relic.h"
-#include "Armor.h"
+#include "../Entitites/Item.h"
+#include "../Entitites/Weapon.h"
+#include "../Entitites/Relic.h"
+#include "../Entitites/Armor.h"
 #include "Ability.h"
-#include "Consumable.h"
+#include "../Entitites/Consumable.h"
 
 
 
@@ -72,6 +72,26 @@ namespace Player {
         void useReplenishment(Entities::Consumable *consumable);
 
         void setHealth(int health); //debug
+
+        void lowerAbilityCooldown();
+
+        void deleteItemFromInvenotry(int itemIndex);
+
+        std::vector<Entities::Item*> getInvenotry();
+
+        Entities::Armor* getEquippedArmor();
+
+        Entities::Weapon* getEquippedWeapon();
+
+        Entities::Relic* getEquippedRelic();
+
+        void addItem(Entities::Item * item);
+
+        Entities::Item* getItemFromInvenotry(int itemIndex);
+
+        int getMaxHealth();
+
+        Ability* getAbility(int abilityIndex);
     };
 }
 

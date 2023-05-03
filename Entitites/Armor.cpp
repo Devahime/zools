@@ -4,7 +4,7 @@
 
 #include "Armor.h"
 
-Entities::Armor::Armor(std::string name, std::string info, int armorValue): Item(name,info) {
+Entities::Armor::Armor(std::string name, std::string info, int armorValue): Item(name,info,ItemType::armor) {
     m_armorValue = armorValue;
 }
 ///

@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include "Item.h"
-#include "Ability.h"
+#include "../Player/Ability.h"
 
 namespace Entities {
     class Enemy {
@@ -19,6 +19,7 @@ namespace Entities {
         int m_strenght;
         std::vector<Player::Ability *> m_abilites;
         Item *m_itemDrop;
+        int m_maxHealth;
 
     public:
         Enemy(std::string name, int health, int armor, int strenght);
@@ -34,6 +35,14 @@ namespace Entities {
         int getStrenght();
 
         bool isAlive();
+
+        int getMaxHealth();
+
+        std::string getName();
+
+        void takeDamage(int damage);
+
+        std::vector<Player::Ability*> getAbilities();
     };
 
 

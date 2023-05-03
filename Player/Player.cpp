@@ -3,13 +3,9 @@
 //
 
 #include "Player.h"
-#include "Item.h"
-#include "Weapon.h"
-#include "Relic.h"
-#include "Armor.h"
 #include "Ability.h"
 #include "Punch.h"
-#include "Consumable.h"
+#include "Slash.h"
 
 
 
@@ -59,10 +55,17 @@ void Player::Player::dropRelic() {
 
 void Player::Player::equipWeapon(Entities::Weapon *weapon) {
     m_weaponSlot = weapon;
+    addAbility(new Slash());
 }
 
 void Player::Player::dropWeapon() {
     m_weaponSlot = nullptr;
+    for (int i = 0; i < m_abilities.size(); ++i) {
+        if (m_abilities[i]->getName() == "Slash") {
+            delete m_abilities[i];
+            m_abilities.erase(i + m_abilities.begin());
+        }
+    }
 }
 
 std::string Player::Player::getName() {
@@ -100,10 +103,12 @@ void Player::Player::addAbility(::Player::Ability *ability) {
 int Player::Player::getWeaponDamage() {
     if (m_weaponSlot != nullptr) {
         return m_weaponSlot->getDamage();
+    } else {
+        return 0;
     }
 }
 
-    std::vector<Player::Ability *> Player::Player::getAbilities() {
+std::vector<Player::Ability *> Player::Player::getAbilities() {
     return m_abilities;
 }
 
@@ -115,9 +120,52 @@ void Player::Player::useReplenishment(Entities::Consumable *consumable) {
     }
 }
 
-void Player::Player::setHealth(int health) {
+void Player::Player::setHealth(int health) { //debug
     m_health = health;
 }
 
+void Player::Player::lowerAbilityCooldown() {
+    for (int i = 0; i < m_abilities.size(); ++i) {
+        if(m_abilities[i]->getCooldown() != 0) {
+            m_abilities[i]->lowerCooldown();
+        }
+    }
 
+}
 
+void Player::Player::deleteItemFromInvenotry(int itemIndex) {
+    delete getItemFromInvenotry(itemIndex);
+    m_inventory.erase(itemIndex+m_inventory.begin());
+}
+
+std::vector<Entities::Item *> Player::Player::getInvenotry() {
+    return m_inventory;
+}
+
+Entities::Armor* Player::Player::getEquippedArmor() {
+    return m_armorSlot;
+}
+
+Entities::Relic* Player::Player::getEquippedRelic() {
+    return m_relicSlot;
+}
+
+Entities::Weapon* Player::Player::getEquippedWeapon() {
+    return m_weaponSlot;
+}
+
+void Player::Player::addItem(Entities::Item *item) {
+    m_inventory.push_back(item);
+}
+
+Entities::Item *Player::Player::getItemFromInvenotry(int itemIndex) {
+    return m_inventory[itemIndex];
+}
+
+int Player::Player::getMaxHealth() {
+    return m_maxHealth;
+}
+
+Player::Ability* Player::Player::getAbility(int abilityIndex) {
+    return m_abilities[abilityIndex];
+}

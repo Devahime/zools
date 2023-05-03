@@ -6,6 +6,7 @@
 #define ZOOLS2023_XKADERK2_ITEM_H
 
 #include <string>
+#include "ItemType.h"
 
 namespace Entities {
     class Item {
@@ -18,13 +19,16 @@ namespace Entities {
     protected:
         std::string m_name;
         std::string m_info;
+        Entities::ItemType m_itemType;
 
     public:
-        Item(std::string name, std::string info);
+        Item(std::string name, std::string info, ItemType itemType);
 
         std::string getName();
 
         std::string getInfo();
+
+        Entities::ItemType getItemType();
 
     };
 
