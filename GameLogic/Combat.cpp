@@ -41,7 +41,7 @@ bool GameLogic::Combat::isPlayersTurn() {
     return m_playersTurn;
 }
 
-int GameLogic::Combat::enemyDamageFromAction(int abilityIndex) {
+int GameLogic::Combat::enemyDamageFromAction(int abilityIndex) { //korektni čitelný zápis
     int strength = m_enemy->getStrenght();
     return m_enemy
         ->getAbilities()

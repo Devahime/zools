@@ -107,50 +107,28 @@ void GameLogic::Game::InventoryGUI() {
     }
 
     std::string input;
-    std::cout << "\nEnter item number or 'q' to exit: ";
+    std::cout << "\nEnter item number to make item action or 'q' to exit: ";
     std::cin >> input;
 
-    if (input=="q") {
 
+    if (input=="q") {
+        //continue without action -> quit
     } else if (std::stoi(input) >=0 and std::stoi(input) <= inventory.size()) {
         clearScreen();
        // Entities::Item* pickedItem = inventory[input]; nefunguje
        int pickedItemIndex = std::stoi(input);
 
         if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::armor) {
-            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
-            std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type:        armor" << std::endl;
-            if (inventory[pickedItemIndex] == m_player->getEquippedArmor()) {
-                std::cout << "Item status:      Equipped" << std::endl;
-            } else {
-                std::cout << "Item status:    -    \n" << std::endl;
-            }
+            printItemDetails("armor", inventory[pickedItemIndex]);
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::relic) {
-            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
-            std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type:        relic" << std::endl;
-            if (inventory[pickedItemIndex] == m_player->getEquippedRelic()) {
-                std::cout << "Item status:      Equipped" << std::endl;
-            } else {
-                std::cout << "Item status:        -    \n" << std::endl;
-            }
+            printItemDetails("relic", inventory[pickedItemIndex]);
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::weapon) {
-            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
-            std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type:        weapon" << std::endl;
-            if (inventory[pickedItemIndex] == m_player->getEquippedWeapon()) {
-                std::cout << "Item status:      Equipped" << std::endl;
-            } else {
-                std::cout << "Item status:      -    \n" << std::endl;
-            }
+            printItemDetails("weapon", inventory[pickedItemIndex]);
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
-            std::cout << "Item name:        " << inventory[pickedItemIndex]->getName() << std::endl;
-            std::cout << "Item description: " << inventory[pickedItemIndex]->getInfo() << std::endl;
-            std::cout << "Item type:        consumable\n" << std::endl;
+            printItemDetails("consumable", inventory[pickedItemIndex]);
         }
 
         std::cout << "Enter 'u' to use or equip item or any other letter to exit: ";
@@ -256,4 +234,63 @@ void GameLogic::Game::printAbilityOverview() {
     for (int i = 0; i < abilities.size(); ++i) {
         std::cout << i+1 << ". " << abilities[i]->getName() << "  ";
     }
+}
+
+void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
+
+    if (item->getItemType() != Entities::ItemType::relic) {
+        std::cout << "Item name:        " << item->getName() << std::endl;
+        std::cout << "Item description: " << item->getInfo() << std::endl;
+        std::cout << "Item type:        " << type << std::endl;
+        if (item == m_player->getEquippedArmor()) {
+            std::cout << "Item status:      Equipped" << std::endl;
+        } else {
+            std::cout << "Item status:    -    \n" << std::endl;
+        }
+
+    } else {
+        std::cout << "Item name:        " << item->getName() << std::endl;
+        std::cout << "Item description: " << item->getInfo() << std::endl;
+        std::cout << "Item type:        consumable\n" << std::endl;
+
+    }
+
+}
+
+
+void GameLogic::Game::printTutorial() {
+    std::string input;
+    std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
+    std::cout << "Welcome in the game <name>!" << std::endl;
+    std::cout << "In this game your task is to make it through the dungeon!" << std::endl;
+    std::cout << "Be careful as there will be many thigs that will try to stop you!" << std::endl;
+    std::cout << "Press Enter to continue" << std::endl; //change to getch
+    std::cin >> input;
+    clearScreen();
+
+    std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
+    std::cout << "Map looks like this: " << std::endl;
+    std::cout
+    << "        ###############" << std::endl
+    << "        #         E   #" << std::endl
+    << "        # P           D" << std::endl
+    << "        #           I #" << std::endl
+    << "        ###############\n" << std::endl;
+
+    std::cout << "        Symbol Legend:" << std::endl
+    << "     # - Wall" << std::endl
+    << "     E - Enemy" << std::endl
+    << "     I - Item" << std::endl
+    << "     P - Player (you)" << std::endl
+    << "     Free space - Floor\n\n" << std::endl;
+
+    std::cout << "        Controls:" << std::endl
+    << "     w,a,s,d - Movement" << std::endl
+    << "     x - Exit game" << std::endl
+    << "     i - Inventory\n" << std::endl;
+
+    std::cout << "Press any key to continue: " << std::endl; //change to getch
+    std::cin >> input;
+    clearScreen();
+
 }

@@ -18,6 +18,7 @@ namespace GameLogic {
         Player::Player* m_player;
         int m_currentMap;
         GameLogic::Combat* m_combat;
+
     public:
         Game(Player::Player* player, GameLogic::Combat* combat/*, Map::Level* level*/);
 
@@ -37,6 +38,10 @@ namespace GameLogic {
 
         void printAbilityOverview();
 
+        void printTutorial();
+
+    private: //second private sections
+        void printItemDetails(std::string type, Entities::Item *item);
     };
 }
 

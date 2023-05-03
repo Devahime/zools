@@ -11,13 +11,18 @@ int main() {
     GameLogic::Builder* builder = new GameLogic::Builder();
 
     //building the game and returining it to object game here in main
+    //buildGame() calls function where user input for his name is required
     GameLogic::Game* game = builder->buildGame();
+
+    game->clearScreen();
 
     //Deleting the builder class as it is no longer necessary
     delete builder;
 
     bool gameRunning = true;
     char input;
+
+    game->printTutorial();
 
     //while (read(STDIN_FILENO, &input, 1) == 1 && input != !'q');
 
@@ -44,7 +49,6 @@ int main() {
         gameRunning = game->checkForAction(input);
 
     }
-
 
 
 
