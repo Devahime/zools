@@ -3,3 +3,13 @@
 //
 
 #include "ItemTile.h"
+#include <iostream>
+
+Map::ItemTile::ItemTile(Entities::Item *item) {
+
+}
+
+void Map::ItemTile::print() {
+    std::cout << "I";
+
+}

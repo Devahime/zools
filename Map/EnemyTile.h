@@ -13,7 +13,6 @@ namespace Map{
     public:
         EnemyTile(Entities:: Enemy* enemy);
         void print();
-
     };
 }
 
