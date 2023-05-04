@@ -8,9 +8,8 @@
 namespace Map {
     class PlayerTile {
     public:
-        void print(){
-        }
-
+        void print();
+        PlayerTile();
     };
 
 }
