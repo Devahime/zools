@@ -20,7 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="" />
+    <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,6 +112,8 @@
       <workItem from="1682798663147" duration="2000" />
       <workItem from="1682856094038" duration="22012000" />
       <workItem from="1683003470518" duration="15671000" />
+      <workItem from="1683133299390" duration="905000" />
+      <workItem from="1683230944079" duration="11000" />
     </task>
     <servers />
   </component>
@@ -151,7 +155,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>19</line>
+          <line>52</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
