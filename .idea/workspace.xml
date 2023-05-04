@@ -20,11 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Map/EnemyTile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Map/EnemyTile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map/ItemTile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Map/ItemTile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Map/Map.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -114,7 +110,7 @@
       <workItem from="1682798663147" duration="2000" />
       <workItem from="1682856094038" duration="22012000" />
       <workItem from="1683003470518" duration="32259000" />
-      <workItem from="1683231529721" duration="4547000" />
+      <workItem from="1683231529721" duration="4849000" />
     </task>
     <servers />
   </component>
