@@ -4,20 +4,31 @@
 #include "GameLogic/Builder.h"
 #include <unistd.h>
 #include "conio.h"
-
+#include "math.h"
+ //debug
 
 int main() {
+    //debug
+    //std::cout << 15 + round(10*0.9);
+
+
     //Creation of builder
     GameLogic::Builder* builder = new GameLogic::Builder();
 
     //building the game and returining it to object game here in main
+    //buildGame() calls function where user input for his name is required
     GameLogic::Game* game = builder->buildGame();
+
+    game->clearScreen();
 
     //Deleting the builder class as it is no longer necessary
     delete builder;
 
     bool gameRunning = true;
+    bool playerAlive = true;
     char input;
+
+    game->printTutorial();
 
     //while (read(STDIN_FILENO, &input, 1) == 1 && input != !'q');
 
@@ -35,21 +46,30 @@ int main() {
         }
     }*/   //debug
 
-
-    while (gameRunning) {
+    //main game loop
+    while (gameRunning and playerAlive) {
 
 
         input = _getch();
         game->clearScreen();
         gameRunning = game->checkForAction(input);
 
+        if (!game->isPlayerAlive()) {
+            playerAlive = false;
+        }
+
     }
 
 
+    if (gameRunning == false and playerAlive == true) {
+        std::cout << "You ended the game, press any key to exit the aplication";
+        input = _getch();
+    } else {
+        std::cout << "You died! \nPress any key to exit!" << std::endl;
+        input = _getch();
+    }
 
 
-    std::cout << "You died the game, press any key to die the game completely" << std::endl;
-    input = _getch();
 
     /*game->printPlayer();
     game->clearScreen();

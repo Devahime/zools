@@ -17,7 +17,7 @@ namespace Entities {
         int m_health;
         int m_armor;
         int m_strenght;
-        std::vector<Player::Ability *> m_abilites;
+        Player::Ability* m_ability;
         Item *m_itemDrop;
         int m_maxHealth;
 
@@ -25,8 +25,6 @@ namespace Entities {
         Enemy(std::string name, int health, int armor, int strenght);
 
         void addItemDrop(Item* item);
-
-        void addAbility(Player::Ability* ability);
 
         int getHealth();
 
@@ -42,7 +40,7 @@ namespace Entities {
 
         void takeDamage(int damage);
 
-        std::vector<Player::Ability*> getAbilities();
+        Player::Ability* getAbility();
     };
 
 

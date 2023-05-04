@@ -12,5 +12,6 @@ Player::Slash::Slash(): Ability("Slash","Let the enemy feel the sharpness of you
 }
 
 int Player::Slash::doDamage(int damage, int strenght) {
-    return (damage + round(strenght*0.7));
+    return damage + round(strenght*0.5);
 }
+
