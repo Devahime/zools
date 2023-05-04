@@ -9,12 +9,10 @@
 namespace Map{
     class EnemyTile {
     private:
-        Entities::Enemy* m_enemy;
+        Entities::Enemy* enemy;
     public:
-        //přidat EnemyTile(enemy:Enemy*)
-        void print(){
-        }
-
+        EnemyTile(Entities:: Enemy* enemy);
+        void print();
 
     };
 }
