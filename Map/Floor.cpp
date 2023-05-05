@@ -3,3 +3,11 @@
 //
 
 #include "Floor.h"
+#include <iostream>
+
+Map::Floor::Floor() {
+}
+
+void Map::Floor::print() {
+    std::cout << " ";
+}
