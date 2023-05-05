@@ -8,10 +8,7 @@
 namespace Map{
     class Wall {
     public:
-        void print(){
-
-        }
-
+        void print();
     };
 }
 

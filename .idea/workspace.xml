@@ -20,7 +20,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="" />
+    <list default="true" id="0ae8dc69-e4b6-4e5f-80ec-a61eccd2b74a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map/Door.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Map/Door.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map/Door.h" beforeDir="false" afterPath="$PROJECT_DIR$/Map/Door.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map/Floor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Map/Floor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map/Wall.h" beforeDir="false" afterPath="$PROJECT_DIR$/Map/Wall.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,9 +78,9 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.zools2023_xkaderk2">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="zools2023_xkaderk2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="zools2023_xkaderk2" TARGET_NAME="zools2023_xkaderk2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="zools2023_xkaderk2" RUN_TARGET_NAME="zools2023_xkaderk2">
@@ -110,6 +116,7 @@
       <workItem from="1682798663147" duration="2000" />
       <workItem from="1682856094038" duration="22012000" />
       <workItem from="1683003470518" duration="32812000" />
+      <workItem from="1683284540762" duration="802000" />
     </task>
     <servers />
   </component>
