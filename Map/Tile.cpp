@@ -3,7 +3,8 @@
 //
 
 #include "Tile.h"
+#include <string>
 
-Map::Tile::Tile() {
-
+std::string Map::Tile::getType() {
+    return std::string();
 }
