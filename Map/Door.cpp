@@ -3,3 +3,15 @@
 //
 
 #include "Door.h"
+#include <iostream>
+
+Map::Door::Door() {
+}
+
+int Map::Door::getTargetRoom() {
+    return 0;
+}
+
+void Map::Door::print() {
+    std::cout << "D";
+}

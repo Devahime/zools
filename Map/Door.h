@@ -8,13 +8,11 @@
 namespace Map{
     class Door {
     private:
-        int x_target;
-        int y_target;
+        int m_targetRoom;
     public:
-        void print(){
-
-        }
-
+        Door();
+        int getTargetRoom();
+        void print();
     };
 }
 

@@ -8,9 +8,8 @@
 namespace Map{
     class Floor {
     public:
-        void print(){
-
-        }
+        Floor();
+        void print();
     };
 }
 

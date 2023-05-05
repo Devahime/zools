@@ -9,12 +9,10 @@
 namespace Map{
     class ItemTile {
     private:
-        //snad je to dobře?
-        Entities::Item* m_item;
+        Entities::Item* item;
     public:
-        //přidat ItemTile(item: Item*)
-        void print(){
-        }
+        ItemTile(Entities::Item* item);
+        void print();
     };
 }
 

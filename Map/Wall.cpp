@@ -3,3 +3,11 @@
 //
 
 #include "Wall.h"
+#include <iostream>
+
+Map::Wall::Wall() {
+}
+
+void Map::Wall::print() {
+    std::cout << "#";
+}
