@@ -6,6 +6,7 @@
 #include <iostream>
 
 Map::Wall::Wall() {
+    m_tileType = TileType::WallType;
 }
 
 void Map::Wall::print() {

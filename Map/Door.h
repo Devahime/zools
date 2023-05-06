@@ -9,9 +9,11 @@
 namespace Map{
     class Door : public Tile{
     private:
+        Door();
+
         int m_targetRoom;
     public:
-        Door();
+        Door(int targetRoom);
         int getTargetRoom();
         void print();
     };
