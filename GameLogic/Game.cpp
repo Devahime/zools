@@ -336,6 +336,7 @@ void GameLogic::Game::printGameScreen() {
 
 
 void GameLogic::Game::mapMovement(char pressedKey, int xPlayerCordinate, int yPlayerCordinate) {
-    int std::array
+    std::array<int, 2> cordinates = m_player->getPlayerPosition();
+    //finish
 
 }

@@ -35,6 +35,8 @@ namespace Player {
         Entities::Relic *m_relicSlot;
         Entities::Weapon *m_weaponSlot;
         std::vector<Entities::Item *> m_inventory;
+        int xPosition;
+        int yPosition;
 //todo - player coordinates
     public:
 
@@ -94,7 +96,7 @@ namespace Player {
 
         Ability* getAbility(int abilityIndex);
 
-        getPlayerPosition();
+       std::array<int,2> getPlayerPosition();
     };
 }
 

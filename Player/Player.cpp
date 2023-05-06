@@ -20,6 +20,8 @@ Player::Player::Player(std::string name) {
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;
     m_inventory = {};
+    xPosition = 0;
+    yPosition = 0;
 }
 
 int Player::Player::getHealth() {
@@ -170,3 +172,9 @@ Player::Ability* Player::Player::getAbility(int abilityIndex) {
     return m_abilities[abilityIndex];
 }
 
+std::array<int, 2> Player::Player::getPlayerPosition() {
+    std::array<int, 2> coridnates;
+    coridnates[0] = xPosition;
+    coridnates[1] = yPosition;
+    return coridnates;
+}
