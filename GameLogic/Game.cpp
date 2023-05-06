@@ -25,17 +25,20 @@ bool GameLogic::Game::checkForAction(char input) {
     //first version, to by rewrited later
     if (input == 'w') {
         //std::cout << "Nahoru" << std::endl;
+        mapMovement(input);
         printGameScreen();
         return true;
     } else if(input == 'a') {
-        //std::cout << "Doleva" << std::endl;
+        mapMovement(input);
         printGameScreen();
         return true;
     } else if(input == 's') {
         //std::cout << "Dolu" << std::endl;
+        mapMovement(input);
         printGameScreen();
         return true;
     } else if(input == 'd') {
+        mapMovement(input);
         //std::cout << "Doprava" << std::endl;
         printGameScreen();
         return true;
@@ -333,19 +336,52 @@ void GameLogic::Game::printGameScreen() {
               << "     i - Inventory\n" << std::endl;
 }
 
+bool isNotWall(int x, int y, Map::Map* map){
+    if (map->getTile(x,y)->getType() != Map::TileType::WallType) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+
 
 void GameLogic::Game::mapMovement(char pressedKey) {
+
+
+
    Map::Point* cordinates = m_player->getPlayerPosition();
    auto map = m_level->getMap(m_currentMap);
    int xCordinate = cordinates->x;
    int yCordinate = cordinates->y;
 
     if (pressedKey == 'w') {
-        if (map->getTile(xCordinate,yCordinate-1)->getType() != Map::TileType::WallType) {
-            map->replaceTile(xCordinate, yCordinate, new Map::Floor());
-            map->replaceTile(xCordinate)
+        if (isNotWall(xCordinate, yCordinate-1, map)) {
+            //check if target tile is not Enemy or Item
+            map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
+            m_player->changePlayerPosition(xCordinate, yCordinate-1);
+        }
+
+    } else if (pressedKey == 'a') {
+        if (isNotWall(xCordinate-1, yCordinate, map)) {
+            map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
+            m_player->changePlayerPosition(xCordinate-1, yCordinate);
+        }
+
+    } else if (pressedKey == 'd') {
+        if (isNotWall(xCordinate+1, yCordinate, map)) {
+            map->swapTiles(xCordinate, yCordinate, xCordinate+1, yCordinate);
+            m_player->changePlayerPosition(xCordinate+1, yCordinate);
+        }
+
+    } else if (pressedKey == 's') {
+        if (isNotWall(xCordinate,yCordinate+1, map)) {
+            map->swapTiles(xCordinate, yCordinate, xCordinate, yCordinate+1);
+            m_player->changePlayerPosition(xCordinate, yCordinate+1);
         }
     }
+
+
     //finish
 
 }

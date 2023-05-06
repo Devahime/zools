@@ -52,7 +52,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W,}
-             }, tileEntities, new Map::Point{1, 1}, new Map::Point{1,2});
+             }, tileEntities, new Map::Point{1, 3}, new Map::Point{1,2});
 
     Map::Level* level = new Map::Level("Room 1", {map1});
     return level;
