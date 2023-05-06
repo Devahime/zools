@@ -4,9 +4,10 @@
 
 #ifndef ZOOLS2023_XKADERK2_FLOOR_H
 #define ZOOLS2023_XKADERK2_FLOOR_H
+#include "Tile.h"
 
 namespace Map{
-    class Floor {
+    class Floor : public Tile {
     public:
         Floor();
         void print();

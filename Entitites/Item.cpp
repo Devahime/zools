@@ -22,4 +22,3 @@ std::string Entities::Item::getInfo() {
 Entities::ItemType Entities::Item::getItemType() {
     return m_itemType;
 }
-

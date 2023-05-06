@@ -5,9 +5,10 @@
 #ifndef ZOOLS2023_XKADERK2_ITEMTILE_H
 #define ZOOLS2023_XKADERK2_ITEMTILE_H
 #include "../Entitites/Item.h"
+#include "Tile.h"
 
 namespace Map{
-    class ItemTile {
+    class ItemTile : public Tile {
     private:
         Entities::Item* item;
     public:

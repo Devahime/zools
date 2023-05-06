@@ -48,6 +48,10 @@ namespace GameLogic {
 
     private: //second private sections
         void printItemDetails(std::string type, Entities::Item *item);
+
+        void takeItemFromTile(Entities::Item *item);
+
+
     };
 }
 

@@ -5,9 +5,10 @@
 #ifndef ZOOLS2023_XKADERK2_ENEMYTILE_H
 #define ZOOLS2023_XKADERK2_ENEMYTILE_H
 #include "../Entitites/Enemy.h"
+#include "Tile.h"
 
 namespace Map{
-    class EnemyTile {
+    class EnemyTile : Tile{
     private:
         Entities::Enemy* enemy;
     public:

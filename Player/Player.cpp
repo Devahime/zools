@@ -169,3 +169,4 @@ int Player::Player::getMaxHealth() {
 Player::Ability* Player::Player::getAbility(int abilityIndex) {
     return m_abilities[abilityIndex];
 }
+
