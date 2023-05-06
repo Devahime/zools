@@ -41,6 +41,8 @@ namespace Entities {
         void takeDamage(int damage);
 
         Player::Ability* getAbility();
+
+        Entities::Item* dropItem();
     };
 
 

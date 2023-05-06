@@ -333,3 +333,9 @@ void GameLogic::Game::printGameScreen() {
               << "     x - Exit game" << std::endl
               << "     i - Inventory\n" << std::endl;
 }
+
+
+void GameLogic::Game::mapMovement(char pressedKey, int xPlayerCordinate, int yPlayerCordinate) {
+    int std::array
+
+}

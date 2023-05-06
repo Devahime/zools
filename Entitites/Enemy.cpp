@@ -52,3 +52,9 @@ int Entities::Enemy::getStrenght() {
 int Entities::Enemy::getHealth() {
     return m_health;
 }
+
+Entities::Item *Entities::Enemy::dropItem() {
+    auto item = m_itemDrop;
+    m_itemDrop = nullptr;
+    return item;
+}

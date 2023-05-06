@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <array>
 #include "../Entitites/Item.h"
 #include "../Entitites/Weapon.h"
 #include "../Entitites/Relic.h"
@@ -92,6 +93,8 @@ namespace Player {
         int getMaxHealth();
 
         Ability* getAbility(int abilityIndex);
+
+        getPlayerPosition();
     };
 }
 
