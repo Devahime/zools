@@ -10,5 +10,5 @@ void Map::PlayerTile::print() {
 }
 
 Map::PlayerTile::PlayerTile() {
-    m_tileType = TileType::Player;
+    m_tileType = TileType::PlayerTileType;
 }

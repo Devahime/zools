@@ -6,14 +6,16 @@
 #define ZOOLS2023_XKADERK2_ENEMYTILE_H
 #include "../Entitites/Enemy.h"
 #include "Tile.h"
+#include "TileType.h"
 
 namespace Map{
     class EnemyTile : Tile{
     private:
-        Entities::Enemy* enemy;
+        Entities::Enemy* m_enemy;
     public:
         EnemyTile(Entities:: Enemy* enemy);
         void print();
+        Entities::Enemy* getEnemy();
     };
 }
 

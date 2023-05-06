@@ -8,12 +8,13 @@
 #include "Tile.h"
 #include <iostream>
 
-Map::Door::Door(){
+Map::Door::Door(int targetRoom){
     m_tileType = TileType::DoorType;
+    m_targetRoom = targetRoom;
 }
 
 int Map::Door::getTargetRoom() {
-    return 0;
+    return m_targetRoom;
 }
 
 void Map::Door::print() {

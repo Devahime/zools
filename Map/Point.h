@@ -5,7 +5,7 @@
 #ifndef ZOOLS2023_XKADERK2_POINT_H
 #define ZOOLS2023_XKADERK2_POINT_H
 namespace Map {
-    struct point {
+    struct Point {
         int x;
         int y;
     };

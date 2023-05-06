@@ -10,10 +10,11 @@
 namespace Map{
     class ItemTile : public Tile {
     private:
-        Entities::Item* item;
+        Entities::Item* m_item;
     public:
         ItemTile(Entities::Item* item);
         void print();
+        Entities::Item* takeItem();
     };
 }
 
