@@ -10,10 +10,11 @@
 #include <chrono>
 #include <thread>
 
-GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat) {
+GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Level* level) {
     m_player = player;
     m_combat = combat;
     m_currentMap = 0;
+    m_level = level;
 }
 
 bool GameLogic::Game::checkForAction(char input) {

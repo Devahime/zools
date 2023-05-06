@@ -16,8 +16,9 @@ namespace Map{
         std::vector<std::vector<Tile*>> m_tiles;
         Point* m_entryPoint;
         Point* m_exitPoint;
+        std::vector<Tile*> m_tileEntitites;
     public:
-        Map(std::vector<std::vector<Tile*>>);
+        Map(std::vector<std::vector<Tile*>> tiles, std::vector<Tile*> tileEntities, Point* entryPoint, Point* exitPoint);
         ~Map();
 
         Tile* getTile(int x, int y);
@@ -25,6 +26,10 @@ namespace Map{
         void replaceTile(int x, int y, Tile* tile);
 
         void print();
+
+        Point* getEntryPoint();
+
+        Point* getExitPoint();
 
     };
 }

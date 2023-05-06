@@ -6,6 +6,7 @@
 #define ZOOLS2023_XKADERK2_BUILDER_H
 
 #include "Game.h"
+#include "../Map/Level.h"
 
 namespace GameLogic {
     class Builder {
@@ -14,12 +15,13 @@ namespace GameLogic {
 
         Player::Player* buildPlayer();
 
-        //Map::Level buildMap();
+        Map::Level* buildLevel();
 
     public:
         Builder();
 
         Game* buildGame();
+
 
 
     };
