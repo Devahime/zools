@@ -10,8 +10,8 @@ namespace Map {
         FloorType,
         WallType,
         DoorType,
-        EnemyType,
-        Player,
+        EnemyTileType,
+        PlayerTileType,
         Item
     };
 }

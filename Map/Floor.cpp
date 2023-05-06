@@ -6,6 +6,7 @@
 #include <iostream>
 
 Map::Floor::Floor() {
+    m_tileType = TileType::FloorType;
 }
 
 void Map::Floor::print() {

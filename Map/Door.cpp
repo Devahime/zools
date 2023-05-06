@@ -10,7 +10,6 @@
 
 Map::Door::Door(){
     m_tileType = TileType::DoorType;
-
 }
 
 int Map::Door::getTargetRoom() {
