@@ -5,6 +5,6 @@
 #include "Tile.h"
 #include <string>
 
-std::string Map::Tile::getType() {
-    return std::string();
+Map::TileType Map::Tile::getType() {
+    return m_tileType;
 }

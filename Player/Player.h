@@ -95,7 +95,9 @@ namespace Player {
 
         Ability* getAbility(int abilityIndex);
 
-       std::array<int,2> getPlayerPosition();
+        Map::Point* getPlayerPosition();
+
+        void changePlayerPosition(int x, int y);
     };
 }
 

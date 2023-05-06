@@ -15,7 +15,7 @@ namespace Map{
 
     public:
         virtual void print() = 0;
-        std::string getType();
+        Map::TileType getType();
 
     };
 }

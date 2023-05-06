@@ -44,7 +44,7 @@ namespace GameLogic {
 
         bool isPlayerAlive();
 
-        void mapMovement(char pressedKey, int xPlayerCordinate, int yPlayerCordinate);
+        void mapMovement(char pressedKey);
 
     private: //second private sections
         void printItemDetails(std::string type, Entities::Item *item);

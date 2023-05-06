@@ -19,12 +19,12 @@ Map::Map::~Map() {
 }
 
 Map::Tile *Map::Map::getTile(int x, int y) {
-    return m_tiles[x][y];
+    return m_tiles[y][x];
 }
 
 void Map::Map::replaceTile(int x, int y, Tile *tile) {
-    m_tiles[x][y] = tile;
-
+    m_tiles[y][x] = nullptr;
+    m_tiles[y][x] = tile;
 }
 
 void Map::Map::print() {
@@ -34,6 +34,16 @@ void Map::Map::print() {
         }
         std::cout << "\n";
     }
+}
+
+void Map::Map::swapTiles(int xOrigin, int yOrigin, int xDestination, int yDestination) {
+    auto originTile = m_tiles[yOrigin][xOrigin];
+    auto destinationTile = m_tiles[yDestination][xDestination];
+
+    //rewrite the destination by origin
+    m_tiles[yDestination][xDestination] = originTile;
+    //rewrite the origin bydestination
+    m_tiles[yOrigin][xOrigin] = destinationTile;
 }
 
 Map::Point* Map::Map::getEntryPoint() {

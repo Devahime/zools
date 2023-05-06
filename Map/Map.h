@@ -23,7 +23,9 @@ namespace Map{
 
         Tile* getTile(int x, int y);
 
-        void replaceTile(int x, int y, Tile* tile);
+       void replaceTile(int x, int y, Tile* tile);
+
+       void swapTiles(int xOrigin, int yOrigin, int xDestination, int yDestination);
 
         void print();
 

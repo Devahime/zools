@@ -171,9 +171,11 @@ Player::Ability* Player::Player::getAbility(int abilityIndex) {
     return m_abilities[abilityIndex];
 }
 
-std::array<int, 2> Player::Player::getPlayerPosition() {
-    std::array<int, 2> coridnates;
-    coridnates[0] = xPosition;
-    coridnates[1] = yPosition;
-    return coridnates;
+Map::Point* Player::Player::getPlayerPosition() {
+    return m_position;
+}
+
+void Player::Player::changePlayerPosition(int x, int y) {
+    m_position->x = x;
+    m_position->y = y;
 }

@@ -10,6 +10,9 @@
 #include <chrono>
 #include <thread>
 #include <conio.h>
+#include "../Map/Floor.h"
+#include "../Map/Wall.h"
+
 
 GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Level* level) {
     m_player = player;
@@ -331,12 +334,18 @@ void GameLogic::Game::printGameScreen() {
 }
 
 
-void GameLogic::Game::mapMovement(char pressedKey, int xPlayerCordinate, int yPlayerCordinate) {
-    std::array<int, 2> cordinates = m_player->getPlayerPosition();
+void GameLogic::Game::mapMovement(char pressedKey) {
+   Map::Point* cordinates = m_player->getPlayerPosition();
+   auto map = m_level->getMap(m_currentMap);
+   int xCordinate = cordinates->x;
+   int yCordinate = cordinates->y;
 
-    int x = cordinates.at(0);
-    int y = cordinates.at(1);
-
+    if (pressedKey == 'w') {
+        if (map->getTile(xCordinate,yCordinate-1)->getType() != Map::TileType::WallType) {
+            map->replaceTile(xCordinate, yCordinate, new Map::Floor());
+            map->replaceTile(xCordinate)
+        }
+    }
     //finish
 
 }
