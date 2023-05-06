@@ -14,6 +14,7 @@
 #include "../Entitites/Armor.h"
 #include "Ability.h"
 #include "../Entitites/Consumable.h"
+#include "../Map/Point.h"
 
 
 
@@ -35,9 +36,7 @@ namespace Player {
         Entities::Relic *m_relicSlot;
         Entities::Weapon *m_weaponSlot;
         std::vector<Entities::Item *> m_inventory;
-        int xPosition;
-        int yPosition;
-//todo - player coordinates
+        Map::Point* m_position;
     public:
 
         Player(std::string name);

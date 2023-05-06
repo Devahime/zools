@@ -20,8 +20,7 @@ Player::Player::Player(std::string name) {
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;
     m_inventory = {};
-    xPosition = 0;
-    yPosition = 0;
+    m_position = new Map::Point{0,0};
 }
 
 int Player::Player::getHealth() {
