@@ -3,9 +3,14 @@
 //
 
 #include "Door.h"
+#include "Map.h"
+#include "TileType.h"
+#include "Tile.h"
 #include <iostream>
 
-Map::Door::Door() {
+Map::Door::Door(){
+    m_tileType = TileType::DoorType;
+
 }
 
 int Map::Door::getTargetRoom() {

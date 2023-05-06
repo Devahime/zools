@@ -7,10 +7,10 @@
 
 namespace Map {
     enum class TileType {
-        Floor,
-        Wall,
-        Door,
-        Enemy,
+        FloorType,
+        WallType,
+        DoorType,
+        EnemyType,
         Player,
         Item
     };
