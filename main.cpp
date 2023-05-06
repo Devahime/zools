@@ -21,12 +21,15 @@ int main() {
 
     game->clearScreen();
 
+
+
     //Deleting the builder class as it is no longer necessary
     delete builder;
 
     bool gameRunning = true;
     bool playerAlive = true;
     char input;
+
 
     game->printTutorial();
 
@@ -45,7 +48,7 @@ int main() {
             << "####" << std::endl;
         }
     }*/   //debug
-
+    game->printGameScreen();
     //main game loop
     while (gameRunning and playerAlive) {
 

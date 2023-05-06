@@ -26,7 +26,7 @@ namespace GameLogic {
 
         void clearScreen();
 
-        void printMap(int mapNumber);
+        void printMap();
 
         void printGameScreen(); // todo
 

@@ -9,6 +9,7 @@
 #include "../Entitites/ItemType.h"
 #include <chrono>
 #include <thread>
+#include <conio.h>
 
 GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Level* level) {
     m_player = player;
@@ -58,16 +59,10 @@ bool GameLogic::Game::checkForAction(char input) {
 }
 
 
-void GameLogic::Game::printMap(int mapNumber) {
-    std::cout << "##########D##########" << std::endl; //debug
-    std::cout << "#                   #" << std::endl;
-    std::cout << "#    P              #" << std::endl;
-    std::cout << "#                I  D" << std::endl;
-    std::cout << "#                   #" << std::endl;
-    std::cout << "#          E        #" << std::endl;
-    std::cout << "#####################" << std::endl;
-    //debug
+void GameLogic::Game::printMap() {
+    Map::Map* map = m_level->getMap(m_currentMap);
 
+    map->print();
 }
 
 void GameLogic::Game::clearScreen() {
@@ -284,8 +279,8 @@ void GameLogic::Game::printTutorial() {
     std::cout << "Welcome in the game <name>!" << std::endl;
     std::cout << "In this game your task is to make it through the dungeon!" << std::endl;
     std::cout << "Be careful as there will be many thigs that will try to stop you!" << std::endl;
-    std::cout << "Press Enter to continue" << std::endl; //change to getch
-    std::cin >> input;
+    std::cout << "Press any key to continue" << std::endl; //change to getch
+    input = _getch();
     clearScreen();
 
     std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
@@ -310,7 +305,7 @@ void GameLogic::Game::printTutorial() {
     << "     i - Inventory\n" << std::endl;
 
     std::cout << "Press any key to continue " << std::endl; //change to getch
-    std::cin >> input;
+    input = _getch();
     clearScreen();
 }
 
@@ -323,7 +318,7 @@ void GameLogic::Game::printGameScreen() {
     std::cout << "\n" << "      Room " << m_currentMap+1 << std::endl;
     std::cout << "\n";
 
-    printMap(m_currentMap);
+    printMap();
     std::cout << "\n";
 
     std::cout << "    Player: " << m_player->getName() <<
@@ -338,6 +333,10 @@ void GameLogic::Game::printGameScreen() {
 
 void GameLogic::Game::mapMovement(char pressedKey, int xPlayerCordinate, int yPlayerCordinate) {
     std::array<int, 2> cordinates = m_player->getPlayerPosition();
+
+    int x = cordinates.at(0);
+    int y = cordinates.at(1);
+
     //finish
 
 }
