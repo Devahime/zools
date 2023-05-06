@@ -61,6 +61,8 @@ bool GameLogic::Game::checkForAction(char input) {
             return false;
         }
 
+    } else {
+        printGameScreen();
     }
 }
 
