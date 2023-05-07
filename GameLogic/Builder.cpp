@@ -78,7 +78,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W,  F, F, F, F, F, F, F, F, F, F, F, W},
              {W,  W, W, W, D3, W, W, W, W, W, W, W, W}
             }, tileEntities1,new Map::Point{1, 3},new Map::Point{4, 5});
-    
+
     //room2
     Map::Tile* D4 = new Map::Door(1, false); tileEntities2.push_back(D4);
     Map::Tile* D5 = new Map::Door(3, true); tileEntities2.push_back(D5);
