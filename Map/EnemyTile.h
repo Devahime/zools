@@ -9,7 +9,7 @@
 #include "TileType.h"
 
 namespace Map{
-    class EnemyTile : Tile{
+    class EnemyTile : public Tile{
     private:
         Entities::Enemy* m_enemy;
     public:

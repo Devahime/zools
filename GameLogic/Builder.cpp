@@ -9,7 +9,15 @@
 #include "../Map/Wall.h"
 #include "../Map/Floor.h"
 #include "../Map/PlayerTile.h"
+#include "../Map/ItemTile.h"
+#include "../Map/EnemyTile.h"
 #include "../Map/Door.h"
+#include "../Entitites/Enemy.h"
+#include "../Entitites/Consumable.h"
+#include "../Entitites/Relic.h"
+#include "../Entitites/Weapon.h"
+#include "../Entitites/Armor.h"
+
 
 
 GameLogic::Builder::Builder() {
@@ -52,6 +60,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
 //pokud dveře vedou do předchozí mapy, bude traget room o jedno menší než současná mapa a isExit bude false
     Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2); //tile list 1 takže 1. mapa
 
+    Entities::Enemy* enemy1 = new Entities::Enemy("Skeletonus", 50, 10, 10);
+    enemy1->addItemDrop(new Entities::Consumable("Dirty water", "it as advised to not drink this", 5));
+
+    Map::Tile* E1 = new Map::EnemyTile(enemy1);
+
 
 
 
@@ -60,7 +73,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             {{W, W, W, W, W, W, W, W, W, W, W, W,},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
-                {W, F, F, F, F, F, F, F, F, F, F, D1},
+                {W, F, F, F, F, F, F, F, F, E1, F, D1},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W,}

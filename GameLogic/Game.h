@@ -36,7 +36,7 @@ namespace GameLogic {
 
         void combatGUI(Entities::Enemy* enemy);
 
-        bool combat();
+        bool combat(Entities::Enemy* enemy);
 
         void printAbilityOverview();
 

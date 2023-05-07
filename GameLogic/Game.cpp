@@ -14,6 +14,8 @@
 #include "../Map/Wall.h"
 #include "../Map/PlayerTile.h"
 #include "../Map/Door.h"
+#include "../Map/EnemyTile.h"
+#include "../Map/ItemTile.h"
 
 
 GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Level* level) {
@@ -57,6 +59,7 @@ bool GameLogic::Game::checkForAction(char input) {
     } else if(input == 'i') {
         //opens invetory
         InventoryGUI();
+        printGameScreen();
         return true;
 
     } else if (input == 'e') { //debug
@@ -66,14 +69,14 @@ bool GameLogic::Game::checkForAction(char input) {
         }
         return true;
 
-    } else if (input == 'c') { //debug
+    } /*else if (input == 'c') { //debug
         if (combat()){
             return true;
         } else {
             return false;
         }
 
-    } else {
+    }*/ else {
         //if the keypressed is not found in this if tree, map is refreshed
         printGameScreen();
     }
@@ -96,9 +99,9 @@ void GameLogic::Game::printPlayer() { //debug
 
 
 
-bool GameLogic::Game::combat() {
+bool GameLogic::Game::combat(Entities::Enemy* enemy) {
     bool combat = true;
-    auto enemy = new Entities::Enemy("skeleton", 80, 10, 5); //debug
+    //auto enemy = new Entities::Enemy("skeleton", 80, 10, 5); //debug
     m_combat->beginCombat(m_player,enemy); //debug
 
     while (combat) {
@@ -366,6 +369,11 @@ void GameLogic::Game::printGameScreen() {
               << "     i - Inventory\n" << std::endl;
 }
 
+
+
+
+//map movement fucntions
+
 bool isNotWall(int x, int y, Map::Map* map){
     if (map->getTile(x,y)->getType() != Map::TileType::WallType) {
         return true;
@@ -380,10 +388,24 @@ bool isDoor(int x, int y, Map::Map* map){
     } else {
         return false;
     }
-
-
 }
 
+
+bool isEnemy(int x, int y, Map::Map* map) {
+    if (map->getTile(x, y)->getType() == Map::TileType::EnemyTileType) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isItem(int x, int y, Map::Map* map) {
+    if (map->getTile(x, y)->getType() == Map::TileType::Item) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 void GameLogic::Game::mapMovement(char pressedKey) {
@@ -409,6 +431,30 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                     newMapSetup(false);
                 }
 
+            } else if (isEnemy(xCordinate, yCordinate-1, map)) {
+                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate,
+                                                                                    yCordinate - 1))->getEnemy();
+                bool combatResult = combat(enemy);
+                if (combatResult) {
+                    auto item = enemy->dropItem();
+
+                    if (item != nullptr) {
+                        map->replaceTile(xCordinate, yCordinate - 1, new Map::ItemTile(item));
+                    } else {
+                        map->replaceTile(xCordinate, yCordinate - 1, new Map::Floor());
+                    }
+                }
+
+
+            } else if (isItem(xCordinate, yCordinate-1, map)) {
+                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate, yCordinate-1))->takeItem();
+                m_player->addItem(item);
+                map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
+                m_player->changePlayerPosition(xCordinate, yCordinate-1);
+                                                        //already swapped tile, need to go back cordinate wise
+                map->replaceTile(xCordinate, yCordinate + 1, new Map::Floor());
+
+
             } else {
                 map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
                 m_player->changePlayerPosition(xCordinate, yCordinate-1);
@@ -429,6 +475,29 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                     m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate-1, yCordinate))->getTargetRoom();
                     newMapSetup(false);
                 }
+
+            } else if (isEnemy(xCordinate-1, yCordinate, map)) {
+                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate-1,yCordinate))->getEnemy();
+                bool combatResult = combat(enemy);
+                if (combatResult) {
+                    auto item = enemy->dropItem();
+
+                    if (item != nullptr) {
+                        map->replaceTile(xCordinate-1, yCordinate, new Map::ItemTile(item));
+                    } else {
+                        map->replaceTile(xCordinate-1, yCordinate, new Map::Floor());
+                    }
+                }
+
+
+            } else if (isItem(xCordinate-1, yCordinate, map)) {
+                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate-1, yCordinate))->takeItem();
+                m_player->addItem(item);
+                map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
+                m_player->changePlayerPosition(xCordinate-1, yCordinate);
+                //already swapped tile, need to go back cordinate wise
+                map->replaceTile(xCordinate+1, yCordinate, new Map::Floor());
+
 
             } else {
                 map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
@@ -452,6 +521,30 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                     newMapSetup(false);
                 }
 
+            } else if (isEnemy(xCordinate+1, yCordinate, map)) {
+                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate+1,yCordinate))->getEnemy();
+                bool combatResult = combat(enemy);
+                if (combatResult) {
+                    auto item = enemy->dropItem();
+
+                    if (item != nullptr) {
+                        map->replaceTile(xCordinate+1, yCordinate, new Map::ItemTile(item));
+                    } else {
+                        map->replaceTile(xCordinate+1, yCordinate, new Map::Floor());
+                    }
+                }
+
+
+            } else if (isItem(xCordinate+1, yCordinate, map)) {
+                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate+1, yCordinate))->takeItem();
+                m_player->addItem(item);
+                map->swapTiles(xCordinate,yCordinate,xCordinate+1,yCordinate);
+                m_player->changePlayerPosition(xCordinate+1, yCordinate);
+                //already swapped tile, need to go back cordinate wise
+
+                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
+
+
             } else {
                 map->swapTiles(xCordinate, yCordinate, xCordinate+1, yCordinate);
                 m_player->changePlayerPosition(xCordinate+1, yCordinate);
@@ -472,6 +565,30 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                     m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->getTargetRoom();
                     newMapSetup(false);
                 }
+
+            } else if (isEnemy(xCordinate, yCordinate+1, map)) {
+                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate,yCordinate + 1))->getEnemy();
+                bool combatResult = combat(enemy);
+                if (combatResult) {
+                    auto item = enemy->dropItem();
+
+                    if (item != nullptr) {
+                        map->replaceTile(xCordinate, yCordinate + 1, new Map::ItemTile(item));
+                    } else {
+                        map->replaceTile(xCordinate, yCordinate + 1, new Map::Floor());
+                    }
+                }
+
+
+            } else if (isItem(xCordinate, yCordinate+1, map)) {
+                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate, yCordinate+1))->takeItem();
+                m_player->addItem(item);
+                map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate+1);
+                m_player->changePlayerPosition(xCordinate, yCordinate+1);
+                //already swapped tile, need to go back cordinate wise
+
+                map->replaceTile(xCordinate, yCordinate - 1, new Map::Floor());
+
 
             } else {
                 map->swapTiles(xCordinate, yCordinate, xCordinate, yCordinate+1);
