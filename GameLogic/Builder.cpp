@@ -26,8 +26,6 @@ GameLogic::Builder::Builder() {
 
 GameLogic::Game *GameLogic::Builder::buildGame() {
     Game* game = new GameLogic::Game(buildPlayer(), new Combat(), buildLevel());
-
-
     return game;
 }
 
@@ -43,14 +41,15 @@ Player::Player *GameLogic::Builder::buildPlayer() {
 
 Map::Level *GameLogic::Builder::buildLevel() {
 
-
-    //pro každou mapu (místnost) si musíš vytvořit vector entit (vector tilů)
     std::vector<Map::Tile*> tileEntities0;
     std::vector<Map::Tile*> tileEntities1;
-    //pak vytvoříš políčka který budou všude a budou jen jednou, to znamená podlahu a zdi
-    //každé políčko co vytvoříš musíš potom dát do tile lustu příslušní mapy
-    Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W); //<- tady toto
+    std::vector<Map::Tile*> tileEntities2;
+    std::vector<Map::Tile*> tileEntities3;
+    std::vector<Map::Tile*> tileEntities4;
+
+    Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W);
     Map::Tile* F = new Map::Floor(); tileEntities0.push_back(F);
+    
 
 
     //dveře do další místnosti budou mít číslo mapy o jedno vyšší než mapa ve které je, pokud dveře vedou do další mapy isExit je true
@@ -61,7 +60,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2); //tile list 1 takže 1. mapa
 
     Entities::Enemy* enemy1 = new Entities::Enemy("Skeletonus", 50, 10, 10);
-    enemy1->addItemDrop(new Entities::Consumable("Dirty water", "it as advised to not drink this", 5));
+    enemy1->addItemDrop(new Entities::Consumable("Dirty water", "its advised to not drink this", 5));
 
     Map::Tile* E1 = new Map::EnemyTile(enemy1);
 
