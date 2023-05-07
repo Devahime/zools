@@ -285,7 +285,7 @@ void GameLogic::Game::printAbilityOverview() {
 }
 
 
-
+//todo need to show values for item
 void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
     //detail list of information of selected item
     if (item->getItemType() != Entities::ItemType::relic) {
@@ -303,6 +303,7 @@ void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
         std::cout << "Item name:        " << item->getName() << std::endl;
         std::cout << "Item description: " << item->getInfo() << std::endl;
         std::cout << "Item type:        consumable\n" << std::endl;
+        std::cout << "Heal value:       " << static_cast<Entities::Consumable*>(item)->getReplenishemntValue();
 
     }
 
@@ -332,6 +333,7 @@ void GameLogic::Game::printTutorial() {
 
     std::cout << "        Map symbols legend:" << std::endl
     << "     # - Wall" << std::endl
+    << "     D - Door to next room" << std::endl
     << "     E - Enemy" << std::endl
     << "     I - Item" << std::endl
     << "     P - Player (you)" << std::endl
