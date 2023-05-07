@@ -8,9 +8,10 @@
 #include "Tile.h"
 #include <iostream>
 
-Map::Door::Door(int targetRoom){
+Map::Door::Door(int targetRoom, bool isExit){
     m_tileType = TileType::DoorType;
     m_targetRoom = targetRoom;
+    m_isExitDoor = isExit;
 }
 
 int Map::Door::getTargetRoom() {
@@ -19,4 +20,8 @@ int Map::Door::getTargetRoom() {
 
 void Map::Door::print() {
     std::cout << "D";
+}
+
+bool Map::Door::isExitDoor() {
+    return m_isExitDoor;
 }

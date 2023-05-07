@@ -46,6 +46,8 @@ namespace GameLogic {
 
         void mapMovement(char pressedKey);
 
+        void newMapSetup(bool isExitDoor);
+
     private: //second private sections
         void printItemDetails(std::string type, Entities::Item *item);
 

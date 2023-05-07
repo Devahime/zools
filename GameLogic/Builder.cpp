@@ -9,6 +9,7 @@
 #include "../Map/Wall.h"
 #include "../Map/Floor.h"
 #include "../Map/PlayerTile.h"
+#include "../Map/Door.h"
 
 
 GameLogic::Builder::Builder() {
@@ -34,11 +35,15 @@ Player::Player *GameLogic::Builder::buildPlayer() {
 
 Map::Level *GameLogic::Builder::buildLevel() {
 
-    std::vector<Map::Tile*> tileEntities;
+    std::vector<Map::Tile*> tileEntities0;
+    std::vector<Map::Tile*> tileEntities1;
 
-    Map::Tile* W = new Map::Wall(); tileEntities.push_back(W);
-    Map::Tile* F = new Map::Floor(); tileEntities.push_back(F);
-    Map::Tile* P = new Map::PlayerTile() ; tileEntities.push_back(P);
+    Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W);
+    Map::Tile* F = new Map::Floor(); tileEntities0.push_back(F);
+
+    Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
+
+    Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2);
 
 
 
@@ -48,12 +53,22 @@ Map::Level *GameLogic::Builder::buildLevel() {
             {{W, W, W, W, W, W, W, W, W, W, W, W,},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
-                {W, P, F, F, F, F, F, F, F, F, F, W},
+                {W, F, F, F, F, F, F, F, F, F, F, D1},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, F, F, F, F, F, F, F, F, F, F, W},
                 {W, W, W, W, W, W, W, W, W, W, W, W,}
-             }, tileEntities, new Map::Point{1, 3}, new Map::Point{1,2});
+             }, tileEntities0, new Map::Point{1, 3}, new Map::Point{10,3});
 
-    Map::Level* level = new Map::Level("Room 1", {map1});
+    Map::Map* map2 = new Map::Map(
+            {{W,  W, W, W, W, W, W, W, W, W, W, W,},
+             {W,  F, F, F, F, F, F, F, F, F, F, W},
+             {W,  F, F, F, F, F, F, F, F, F, F, W},
+             {D2, F, F, F, F, F, F, F, F, F, F, W},
+             {W,  F, F, F, F, F, F, F, F, F, F, W},
+             {W,  F, F, F, F, F, F, F, F, F, F, W},
+             {W,  W, W, W, W, W, W, W, W, W, W, W,}
+            }, tileEntities1,new Map::Point{1, 3},new Map::Point{10, 3});
+
+    Map::Level* level = new Map::Level("Dungeon 1", {map1, map2});
     return level;
 }

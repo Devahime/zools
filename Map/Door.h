@@ -9,13 +9,14 @@
 namespace Map{
     class Door : public Tile{
     private:
-        Door();
 
         int m_targetRoom;
+        bool m_isExitDoor;
     public:
-        Door(int targetRoom);
+        Door(int targetRoom, bool isExit);
         int getTargetRoom();
         void print();
+        bool isExitDoor();
     };
 }
 

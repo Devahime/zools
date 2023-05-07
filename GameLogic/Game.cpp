@@ -12,6 +12,8 @@
 #include <conio.h>
 #include "../Map/Floor.h"
 #include "../Map/Wall.h"
+#include "../Map/PlayerTile.h"
+#include "../Map/Door.h"
 
 
 GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Level* level) {
@@ -346,6 +348,16 @@ bool isNotWall(int x, int y, Map::Map* map){
     }
 };
 
+bool isDoor(int x, int y, Map::Map* map){
+    if (map->getTile(x,y)->getType() == Map::TileType::DoorType) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+}
+
 
 
 void GameLogic::Game::mapMovement(char pressedKey) {
@@ -358,32 +370,108 @@ void GameLogic::Game::mapMovement(char pressedKey) {
    int yCordinate = cordinates->y;
 
     if (pressedKey == 'w') {
+        //check if target tile is not a wall
         if (isNotWall(xCordinate, yCordinate-1, map)) {
-            //check if target tile is not Enemy or Item
-            map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
-            m_player->changePlayerPosition(xCordinate, yCordinate-1);
+            //check if target tile is door
+            if (isDoor(xCordinate, yCordinate-1, map)) {
+                //cehck if the door is exit or entry one
+                if (static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate - 1))->isExitDoor()) {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate - 1))->getTargetRoom();
+                    newMapSetup(true);
+                } else {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate - 1))->getTargetRoom();
+                    newMapSetup(false);
+                }
+
+            } else {
+                map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
+                m_player->changePlayerPosition(xCordinate, yCordinate-1);
+            }
+
+
         }
 
     } else if (pressedKey == 'a') {
         if (isNotWall(xCordinate-1, yCordinate, map)) {
-            map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
-            m_player->changePlayerPosition(xCordinate-1, yCordinate);
+
+            if (isDoor(xCordinate-1, yCordinate, map)) {
+                //cehck if the door is exit or entry one
+                if (static_cast<Map::Door*>(map->getTile(xCordinate - 1, yCordinate))->isExitDoor()) {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate-1, yCordinate))->getTargetRoom();
+                    newMapSetup(true);
+                } else {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate-1, yCordinate))->getTargetRoom();
+                    newMapSetup(false);
+                }
+
+            } else {
+                map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
+                m_player->changePlayerPosition(xCordinate-1, yCordinate);
+            }
+
+
+
         }
 
     } else if (pressedKey == 'd') {
         if (isNotWall(xCordinate+1, yCordinate, map)) {
-            map->swapTiles(xCordinate, yCordinate, xCordinate+1, yCordinate);
-            m_player->changePlayerPosition(xCordinate+1, yCordinate);
+
+            if (isDoor(xCordinate+1, yCordinate, map)) {
+                //cehck if the door is exit or entry one
+                if (static_cast<Map::Door*>(map->getTile(xCordinate + 1, yCordinate))->isExitDoor()) {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate+1, yCordinate))->getTargetRoom();
+                    newMapSetup(true);
+                } else {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate+1, yCordinate))->getTargetRoom();
+                    newMapSetup(false);
+                }
+
+            } else {
+                map->swapTiles(xCordinate, yCordinate, xCordinate+1, yCordinate);
+                m_player->changePlayerPosition(xCordinate+1, yCordinate);
+            }
         }
+
+
 
     } else if (pressedKey == 's') {
         if (isNotWall(xCordinate,yCordinate+1, map)) {
-            map->swapTiles(xCordinate, yCordinate, xCordinate, yCordinate+1);
-            m_player->changePlayerPosition(xCordinate, yCordinate+1);
+
+            if (isDoor(xCordinate, yCordinate+1, map)) {
+                //cehck if the door is exit or entry one
+                if (static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->isExitDoor()) {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->getTargetRoom();
+                    newMapSetup(true);
+                } else {
+                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->getTargetRoom();
+                    newMapSetup(false);
+                }
+
+            } else {
+                map->swapTiles(xCordinate, yCordinate, xCordinate, yCordinate+1);
+                m_player->changePlayerPosition(xCordinate, yCordinate+1);
+            }
         }
     }
 
 
     //finish
+
+}
+
+
+void GameLogic::Game::newMapSetup(bool isExitDoor) {
+    auto map = m_level->getMap(m_currentMap);
+
+    if (isExitDoor) {
+        auto point = map->getEntryPoint();
+        m_player->changePlayerPosition(point->x, point->y);
+        map->replaceTile(point->x, point->y, new Map::PlayerTile());
+
+    } else {
+        auto point = map->getExitPoint();
+        m_player->changePlayerPosition(point->x, point->y);
+        map->replaceTile(point->x, point->y, new Map::PlayerTile());
+    }
 
 }

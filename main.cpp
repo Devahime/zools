@@ -48,6 +48,7 @@ int main() {
             << "####" << std::endl;
         }
     }*/   //debug
+    game->newMapSetup(true);
     game->printGameScreen();
     //main game loop
     while (gameRunning and playerAlive) {
