@@ -49,13 +49,13 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W);
     Map::Tile* F = new Map::Floor(); tileEntities0.push_back(F);
-    Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
 
     Entities::Enemy* enemy1 = new Entities::Enemy("Skeletonus", 50, 10, 10);
     enemy1->addItemDrop(new Entities::Consumable("Dirty water", "its advised to not drink this", 5));
     Map::Tile* E1 = new Map::EnemyTile(enemy1);
 
     //room0
+    Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
     Map::Map* map0 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
@@ -65,9 +65,10 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities0, new Map::Point{1, 3}, new Map::Point{11,3});
-    Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
 
     //room1
+    Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2);
+    Map::Tile* D3 = new Map::Door(2, true); tileEntities1.push_back(D3);
     Map::Map* map1 = new Map::Map(
             {{W,  W, W, W, W, W, W, W, W, W, W, W, W},
              {W,  F, F, F, F, F, F, F, F, F, F, F, W},
@@ -77,9 +78,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W,  F, F, F, F, F, F, F, F, F, F, F, W},
              {W,  W, W, W, D3, W, W, W, W, W, W, W, W}
             }, tileEntities1,new Map::Point{1, 3},new Map::Point{4, 5});
-    Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2);
-    Map::Tile* D3 = new Map::Door(2, true); tileEntities1.push_back(D3);
-
+    
     //room2
     Map::Tile* D4 = new Map::Door(1, false); tileEntities2.push_back(D4);
     Map::Tile* D5 = new Map::Door(3, true); tileEntities2.push_back(D5);
@@ -92,7 +91,6 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, D5},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities2, new Map::Point{4, 1}, new Map::Point{11, 5});
-
 
     Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2});
     return level;
