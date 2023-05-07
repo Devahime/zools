@@ -49,39 +49,24 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W);
     Map::Tile* F = new Map::Floor(); tileEntities0.push_back(F);
-    
-
-
-    //dveře do další místnosti budou mít číslo mapy o jedno vyšší než mapa ve které je, pokud dveře vedou do další mapy isExit je true
-    Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1); //tile list 0 takže 0. mapa
-
-
-//pokud dveře vedou do předchozí mapy, bude traget room o jedno menší než současná mapa a isExit bude false
-    Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2); //tile list 1 takže 1. mapa
+    Map::Tile* D = new Map::Door(); tileEntities0.push_back(D);
 
     Entities::Enemy* enemy1 = new Entities::Enemy("Skeletonus", 50, 10, 10);
     enemy1->addItemDrop(new Entities::Consumable("Dirty water", "its advised to not drink this", 5));
 
     Map::Tile* E1 = new Map::EnemyTile(enemy1);
 
-
-
-
-//pak vytvoříš mapy po jednom
-    Map::Map* map1 = new Map::Map(
-            {{W, W, W, W, W, W, W, W, W, W, W, W,},
-                {W, F, F, F, F, F, F, F, F, F, F, W},
-                {W, F, F, F, F, F, F, F, F, F, F, W},
-                {W, F, F, F, F, F, F, F, F, E1, F, D1},
-                {W, F, F, F, F, F, F, F, F, F, F, W},
-                {W, F, F, F, F, F, F, F, F, F, F, W},
-                {W, W, W, W, W, W, W, W, W, W, W, W,}
-                //je potřeba dávat pozor kam dáváš pointy. Entry point je místo kde se hráč objěví na začátku nebo když přijde z předchozí místnosti
-                // exit point je to kde se hráč objeví když přijde z další místnosti zpět do téhle
-             }, tileEntities0, new Map::Point{1, 3}, new Map::Point{10,3});
-            //při vytváření mapy nezapomeň na to tam hodit ty tileEntitites
-
-            //tady opakuješ to samý
+    Map::Map* map0 = new Map::Map(
+            {{W, W, W, W, W, W, W, W, W, W, W, W, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, E1, F, F, D1},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, W, W, W, W, W, W, W, W, W, W, W, W}
+            }, tileEntities0, new Map::Point{1, 3}, new Map::Point{11,3});
+    Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
+    
     Map::Map* map2 = new Map::Map(
             {{W,  W, W, W, W, W, W, W, W, W, W, W,},
              {W,  F, F, F, F, F, F, F, F, F, F, W},
