@@ -24,39 +24,49 @@ GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Le
 }
 
 bool GameLogic::Game::checkForAction(char input) {
-    //first version, to by rewrited later
+    //Could be done by case switch
+    //Checking pressedkey (input), then doing action acording to controls
     if (input == 'w') {
         //std::cout << "Nahoru" << std::endl;
         mapMovement(input);
         printGameScreen();
         return true;
+
     } else if(input == 'a') {
         mapMovement(input);
         printGameScreen();
         return true;
+
     } else if(input == 's') {
         //std::cout << "Dolu" << std::endl;
         mapMovement(input);
         printGameScreen();
         return true;
+
     } else if(input == 'd') {
         mapMovement(input);
         //std::cout << "Doprava" << std::endl;
         printGameScreen();
         return true;
+
     } else if(input == 'x') {
+        //exits the game
         //std::cout << "Exit" << std::endl;
         return false;
-    } else if(input == 'i') {  //debug
+
+    } else if(input == 'i') {
+        //opens invetory
         InventoryGUI();
         return true;
+
     } else if (input == 'e') { //debug
         auto abilitites = m_player->getAbilities();
         for (int i = 0; i < abilitites.size(); ++i) {
             std::cout << abilitites[i]->getName() << std::endl;
         }
         return true;
-    } else if (input == 'c') {
+
+    } else if (input == 'c') { //debug
         if (combat()){
             return true;
         } else {
@@ -64,6 +74,7 @@ bool GameLogic::Game::checkForAction(char input) {
         }
 
     } else {
+        //if the keypressed is not found in this if tree, map is refreshed
         printGameScreen();
     }
 }
@@ -76,7 +87,7 @@ void GameLogic::Game::printMap() {
 }
 
 void GameLogic::Game::clearScreen() {
-    system("cls"); //debug
+    system("cls");
 }
 
 void GameLogic::Game::printPlayer() { //debug
@@ -119,20 +130,26 @@ bool GameLogic::Game::combat() {
 
 
 void GameLogic::Game::InventoryGUI() {
+
+    //first the screen is cleared of any infromation of past event
     clearScreen();
+    //then the players inventory will be "imported"
     std::vector<Entities::Item*> inventory = m_player->getInvenotry();
+
     std::cout << "|-------------Inventory------------|\n" << std::endl;
     std::cout << "Item number    Item name" << std::endl;
 
+    // printing the list of items in inventory
     for (int i = 0; i < inventory.size(); ++i) {
         std::cout <<"          " << i+1 << "    " << inventory[i]->getName() << std::endl;
     }
 
+    //player is asked to input number of item he wants to do operations on
     std::string input;
     std::cout << "\nEnter item number to make item action or 'q' to exit: ";
     std::cin >> input;
 
-
+    //if players types q, inventoryGUI will finish and the player will be brought back to gamescreen/combat
     if (input=="q") {
         //continue without action -> quit
     } else if (std::stoi(input) >=1 and std::stoi(input) <= inventory.size()+1) {
@@ -153,6 +170,7 @@ void GameLogic::Game::InventoryGUI() {
             printItemDetails("consumable", inventory[pickedItemIndex]);
         }
 
+        //player can "use" the item whci means equip/unequip or consume (consumable)
         std::cout << "Enter 'u' to use or equip item or any other letter to exit: ";
         std::cin >> input;
 
@@ -195,8 +213,8 @@ void GameLogic::Game::InventoryGUI() {
 
     }
 
+    //after this the screen will be cleared so next event ifnromation can be shown
     clearScreen();
-
 
 }
 
@@ -204,13 +222,14 @@ void GameLogic::Game::InventoryGUI() {
 
 
 void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
-    std::string choice;
 
+    std::string choice;
+    //overview of combat participants
     std::cout << "          |--------Combat--------|\n" << std::endl;
     std::cout << "   Enemy: " << enemy->getName() << " [" << enemy->getHealth() << "/" << enemy->getMaxHealth() << "]\n\n\n" << std::endl;
     std::cout << "   You:   " << m_player->getName() << " [" << m_player->getHealth() << "/" << m_player->getMaxHealth() << "]\n" << std::endl;
 
-
+    //checking if player has turn, if so, player can then cast ability or check inventory
     if (m_combat->isPlayersTurn()) {
         std::cout << "          Your turn" << std::endl;
         printAbilityOverview();
@@ -220,7 +239,8 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
 
         if (choice=="i") {
             InventoryGUI();
-
+            //if player chooses inventory, he still has turn, and once the combat gui will be called again, he can cast ability (or enter
+            //inventory again)
         } else if (std::stoi(choice) > 0 and std::stoi(choice) <= m_player->getAbilities().size()) {
             auto ability = m_player->getAbility(std::stoi(choice)-1);
             if (ability->getName()!="Slash") {
@@ -228,11 +248,13 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
             } else {
                 enemy->takeDamage(ability->doDamage(m_player->getWeaponDamage(),m_player->getStrenght()));
             }
+            //if player chose ability, then enemy has the turn
             m_combat->nextTurn();
 
         }
 
     } else {
+        //enemy turn
         std::cout << "          Enemy turn" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
 
@@ -241,6 +263,7 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
         std::cout << "\n          Enemy used Punch!" << std::endl; //debug
         std::this_thread::sleep_for(std::chrono::seconds(2));
 
+        //once enemy finished casting his ability, player again will have turn in next function calling
         m_combat->nextTurn();
     }
 
@@ -250,6 +273,7 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
 }
 
 void GameLogic::Game::printAbilityOverview() {
+    //function used in combat, to display all abilities player can cast
     auto abilities = m_player->getAbilities();
          std::cout << "Abilities:" << std::endl;
     for (int i = 0; i < abilities.size(); ++i) {
@@ -260,7 +284,7 @@ void GameLogic::Game::printAbilityOverview() {
 
 
 void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
-
+    //detail list of information of selected item
     if (item->getItemType() != Entities::ItemType::relic) {
         std::cout << "Item name:        " << item->getName() << std::endl;
         std::cout << "Item description: " << item->getInfo() << std::endl;
@@ -284,6 +308,7 @@ void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
 
 
 void GameLogic::Game::printTutorial() {
+
     std::string input;
     std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
     std::cout << "Welcome in the game <name>!" << std::endl;
@@ -317,6 +342,7 @@ void GameLogic::Game::printTutorial() {
     std::cout << "Press any key to continue " << std::endl; //change to getch
     input = _getch();
     clearScreen();
+
 }
 
 bool GameLogic::Game::isPlayerAlive() {
