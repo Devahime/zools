@@ -23,7 +23,7 @@ int main() {
 
 
 
-    //Deleting the builder class as it is no longer necessary
+    //Deleting the builder class as it is no longer necessary 
     delete builder;
 
     bool gameRunning = true;
