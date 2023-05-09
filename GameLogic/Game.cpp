@@ -454,7 +454,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                 map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
                 m_player->changePlayerPosition(xCordinate, yCordinate-1);
                                                         //already swapped tile, need to go back cordinate wise
-                map->replaceTile(xCordinate, yCordinate + 1, new Map::Floor());
+                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
 
 
             } else {
@@ -498,7 +498,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                 map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
                 m_player->changePlayerPosition(xCordinate-1, yCordinate);
                 //already swapped tile, need to go back cordinate wise
-                map->replaceTile(xCordinate+1, yCordinate, new Map::Floor());
+                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
 
 
             } else {
@@ -589,7 +589,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                 m_player->changePlayerPosition(xCordinate, yCordinate+1);
                 //already swapped tile, need to go back cordinate wise
 
-                map->replaceTile(xCordinate, yCordinate - 1, new Map::Floor());
+                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
 
 
             } else {

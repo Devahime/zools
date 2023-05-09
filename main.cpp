@@ -48,6 +48,7 @@ int main() {
             << "####" << std::endl;
         }
     }*/   //debug
+
     game->newMapSetup(true);
     game->printGameScreen();
     //main game loop
@@ -74,7 +75,6 @@ int main() {
     }
 
 
-
     /*game->printPlayer();
     game->clearScreen();
     std::cout << "yoooo" << std::endl;
@@ -82,6 +82,8 @@ int main() {
     game->clearScreen();
     char d;
     std::cin >> d; */
+
+    delete game;
 
     return 0;
 }
