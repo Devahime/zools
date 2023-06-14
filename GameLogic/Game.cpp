@@ -115,7 +115,6 @@ bool GameLogic::Game::combat(Entities::Enemy* enemy) {
         } else {
             m_combat->nextTurn();
         }*/
-
         clearScreen();
     }
 
@@ -141,7 +140,8 @@ void GameLogic::Game::InventoryGUI() {
     //then the players inventory will be "imported"
     std::vector<Entities::Item*> inventory = m_player->getInvenotry();
 
-    std::cout << "|-------------Inventory------------|\n" << std::endl;
+    std::cout << "|-------------Inventory------------|  Player: "
+        <<m_player->getName() << " [" << m_player->getHealth() << "/"<<  m_player->getMaxHealth() << "]\n" << std::endl;
     std::cout << "Item number    Item name" << std::endl;
 
     // printing the list of items in inventory
@@ -261,12 +261,12 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
     } else {
         //enemy turn
         std::cout << "          Enemy turn" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
 
         m_player->takeDamage(m_combat->enemyDamageFromAction());
 
         std::cout << "\n          Enemy used Punch!" << std::endl; //debug
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
 
         //once enemy finished casting his ability, player again will have turn in next function calling
         m_combat->nextTurn();
@@ -290,7 +290,7 @@ void GameLogic::Game::printAbilityOverview() {
 //todo need to show values for item
 void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
     //detail list of information of selected item
-    if (item->getItemType() != Entities::ItemType::relic) {
+    if (item->getItemType() != Entities::ItemType::consumable) {
         std::cout << "Item name:        " << item->getName() << std::endl;
         std::cout << "Item description: " << item->getInfo() << std::endl;
         std::cout << "Item type:        " << type << std::endl;
@@ -304,8 +304,8 @@ void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
     } else {
         std::cout << "Item name:        " << item->getName() << std::endl;
         std::cout << "Item description: " << item->getInfo() << std::endl;
-        std::cout << "Item type:        consumable\n" << std::endl;
-        std::cout << "Heal value:       " << static_cast<Entities::Consumable*>(item)->getReplenishemntValue();
+        std::cout << "Item type:        consumable" << std::endl;
+        std::cout << "Heal value:       " << static_cast<Entities::Consumable*>(item)->getReplenishemntValue() << "\n" << std::endl;
 
     }
 
