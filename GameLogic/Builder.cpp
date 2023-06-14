@@ -25,7 +25,7 @@ GameLogic::Builder::Builder() {
 }
 
 GameLogic::Game *GameLogic::Builder::buildGame() {
-    Game* game = new GameLogic::Game(buildPlayer(), new Combat(), buildLevel());
+    Game* game = new GameLogic::Game(buildPlayer(), buildLevel());
     return game;
 }
 

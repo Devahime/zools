@@ -18,9 +18,9 @@
 #include "../Map/ItemTile.h"
 
 
-GameLogic::Game::Game(Player::Player *player, GameLogic::Combat *combat, Map::Level* level) {
+GameLogic::Game::Game(Player::Player *player, Map::Level* level) {
     m_player = player;
-    m_combat = combat;
+    m_combat = nullptr;
     m_currentMap = 0;
     m_level = level;
 }
@@ -101,6 +101,7 @@ void GameLogic::Game::printPlayer() { //debug
 bool GameLogic::Game::combat(Entities::Enemy* enemy) {
     bool combat = true;
     //auto enemy = new Entities::Enemy("skeleton", 80, 10, 5); //debug
+    m_combat = new Combat();
     m_combat->beginCombat(m_player,enemy); //debug
 
     while (combat) {
@@ -120,12 +121,15 @@ bool GameLogic::Game::combat(Entities::Enemy* enemy) {
 
 
     if (m_combat->checkAliveStatus() == "playerDead") {
+        delete m_combat;
+        m_combat = nullptr;
         return false;
 
     } else if (m_combat->checkAliveStatus() == "enemyDead") {
+        delete m_combat;
+        m_combat = nullptr;
         return true;
     }
-
 }
 
 

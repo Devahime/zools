@@ -20,7 +20,7 @@ namespace GameLogic {
         GameLogic::Combat* m_combat;
 
     public:
-        Game(Player::Player* player, GameLogic::Combat* combat, Map::Level* level);
+        Game(Player::Player* player, Map::Level* level);
 
         bool checkForAction(char input);
 
