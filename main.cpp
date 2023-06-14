@@ -4,8 +4,8 @@
 #include "GameLogic/Builder.h"
 #include <unistd.h>
 #include "conio.h"
-#include "math.h"
- //debug
+#include "math.h" //debug
+
 
 int main() {
     //debug
@@ -86,6 +86,7 @@ int main() {
     delete game;
 
     return 0;
+
 }
 
 

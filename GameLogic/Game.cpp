@@ -85,7 +85,6 @@ bool GameLogic::Game::checkForAction(char input) {
 
 void GameLogic::Game::printMap() {
     Map::Map* map = m_level->getMap(m_currentMap);
-
     map->print();
 }
 
@@ -110,7 +109,6 @@ bool GameLogic::Game::combat(Entities::Enemy* enemy) {
         if (m_combat->checkAliveStatus() != "bothAlive") {
             combat = false;
         }
-
         /*if (m_combat->isPlayersTurn()) {
 
         } else {
@@ -392,7 +390,6 @@ bool isDoor(int x, int y, Map::Map* map){
     }
 }
 
-
 bool isEnemy(int x, int y, Map::Map* map) {
     if (map->getTile(x, y)->getType() == Map::TileType::EnemyTileType) {
         return true;
@@ -413,196 +410,79 @@ bool isItem(int x, int y, Map::Map* map) {
 void GameLogic::Game::mapMovement(char pressedKey) {
 
 
+    Map::Point *cordinates = m_player->getPlayerPosition();
+    auto map = m_level->getMap(m_currentMap);
 
-   Map::Point* cordinates = m_player->getPlayerPosition();
-   auto map = m_level->getMap(m_currentMap);
-   int xCordinate = cordinates->x;
-   int yCordinate = cordinates->y;
+
+    int xCordinate = cordinates->x;
+    int yCordinate = cordinates->y;
+
+    int xNewCordiante;
+    int yNewCordinate;
 
     if (pressedKey == 'w') {
-        //check if target tile is not a wall
-        if (isNotWall(xCordinate, yCordinate-1, map)) {
-            //check if target tile is door
-            if (isDoor(xCordinate, yCordinate-1, map)) {
-                //cehck if the door is exit or entry one
-                if (static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate - 1))->isExitDoor()) {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate - 1))->getTargetRoom();
-                    newMapSetup(true);
-                } else {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate - 1))->getTargetRoom();
-                    newMapSetup(false);
-                }
-
-            } else if (isEnemy(xCordinate, yCordinate-1, map)) {
-                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate,
-                                                                                    yCordinate - 1))->getEnemy();
-                bool combatResult = combat(enemy);
-                if (combatResult) {
-                    auto item = enemy->dropItem();
-
-                    if (item != nullptr) {
-                        map->replaceTile(xCordinate, yCordinate - 1, new Map::ItemTile(item));
-                    } else {
-                        map->replaceTile(xCordinate, yCordinate - 1, new Map::Floor());
-                    }
-                }
-
-
-            } else if (isItem(xCordinate, yCordinate-1, map)) {
-                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate, yCordinate-1))->takeItem();
-                m_player->addItem(item);
-                map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
-                m_player->changePlayerPosition(xCordinate, yCordinate-1);
-                                                        //already swapped tile, need to go back cordinate wise
-                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
-
-
-            } else {
-                map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate-1);
-                m_player->changePlayerPosition(xCordinate, yCordinate-1);
-            }
-
-
-        }
+        xNewCordiante = xCordinate;
+        yNewCordinate = yCordinate - 1;
 
     } else if (pressedKey == 'a') {
-        if (isNotWall(xCordinate-1, yCordinate, map)) {
-
-            if (isDoor(xCordinate-1, yCordinate, map)) {
-                //cehck if the door is exit or entry one
-                if (static_cast<Map::Door*>(map->getTile(xCordinate - 1, yCordinate))->isExitDoor()) {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate-1, yCordinate))->getTargetRoom();
-                    newMapSetup(true);
-                } else {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate-1, yCordinate))->getTargetRoom();
-                    newMapSetup(false);
-                }
-
-            } else if (isEnemy(xCordinate-1, yCordinate, map)) {
-                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate-1,yCordinate))->getEnemy();
-                bool combatResult = combat(enemy);
-                if (combatResult) {
-                    auto item = enemy->dropItem();
-
-                    if (item != nullptr) {
-                        map->replaceTile(xCordinate-1, yCordinate, new Map::ItemTile(item));
-                    } else {
-                        map->replaceTile(xCordinate-1, yCordinate, new Map::Floor());
-                    }
-                }
-
-
-            } else if (isItem(xCordinate-1, yCordinate, map)) {
-                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate-1, yCordinate))->takeItem();
-                m_player->addItem(item);
-                map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
-                m_player->changePlayerPosition(xCordinate-1, yCordinate);
-                //already swapped tile, need to go back cordinate wise
-                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
-
-
-            } else {
-                map->swapTiles(xCordinate,yCordinate,xCordinate-1,yCordinate);
-                m_player->changePlayerPosition(xCordinate-1, yCordinate);
-            }
-
-
-
-        }
-
-    } else if (pressedKey == 'd') {
-        if (isNotWall(xCordinate+1, yCordinate, map)) {
-
-            if (isDoor(xCordinate+1, yCordinate, map)) {
-                //cehck if the door is exit or entry one
-                if (static_cast<Map::Door*>(map->getTile(xCordinate + 1, yCordinate))->isExitDoor()) {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate+1, yCordinate))->getTargetRoom();
-                    newMapSetup(true);
-                } else {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate+1, yCordinate))->getTargetRoom();
-                    newMapSetup(false);
-                }
-
-            } else if (isEnemy(xCordinate+1, yCordinate, map)) {
-                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate+1,yCordinate))->getEnemy();
-                bool combatResult = combat(enemy);
-                if (combatResult) {
-                    auto item = enemy->dropItem();
-
-                    if (item != nullptr) {
-                        map->replaceTile(xCordinate+1, yCordinate, new Map::ItemTile(item));
-                    } else {
-                        map->replaceTile(xCordinate+1, yCordinate, new Map::Floor());
-                    }
-                }
-
-
-            } else if (isItem(xCordinate+1, yCordinate, map)) {
-                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate+1, yCordinate))->takeItem();
-                m_player->addItem(item);
-                map->swapTiles(xCordinate,yCordinate,xCordinate+1,yCordinate);
-                m_player->changePlayerPosition(xCordinate+1, yCordinate);
-                //already swapped tile, need to go back cordinate wise
-
-                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
-
-
-            } else {
-                map->swapTiles(xCordinate, yCordinate, xCordinate+1, yCordinate);
-                m_player->changePlayerPosition(xCordinate+1, yCordinate);
-            }
-        }
-
-
+        xNewCordiante = xCordinate - 1;
+        yNewCordinate = yCordinate;
 
     } else if (pressedKey == 's') {
-        if (isNotWall(xCordinate,yCordinate+1, map)) {
+        xNewCordiante = xCordinate;
+        yNewCordinate = yCordinate + 1;
 
-            if (isDoor(xCordinate, yCordinate+1, map)) {
-                //cehck if the door is exit or entry one
-                if (static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->isExitDoor()) {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->getTargetRoom();
-                    newMapSetup(true);
-                } else {
-                    m_currentMap = static_cast<Map::Door*>(map->getTile(xCordinate, yCordinate + 1))->getTargetRoom();
-                    newMapSetup(false);
-                }
-
-            } else if (isEnemy(xCordinate, yCordinate+1, map)) {
-                Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xCordinate,yCordinate + 1))->getEnemy();
-                bool combatResult = combat(enemy);
-                if (combatResult) {
-                    auto item = enemy->dropItem();
-
-                    if (item != nullptr) {
-                        map->replaceTile(xCordinate, yCordinate + 1, new Map::ItemTile(item));
-                    } else {
-                        map->replaceTile(xCordinate, yCordinate + 1, new Map::Floor());
-                    }
-                }
-
-
-            } else if (isItem(xCordinate, yCordinate+1, map)) {
-                auto item = static_cast<Map::ItemTile*>(map->getTile(xCordinate, yCordinate+1))->takeItem();
-                m_player->addItem(item);
-                map->swapTiles(xCordinate,yCordinate,xCordinate,yCordinate+1);
-                m_player->changePlayerPosition(xCordinate, yCordinate+1);
-                //already swapped tile, need to go back cordinate wise
-
-                map->replaceTile(xCordinate, yCordinate, new Map::Floor());
-
-
-            } else {
-                map->swapTiles(xCordinate, yCordinate, xCordinate, yCordinate+1);
-                m_player->changePlayerPosition(xCordinate, yCordinate+1);
-            }
-        }
+    } else if (pressedKey == 'd') {
+        xNewCordiante = xCordinate + 1;
+        yNewCordinate = yCordinate;
     }
 
 
-    //finish
+    if (isNotWall(xNewCordiante, yNewCordinate, map)) {
+        //check if target tile is door
+        if (isDoor(xNewCordiante, yNewCordinate, map)) {
+            //cehck if the door is exit or entry one
+            if (static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->isExitDoor()) {
+                m_currentMap = static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->getTargetRoom();
+                newMapSetup(true);
+            } else {
+                m_currentMap = static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->getTargetRoom();
+                newMapSetup(false);
+            }
+
+        } else if (isEnemy(xNewCordiante, yNewCordinate, map)) {
+            Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xNewCordiante,
+                                                                                yNewCordinate))->getEnemy();
+            bool combatResult = combat(enemy);
+            if (combatResult) {
+                auto item = enemy->dropItem();
+
+                if (item != nullptr) {
+                    map->replaceTile(xNewCordiante, yNewCordinate, new Map::ItemTile(item));
+                } else {
+                    map->replaceTile(xNewCordiante, yNewCordinate, new Map::Floor());
+                }
+            }
+
+
+        } else if (isItem(xNewCordiante, yNewCordinate, map)) {
+            auto item = static_cast<Map::ItemTile *>(map->getTile(xNewCordiante, yNewCordinate))->takeItem();
+            m_player->addItem(item);
+            map->swapTiles(xCordinate, yCordinate, xNewCordiante, yNewCordinate);
+            m_player->changePlayerPosition(xNewCordiante, yNewCordinate);
+            //already swapped tile, need to go back cordinate wise
+            map->replaceTile(xCordinate, yCordinate, new Map::Floor());
+
+
+        } else {
+            map->swapTiles(xCordinate, yCordinate, xNewCordiante, yNewCordinate);
+            m_player->changePlayerPosition(xNewCordiante, yNewCordinate);
+        }
+    }
 
 }
+
+
 
 
 void GameLogic::Game::newMapSetup(bool isExitDoor) {
