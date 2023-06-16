@@ -16,10 +16,11 @@ Player::Player::Player(std::string name) {
     m_armor = 0;
     m_strenght = 10;
     m_abilities = {new Punch()};
-    m_armorSlot = nullptr;
+    /*m_armorSlot = nullptr;
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;
-    m_inventory = {};
+    m_inventory = {};*/
+    m_playerInventory = new PlayerInvenotry();
     m_position = new Map::Point{1,3}; //debug
 }
 
@@ -134,10 +135,10 @@ void Player::Player::lowerAbilityCooldown() {
 
 }
 
-void Player::Player::deleteItemFromInvenotry(int itemIndex) {
+/*void Player::Player::deleteItemFromInvenotry(int itemIndex) {
     delete getItemFromInvenotry(itemIndex);
     m_inventory.erase(itemIndex+m_inventory.begin());
-}
+}*/
 
 std::vector<Entities::Item *> Player::Player::getInvenotry() {
     return m_inventory;
@@ -178,4 +179,27 @@ Map::Point* Player::Player::getPlayerPosition() {
 void Player::Player::changePlayerPosition(int x, int y) {
     m_position->x = x;
     m_position->y = y;
+}
+
+void Player::Player::equipItem(int InventoryIndex) {
+    auto itemToEquip = m_playerInventory->getItemByIndex(InventoryIndex);
+
+    if (itemToEquip->getItemType() == Entities::ItemType::weapon) {
+        if (m_playerInventory->getEquippedWeapon() == nullptr) {
+            addAbility(new Slash());
+            m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
+        }
+        m_playerInventory->dropWeapon();
+        m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
+
+    } else if (itemToEquip->getItemType() == Entities::ItemType::armor) {
+        m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
+
+
+
+    } else if (itemToEquip->getItemType() == Entities::ItemType::relic) {
+        m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
+
+
+    }
 }
