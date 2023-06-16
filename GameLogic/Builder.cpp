@@ -46,6 +46,9 @@ Map::Level *GameLogic::Builder::buildLevel() {
     std::vector<Map::Tile*> tileEntities2;
     std::vector<Map::Tile*> tileEntities3;
     std::vector<Map::Tile*> tileEntities4;
+    std::vector<Map::Tile*> tileEntities5;
+    std::vector<Map::Tile*> tileEntities6;
+    std::vector<Map::Tile*> tileEntities7;
 
     Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W);
     Map::Tile* F = new Map::Floor(); tileEntities0.push_back(F);
@@ -117,6 +120,13 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
+
+    //room5
+    Map::Tile* D10 = new Map::Door(4, false); tileEntities5.push_back(D10);
+    Map::Tile* D11 = new Map::Door(6, true); tileEntities5.push_back(D11);
+    
+
+
     Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2, map3, map4});
     return level;
     //z jaké jdu roomky do jaké jdu roomky
