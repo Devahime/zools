@@ -179,13 +179,13 @@ void GameLogic::Game::InventoryGUI() {
         }
 
         //player can "use" the item whci means equip/unequip or consume (consumable)
-        std::cout << "Enter 'u' to use or equip item or any other letter to exit: ";
+        std::cout << "\nEnter 'u' to use or equip item or any other letter to exit: ";
         std::cin >> input;
 
         if (input == "u") {
 
             if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
-                m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
+                m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]), pickedItemIndex);
             } else {
                 m_player->equipItem(pickedItemIndex);
             }
@@ -259,7 +259,7 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
             if (ability->getName()!="Slash") {
                 enemy->takeDamage(ability->doDamage(0,m_player->getStrenght()));
             } else {
-                enemy->takeDamage(ability->doDamage(m_player->getWeaponDamage(),m_player->getStrenght()));
+//                enemy->takeDamage(ability->doDamage(m_player->getWeaponDamage(),m_player->getStrenght()));
             }
             //if player chose ability, then enemy has the turn
             m_combat->nextTurn();
@@ -296,7 +296,7 @@ void GameLogic::Game::printAbilityOverview() {
 
 
 //todo need to show values for item
-void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
+/*void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
     //detail list of information of selected item
     if (item->getItemType() != Entities::ItemType::consumable) {
         std::cout << "Item name:        " << item->getName() << std::endl;
@@ -317,7 +317,7 @@ void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
 
     }
 
-}
+}*/
 
 
 
@@ -479,7 +479,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
 
         } else if (isItem(xNewCordiante, yNewCordinate, map)) {
             auto item = static_cast<Map::ItemTile *>(map->getTile(xNewCordiante, yNewCordinate))->takeItem();
-            m_player->addItem(item);
+            //m_player->addItem(item);
             map->swapTiles(xCordinate, yCordinate, xNewCordiante, yNewCordinate);
             m_player->changePlayerPosition(xNewCordiante, yNewCordinate);
             //already swapped tile, need to go back cordinate wise

@@ -4,54 +4,54 @@
 
 #include "PlayerInventory.h"
 
-Player::PlayerInvenotry::PlayerInvenotry() {
+Player::PlayerInventory::PlayerInventory() {
     m_itemInventory = {};
     m_weaponSlot = nullptr;
     m_relicSlot = nullptr;
     m_armorSlot = nullptr;
 }
 
-std::vector<Entities::Item *> Player::PlayerInvenotry::getAllItems() {
+std::vector<Entities::Item *> Player::PlayerInventory::getAllItems() {
     return m_itemInventory;
 }
 
-void Player::PlayerInvenotry::equipArmor(Entities::Armor *armor) {
+void Player::PlayerInventory::equipArmor(Entities::Armor *armor) {
     m_armorSlot = armor;
 }
 
-void Player::PlayerInvenotry::dropArmor() {
+void Player::PlayerInventory::dropArmor() {
     m_armorSlot = nullptr;
 }
 
-Entities::Armor* Player::PlayerInvenotry::getEquippedArmor() {
+Entities::Armor* Player::PlayerInventory::getEquippedArmor() {
     return m_armorSlot;
 }
 
-void Player::PlayerInvenotry::equipRelic(Entities::Relic * relic) {
+void Player::PlayerInventory::equipRelic(Entities::Relic * relic) {
     m_relicSlot = relic;
 }
 
-void Player::PlayerInvenotry::dropRelic() {
+void Player::PlayerInventory::dropRelic() {
     m_relicSlot = nullptr;
 }
 
-Entities::Relic *Player::PlayerInvenotry::getEquippedRelic() {
+Entities::Relic *Player::PlayerInventory::getEquippedRelic() {
     return m_relicSlot;
 }
 
-void Player::PlayerInvenotry::equipWeapon(Entities::Weapon *weapon) {
+void Player::PlayerInventory::equipWeapon(Entities::Weapon *weapon) {
     m_weaponSlot = weapon;
 }
 
-void Player::PlayerInvenotry::dropWeapon() {
+void Player::PlayerInventory::dropWeapon() {
     m_weaponSlot = nullptr;
 }
 
-Entities::Weapon *Player::PlayerInvenotry::getEquippedWeapon() {
+Entities::Weapon *Player::PlayerInventory::getEquippedWeapon() {
     return m_weaponSlot;
 }
 
-int Player::PlayerInvenotry::getWeaponDamage() {
+int Player::PlayerInventory::getWeaponDamage() {
     if (m_weaponSlot != nullptr) {
         return m_weaponSlot->getDamage();
     } else {
@@ -59,20 +59,20 @@ int Player::PlayerInvenotry::getWeaponDamage() {
     }
 }
 
-Entities::Item *Player::PlayerInvenotry::getItemByIndex(int itemIndex) {
+Entities::Item *Player::PlayerInventory::getItemByIndex(int itemIndex) {
     return m_itemInventory.at(itemIndex);
 }
 
-void Player::PlayerInvenotry::deleteItemFromInventory(int inventoryIndex) {
+void Player::PlayerInventory::deleteItemFromInventory(int inventoryIndex) {
     delete getItemByIndex(inventoryIndex);
     m_itemInventory.erase(inventoryIndex+m_itemInventory.begin());
 }
 
-void Player::PlayerInvenotry::addItem(Entities::Item *item) {
+void Player::PlayerInventory::addItem(Entities::Item *item) {
     m_itemInventory.push_back(item);
 }
 
-bool Player::PlayerInvenotry::isArmorSlotEmpty() {
+bool Player::PlayerInventory::isArmorSlotEmpty() {
     if (m_armorSlot == nullptr) {
         return true;
     } else {
@@ -80,7 +80,7 @@ bool Player::PlayerInvenotry::isArmorSlotEmpty() {
     }
 }
 
-bool Player::PlayerInvenotry::isRelicSlotEmpty() {
+bool Player::PlayerInventory::isRelicSlotEmpty() {
     if (m_relicSlot == nullptr) {
         return true;
     } else {
@@ -88,7 +88,7 @@ bool Player::PlayerInvenotry::isRelicSlotEmpty() {
     }
 }
 
-bool Player::PlayerInvenotry::isWeaponSlotEmpty() {
+bool Player::PlayerInventory::isWeaponSlotEmpty() {
     if (m_weaponSlot == nullptr) {
         return true;
     } else {

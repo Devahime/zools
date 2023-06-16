@@ -19,7 +19,7 @@ namespace GameLogic {
         Player::Player* m_player;
         int m_currentMap;
         GameLogic::Combat* m_combat;
-        GUI* m_gui;
+        GameLogic::GUI* m_gui;
 
     public:
         Game(Player::Player* player, Map::Level* level);

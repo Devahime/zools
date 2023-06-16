@@ -14,14 +14,14 @@
 
 
 namespace Player {
-    class PlayerInvenotry {
+    class PlayerInventory {
         std::vector<Entities::Item*> m_itemInventory;
         Entities::Weapon* m_weaponSlot;
         Entities::Armor* m_armorSlot;
         Entities::Relic* m_relicSlot;
     public:
 
-        PlayerInvenotry();
+        PlayerInventory();
 
         std::vector<Entities::Item*> getAllItems();
 

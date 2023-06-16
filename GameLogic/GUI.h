@@ -18,7 +18,6 @@ namespace GameLogic {
     class GUI {
 
     public:
-        GUI();
 
         void clearScreen();
 

@@ -20,7 +20,7 @@ Player::Player::Player(std::string name) {
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;
     m_inventory = {};*/
-    m_playerInventory = new PlayerInvenotry();
+    m_playerInventory = new PlayerInventory();
     m_position = new Map::Point{1,3}; //debug
 }
 
@@ -196,4 +196,8 @@ void Player::Player::equipItem(int InventoryIndex) {
             m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
         }
     }
+}
+
+Player::PlayerInventory *Player::Player::getPlayerInvenotry() {
+    return m_playerInventory;
 }

@@ -32,7 +32,7 @@ namespace Player {
         int m_health;
         int m_armor;
         int m_strenght;
-        PlayerInvenotry* m_playerInventory;
+        PlayerInventory* m_playerInventory;
         std::vector<Ability *> m_abilities;
         /*Entities::Armor *m_armorSlot;
         Entities::Relic *m_relicSlot;
@@ -81,7 +81,7 @@ namespace Player {
 
         //void deleteItemFromInvenotry(int itemIndex);
 
-        PlayerInvenotry* getPlayerInvenotry();
+        PlayerInventory* getPlayerInvenotry();
 
         //Entities::Armor* getEquippedArmor();
 
