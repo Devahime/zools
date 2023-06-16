@@ -23,6 +23,7 @@ GameLogic::Game::Game(Player::Player *player, Map::Level* level) {
     m_combat = nullptr;
     m_currentMap = 0;
     m_level = level;
+    m_gui = new GUI();
 }
 
 bool GameLogic::Game::checkForAction(char input) {
@@ -89,7 +90,7 @@ void GameLogic::Game::printMap() {
 }
 
 void GameLogic::Game::clearScreen() {
-    system("cls");
+    m_gui->clearScreen();
 }
 
 void GameLogic::Game::printPlayer() { //debug
@@ -134,24 +135,11 @@ bool GameLogic::Game::combat(Entities::Enemy* enemy) {
 
 
 void GameLogic::Game::InventoryGUI() {
+    auto PlayerInventory = m_player->getPlayerInvenotry();
+    auto inventory = PlayerInventory->getAllItems();
+    m_gui->printInventory(inventory, m_player);
 
-    //first the screen is cleared of any infromation of past event
-    clearScreen();
-    //then the players inventory will be "imported"
-    std::vector<Entities::Item*> inventory = m_player->getInvenotry();
-
-    std::cout << "|-------------Inventory------------|  Player: "
-        <<m_player->getName() << " [" << m_player->getHealth() << "/"<<  m_player->getMaxHealth() << "]\n" << std::endl;
-    std::cout << "Item number    Item name" << std::endl;
-
-    // printing the list of items in inventory
-    for (int i = 0; i < inventory.size(); ++i) {
-        std::cout <<"          " << i+1 << "    " << inventory[i]->getName() << std::endl;
-    }
-
-    //player is asked to input number of item he wants to do operations on
     std::string input;
-    std::cout << "\nEnter item number to make item action or 'q' to exit: ";
     std::cin >> input;
 
     //if players types q, inventoryGUI will finish and the player will be brought back to gamescreen/combat
@@ -163,25 +151,45 @@ void GameLogic::Game::InventoryGUI() {
        int pickedItemIndex = std::stoi(input) -1;
 
         if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::armor) {
-            printItemDetails("armor", inventory[pickedItemIndex]);
+            if (inventory[pickedItemIndex] == PlayerInventory->getEquippedArmor()) {
+                m_gui->printArmorInfo(static_cast<Entities::Armor*>(inventory[pickedItemIndex]), true);
+            } else {
+                m_gui->printArmorInfo(static_cast<Entities::Armor*>(inventory[pickedItemIndex]), false);
+            }
+
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::relic) {
-            printItemDetails("relic", inventory[pickedItemIndex]);
+            if (inventory[pickedItemIndex] == PlayerInventory->getEquippedRelic()) {
+                m_gui->printRelicInfo(static_cast<Entities::Relic*>(inventory[pickedItemIndex]), true);
+            } else {
+                m_gui->printRelicInfo(static_cast<Entities::Relic*>(inventory[pickedItemIndex]), false);
+            }
+
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::weapon) {
-            printItemDetails("weapon", inventory[pickedItemIndex]);
+            if (inventory[pickedItemIndex] == PlayerInventory->getEquippedWeapon()) {
+                m_gui->printWeaponInfo(static_cast<Entities::Weapon*>(inventory[pickedItemIndex]), true);
+            } else {
+                m_gui->printWeaponInfo(static_cast<Entities::Weapon*>(inventory[pickedItemIndex]), false);
+            }
+
 
         } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
-            printItemDetails("consumable", inventory[pickedItemIndex]);
+            m_gui->printConsumableInfo(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
         }
 
         //player can "use" the item whci means equip/unequip or consume (consumable)
         std::cout << "Enter 'u' to use or equip item or any other letter to exit: ";
         std::cin >> input;
 
-
         if (input == "u") {
+
             if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
+                m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
+            } else {
+                m_player->equipItem(pickedItemIndex);
+            }
+            /*if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
                m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
                m_player->deleteItemFromInvenotry(pickedItemIndex);
 
@@ -211,7 +219,7 @@ void GameLogic::Game::InventoryGUI() {
                     m_player->dropRelic();
                     m_player->equipRelic(static_cast<Entities::Relic*>(inventory[pickedItemIndex]));
                 }
-            }
+            }*/
 
         }
 

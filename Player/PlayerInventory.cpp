@@ -52,7 +52,11 @@ Entities::Weapon *Player::PlayerInvenotry::getEquippedWeapon() {
 }
 
 int Player::PlayerInvenotry::getWeaponDamage() {
-    return m_weaponSlot->getDamage();
+    if (m_weaponSlot != nullptr) {
+        return m_weaponSlot->getDamage();
+    } else {
+        return 0;
+    }
 }
 
 Entities::Item *Player::PlayerInvenotry::getItemByIndex(int itemIndex) {
@@ -66,4 +70,28 @@ void Player::PlayerInvenotry::deleteItemFromInventory(int inventoryIndex) {
 
 void Player::PlayerInvenotry::addItem(Entities::Item *item) {
     m_itemInventory.push_back(item);
+}
+
+bool Player::PlayerInvenotry::isArmorSlotEmpty() {
+    if (m_armorSlot == nullptr) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Player::PlayerInvenotry::isRelicSlotEmpty() {
+    if (m_relicSlot == nullptr) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Player::PlayerInvenotry::isWeaponSlotEmpty() {
+    if (m_weaponSlot == nullptr) {
+        return true;
+    } else {
+        return false;
+    }
 }

@@ -51,17 +51,17 @@ namespace Player {
 
         //void equipArmor(Entities::Armor *armor);
 
-        //void dropArmor();
+        void dropArmor();
 
         //void equipRelic(Entities::Relic *relic);
 
-        //void dropRelic();
+        void dropRelic();
 
         //void equipWeapon(Entities::Weapon *weapon);
 
         //int getWeaponDamage();
 
-        //void dropWeapon();
+        void dropWeapon();
 
         std::string getName();
 
@@ -73,7 +73,7 @@ namespace Player {
 
         std::vector<Ability*> getAbilities();
 
-        //void useReplenishment(Entities::Consumable *consumable);
+        void useReplenishment(Entities::Consumable *consumable, int itemindex);
 
         void setHealth(int health); //debug
 
@@ -81,7 +81,7 @@ namespace Player {
 
         //void deleteItemFromInvenotry(int itemIndex);
 
-        std::vector<Entities::Item*> getPlayerInvenotry();
+        PlayerInvenotry* getPlayerInvenotry();
 
         //Entities::Armor* getEquippedArmor();
 

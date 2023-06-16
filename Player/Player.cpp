@@ -36,32 +36,25 @@ int Player::Player::getStrenght() {
     return m_strenght;
 }
 
-void Player::Player::equipArmor(Entities::Armor *armor) {
-    m_armorSlot = armor;
-}
-
 void Player::Player::dropArmor() {
-    m_armor -= m_armorSlot->getArmorValue();
-    m_armorSlot = nullptr;
+    m_armor -= m_playerInventory->getEquippedArmor()->getArmorValue();
+    m_playerInventory->dropArmor();
 }
 
-void Player::Player::equipRelic(Entities::Relic *relic) {
-    m_relicSlot = relic;
-}
 
 void Player::Player::dropRelic() {
-    m_strenght -= m_relicSlot->getStrenghtBonus();
-    m_maxHealth -= m_relicSlot->getHealthBonus();
-    m_relicSlot = nullptr;
+    m_strenght -= m_playerInventory->getEquippedRelic()->getStrenghtBonus();
+    m_maxHealth -= m_playerInventory->getEquippedRelic()->getHealthBonus();
+    m_playerInventory->dropRelic();
 }
 
-void Player::Player::equipWeapon(Entities::Weapon *weapon) {
+/*void Player::Player::equipWeapon(Entities::Weapon *weapon) {
     m_weaponSlot = weapon;
     addAbility(new Slash());
-}
+}*/
 
 void Player::Player::dropWeapon() {
-    m_weaponSlot = nullptr;
+    m_playerInventory->dropWeapon();
     for (int i = 0; i < m_abilities.size(); ++i) {
         if (m_abilities[i]->getName() == "Slash") {
             delete m_abilities[i];
@@ -102,24 +95,17 @@ void Player::Player::addAbility(::Player::Ability *ability) {
 }
 
 
-int Player::Player::getWeaponDamage() {
-    if (m_weaponSlot != nullptr) {
-        return m_weaponSlot->getDamage();
-    } else {
-        return 0;
-    }
-}
-
 std::vector<Player::Ability *> Player::Player::getAbilities() {
     return m_abilities;
 }
 
-void Player::Player::useReplenishment(Entities::Consumable *consumable) {
+void Player::Player::useReplenishment(Entities::Consumable *consumable, int itemIndex) {
     if (m_health+consumable->getReplenishemntValue()>m_maxHealth) {
         m_health = m_maxHealth;
     } else {
         m_health += consumable->getReplenishemntValue();
     }
+    m_playerInventory->deleteItemFromInventory(itemIndex);
 }
 
 void Player::Player::setHealth(int health) { //debug
@@ -140,7 +126,7 @@ void Player::Player::lowerAbilityCooldown() {
     m_inventory.erase(itemIndex+m_inventory.begin());
 }*/
 
-std::vector<Entities::Item *> Player::Player::getInvenotry() {
+/*std::vector<Entities::Item *> Player::Player::getInvenotry() {
     return m_inventory;
 }
 
@@ -163,6 +149,7 @@ void Player::Player::addItem(Entities::Item *item) {
 Entities::Item *Player::Player::getItemFromInvenotry(int itemIndex) {
     return m_inventory[itemIndex];
 }
+*/
 
 int Player::Player::getMaxHealth() {
     return m_maxHealth;
@@ -185,21 +172,28 @@ void Player::Player::equipItem(int InventoryIndex) {
     auto itemToEquip = m_playerInventory->getItemByIndex(InventoryIndex);
 
     if (itemToEquip->getItemType() == Entities::ItemType::weapon) {
-        if (m_playerInventory->getEquippedWeapon() == nullptr) {
+        if (m_playerInventory->isWeaponSlotEmpty()) {
             addAbility(new Slash());
             m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
+        } else {
+            dropWeapon();
+            m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
         }
-        m_playerInventory->dropWeapon();
-        m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
 
     } else if (itemToEquip->getItemType() == Entities::ItemType::armor) {
-        m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
-
-
+        if (m_playerInventory->isArmorSlotEmpty()) {
+            m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
+        } else {
+            dropArmor();
+            m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
+        }
 
     } else if (itemToEquip->getItemType() == Entities::ItemType::relic) {
-        m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
-
-
+        if (m_playerInventory->isRelicSlotEmpty()){
+            m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
+        } else {
+            dropRelic();
+            m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
+        }
     }
 }

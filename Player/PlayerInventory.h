@@ -50,6 +50,12 @@ namespace Player {
         void addItem(Entities::Item* item);
 
         Entities::Item* getItemByIndex(int itemIndex);
+
+        bool isArmorSlotEmpty();
+
+        bool isWeaponSlotEmpty();
+
+        bool isRelicSlotEmpty();
     };
 }
 

@@ -10,6 +10,7 @@
 #include "../Player/Player.h"
 #include "Combat.h"
 #include "../Entitites/Item.h"
+#include "GUI.h"
 
 
 namespace GameLogic {
@@ -18,6 +19,7 @@ namespace GameLogic {
         Player::Player* m_player;
         int m_currentMap;
         GameLogic::Combat* m_combat;
+        GUI* m_gui;
 
     public:
         Game(Player::Player* player, Map::Level* level);
