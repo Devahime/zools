@@ -34,8 +34,10 @@ Player::Player *GameLogic::Builder::buildPlayer() {
     std::cout << "Please enter your name: ";
     std::cin >>userInput;
     Player::Player* player = new Player::Player(userInput);
-    player->addItem(new Entities::Consumable("small potion","sweet like honey",15));
-    player->addItem(new Entities::Weapon("Stick", "the might of wud",15));
+    auto inventory = player->getPlayerInvenotry();
+
+    inventory->addItem(new Entities::Consumable("small potion","sweet like honey",15));
+    inventory->addItem(new Entities::Weapon("Stick", "the might of wud",15));
     return player;
 }
 
