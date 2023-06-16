@@ -108,8 +108,16 @@ Map::Level *GameLogic::Builder::buildLevel() {
     //room4
     Map::Tile* D8 = new Map::Door(3, false); tileEntities4.push_back(D8);
     Map::Tile* D9 = new Map::Door(5, true); tileEntities4.push_back(D9);
-    
-    Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2, map3});
+    Map::Map* map4 = new Map::Map(
+            {{W, W, W, W, W, W, W, W, W, D9, W, W, W},
+             {D8, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, W, W, W, W, W, W, W, W, W, W, W, W}
+            }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
+    Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2, map3, map4});
     return level;
     //z jaké jdu roomky do jaké jdu roomky
     // přidat si to do map::level
