@@ -4,6 +4,7 @@
 
 #include "GUI.h"
 #include "iostream"
+#include <conio.h>
 
 void GameLogic::GUI::clearScreen() {
     system("cls");
@@ -66,4 +67,39 @@ void GameLogic::GUI::printConsumableInfo(Entities::Consumable *consumable) {
     std::cout << "Item type:        " << "Consumable" << std::endl;
     std::cout << "Heal value:       " << consumable->getReplenishemntValue() << std::endl;
 
+}
+
+void GameLogic::GUI::printTutorial(Player::Player *player) {
+    std::string input;
+    std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
+    std::cout << "Welcome to the game "<< player->getName() << "!" << std::endl;
+    std::cout << "In this game your task is to make it through the dungeon!" << std::endl;
+    std::cout << "Be careful as there will be many thigs that will try to stop you!" << std::endl;
+    std::cout << "Press any key to continue" << std::endl; //change to getch
+    input = _getch();
+    clearScreen();
+
+    std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
+    std::cout << "    Map looks like this: " << std::endl;
+    std::cout
+            << "        ###############" << std::endl
+            << "        #         E   #" << std::endl
+            << "        # P           D" << std::endl
+            << "        #           I #" << std::endl
+            << "        ###############\n" << std::endl;
+
+    std::cout << "        Map symbols legend:" << std::endl
+              << "     # - Wall" << std::endl
+              << "     D - Door to next room" << std::endl
+              << "     E - Enemy" << std::endl
+              << "     I - Item" << std::endl
+              << "     P - Player (you)" << std::endl
+              << "     Free space - Floor\n\n" << std::endl;
+
+    std::cout << "        Controls:" << std::endl
+              << "     w,a,s,d - Movement" << std::endl
+              << "     x - Exit game" << std::endl
+              << "     i - Inventory\n" << std::endl;
+
+    std::cout << "Press any key to continue " << std::endl; //change to getch
 }

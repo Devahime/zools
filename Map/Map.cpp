@@ -28,11 +28,12 @@ void Map::Map::replaceTile(int x, int y, Tile *tile) {
 }
 
 void Map::Map::print() {
+    std::cout << "    ";
     for (int yCordinate = 0; yCordinate < m_tiles.size(); ++yCordinate) {
         for (int xCordinate = 0; xCordinate < m_tiles[yCordinate].size(); ++xCordinate) {
             m_tiles[yCordinate][xCordinate]->print();
         }
-        std::cout << "\n";
+        std::cout << "\n    ";
     }
 }
 

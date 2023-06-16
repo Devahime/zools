@@ -31,11 +31,11 @@ namespace GameLogic {
 
         void printConsumableInfo(Entities::Consumable* consumable);
 
-        void combatGUI(Player::Player* player, Entities::Enemy* enemy);
+        void combatScreen(Player::Player* player, Entities::Enemy* enemy);
 
         void printGameScreen(Player::Player* player, Map::Map* currentMap);
 
-
+        void printTutorial(Player::Player* player);
     };
 }
 

@@ -295,66 +295,11 @@ void GameLogic::Game::printAbilityOverview() {
 }
 
 
-//todo need to show values for item
-/*void GameLogic::Game::printItemDetails(std::string type, Entities::Item *item) {
-    //detail list of information of selected item
-    if (item->getItemType() != Entities::ItemType::consumable) {
-        std::cout << "Item name:        " << item->getName() << std::endl;
-        std::cout << "Item description: " << item->getInfo() << std::endl;
-        std::cout << "Item type:        " << type << std::endl;
-        if (item == m_player->getEquippedArmor() or item ==  m_player->getEquippedRelic() or item ==  m_player->getEquippedWeapon()) {
-            //this condition is not ideal, but because this fucntion accepts all four items, i need to check it like this.
-            std::cout << "Item status:      Equipped" << std::endl;
-        } else {
-            std::cout << "Item status:    -    \n" << std::endl;
-        }
-
-    } else {
-        std::cout << "Item name:        " << item->getName() << std::endl;
-        std::cout << "Item description: " << item->getInfo() << std::endl;
-        std::cout << "Item type:        consumable" << std::endl;
-        std::cout << "Heal value:       " << static_cast<Entities::Consumable*>(item)->getReplenishemntValue() << "\n" << std::endl;
-
-    }
-
-}*/
-
-
-
 void GameLogic::Game::printTutorial() {
-
     std::string input;
-    std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
-    std::cout << "Welcome to the game "<< m_player->getName() << "!" << std::endl;
-    std::cout << "In this game your task is to make it through the dungeon!" << std::endl;
-    std::cout << "Be careful as there will be many thigs that will try to stop you!" << std::endl;
-    std::cout << "Press any key to continue" << std::endl; //change to getch
-    input = _getch();
-    clearScreen();
 
-    std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
-    std::cout << "    Map looks like this: " << std::endl;
-    std::cout
-    << "        ###############" << std::endl
-    << "        #         E   #" << std::endl
-    << "        # P           D" << std::endl
-    << "        #           I #" << std::endl
-    << "        ###############\n" << std::endl;
+    m_gui->printTutorial(m_player);
 
-    std::cout << "        Map symbols legend:" << std::endl
-    << "     # - Wall" << std::endl
-    << "     D - Door to next room" << std::endl
-    << "     E - Enemy" << std::endl
-    << "     I - Item" << std::endl
-    << "     P - Player (you)" << std::endl
-    << "     Free space - Floor\n\n" << std::endl;
-
-    std::cout << "        Controls:" << std::endl
-    << "     w,a,s,d - Movement" << std::endl
-    << "     x - Exit game" << std::endl
-    << "     i - Inventory\n" << std::endl;
-
-    std::cout << "Press any key to continue " << std::endl; //change to getch
     input = _getch();
     clearScreen();
 
