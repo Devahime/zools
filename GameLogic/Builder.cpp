@@ -49,6 +49,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     std::vector<Map::Tile*> tileEntities5;
     std::vector<Map::Tile*> tileEntities6;
     std::vector<Map::Tile*> tileEntities7;
+    std::vector<Map::Tile*> tileEntities8;
 
     Map::Tile* W = new Map::Wall(); tileEntities0.push_back(W);
     Map::Tile* F = new Map::Floor(); tileEntities0.push_back(F);
@@ -146,6 +147,12 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, D12, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities6, new Map::Point{2, 5}, new Map::Point{2, 11});
+
+    //room 7 (boss room? naa later)
+    Map::Tile* D14 = new Map::Door(6, false); tileEntities7.push_back(D14);
+    Map::Tile* D15 = new Map::Door(8, true); tileEntities7.push_back(D15);
+
+
 
 
     Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2, map3, map4, map5, map6});
