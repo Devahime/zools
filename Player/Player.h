@@ -15,6 +15,7 @@
 #include "Ability.h"
 #include "../Entitites/Consumable.h"
 #include "../Map/Point.h"
+#include "PlayerInventory.h"
 
 
 
@@ -31,11 +32,12 @@ namespace Player {
         int m_health;
         int m_armor;
         int m_strenght;
+        PlayerInvenotry* m_playerInventory;
         std::vector<Ability *> m_abilities;
-        Entities::Armor *m_armorSlot;
+        /*Entities::Armor *m_armorSlot;
         Entities::Relic *m_relicSlot;
         Entities::Weapon *m_weaponSlot;
-        std::vector<Entities::Item *> m_inventory;
+        std::vector<Entities::Item *> m_inventory;*/
         Map::Point* m_position;
     public:
 
@@ -47,19 +49,19 @@ namespace Player {
 
         int getArmor();
 
-        void equipArmor(Entities::Armor *armor);
+        //void equipArmor(Entities::Armor *armor);
 
-        void dropArmor();
+        //void dropArmor();
 
-        void equipRelic(Entities::Relic *relic);
+        //void equipRelic(Entities::Relic *relic);
 
-        void dropRelic();
+        //void dropRelic();
 
-        void equipWeapon(Entities::Weapon *weapon);
+        //void equipWeapon(Entities::Weapon *weapon);
 
-        int getWeaponDamage();
+        //int getWeaponDamage();
 
-        void dropWeapon();
+        //void dropWeapon();
 
         std::string getName();
 
@@ -71,25 +73,25 @@ namespace Player {
 
         std::vector<Ability*> getAbilities();
 
-        void useReplenishment(Entities::Consumable *consumable);
+        //void useReplenishment(Entities::Consumable *consumable);
 
         void setHealth(int health); //debug
 
         void lowerAbilityCooldown();
 
-        void deleteItemFromInvenotry(int itemIndex);
+        //void deleteItemFromInvenotry(int itemIndex);
 
-        std::vector<Entities::Item*> getInvenotry();
+        std::vector<Entities::Item*> getPlayerInvenotry();
 
-        Entities::Armor* getEquippedArmor();
+        //Entities::Armor* getEquippedArmor();
 
-        Entities::Weapon* getEquippedWeapon();
+        //Entities::Weapon* getEquippedWeapon();
 
-        Entities::Relic* getEquippedRelic();
+        //Entities::Relic* getEquippedRelic();
 
-        void addItem(Entities::Item * item);
+        //void addItem(Entities::Item * item);
 
-        Entities::Item* getItemFromInvenotry(int itemIndex);
+        //Entities::Item* getItemFromInvenotry(int itemIndex);
 
         int getMaxHealth();
 
@@ -98,6 +100,8 @@ namespace Player {
         Map::Point* getPlayerPosition();
 
         void changePlayerPosition(int x, int y);
+
+        void equipItem(int InventoryIndex);
     };
 }
 
