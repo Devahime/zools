@@ -160,7 +160,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
-            }, tileEntities6, new Map::Point{1, 3}, new Map::Point{5, 1});
+            }, tileEntities7, new Map::Point{1, 3}, new Map::Point{5, 1});
 
     //room 8
     Map::Tile* D16 = new Map::Door(7, false); tileEntities8.push_back(D16);
@@ -169,12 +169,14 @@ Map::Level *GameLogic::Builder::buildLevel() {
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, F, D17},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, W, W, W, W, W, W, W, W, W, W, W, W}
-            }, tileEntities6, new Map::Point{1, 3}, new Map::Point{5, 1});
-    Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2, map3, map4, map5, map6, map7});
+             {W, W, W, W, W, D16, W, W, W, W, W, W, W}
+            }, tileEntities8, new Map::Point{5, 5}, new Map::Point{11, 3});
+
+    //room 9 - boss room?
+    Map::Level* level = new Map::Level("Dungeon 1", {map0, map1, map2, map3, map4, map5, map6, map7, map8});
     return level;
     //z jaké jdu roomky do jaké jdu roomky
     // přidat si to do map::level
