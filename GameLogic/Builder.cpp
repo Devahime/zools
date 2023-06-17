@@ -64,14 +64,14 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* E0 = new Map::EnemyTile(enemy0);
 
     Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 5);
-    Map::Tile* I0 = new Map::ItemTile(item0);
+    Map::Tile* A0 = new Map::ItemTile(item0);
 
     Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
     Map::Map* map0 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, I0, F, F, F, F, F, E0, F, F, D1},
+             {W, F, F, A0, F, F, F, F, F, E0, F, F, D1},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
@@ -82,14 +82,14 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* E1 = new Map::EnemyTile(enemy1);
 
     Entities::Item* item1 = new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 15);
-    Map::Tile* I1 = new Map::ItemTile(item1);
+    Map::Tile* W1 = new Map::ItemTile(item1);
 
     Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2);
     Map::Tile* D3 = new Map::Door(2, true); tileEntities1.push_back(D3);
     Map::Map* map1 = new Map::Map(
             {{W,  W, W, W, W, W, W, W, W, W, W, W, W},
              {W,  F, F, F, F, F, F, F, F, F, F, F, W},
-             {W,  F, F, F, F, F, F, F, F, F, I1, F, W},
+             {W,  F, F, F, F, F, F, F, F, F, W1, F, W},
              {D2, F, F, F, E1, F, F, F, F, F, F, F, W},
              {W,  F, F, F, F, F, F, F, F, F, F, F, W},
              {W,  F, F, F, F, F, F, F, F, F, F, F, W},
@@ -101,7 +101,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* E2 = new Map::EnemyTile(enemy2);
 
     Entities::Item* item2 = new Entities::Consumable("Centipede juice", "It smells awful", 15);
-    Map::Tile* I2 = new Map::ItemTile(item2);
+    Map::Tile* C2 = new Map::ItemTile(item2);
 
     Entities::Item* item2a = new Entities::Relic("Sapphire ring", "It's shiny!", 10, 10 );
     Map::Tile* R2 = new Map::ItemTile(item2a);
@@ -111,7 +111,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Map* map2 = new Map::Map(
             {{W, W, W, W, D4, W, W, W, W, W, W, W, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, I2, W},
+             {W, F, F, F, F, F, F, F, F, F, F, C2, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, R2, F, F, F, F, F, F, F, E2, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, D5},
@@ -123,7 +123,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* E3 = new Map::EnemyTile(enemy3);
 
     Entities::Item* item3 = new Entities::Armor("Leather vest", "Lookin' fancy", 15);
-    Map::Tile* I3 = new Map::ItemTile(item3);
+    Map::Tile* A3 = new Map::ItemTile(item3);
 
     Entities::Item* item3a = new Entities::Relic("Teddy bear", "How could it get here..?", 15, 15);
     Map::Tile* R3 = new Map::ItemTile(item3a);
@@ -135,7 +135,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, E3, F, F, F, F, F, D7},
              {W, F, R3, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, I3, F, F, F, W},
+             {W, F, F, F, F, F, F, F, A3, F, F, F, W},
              {D6, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities3, new Map::Point{1, 5}, new Map::Point{11, 1});
@@ -145,17 +145,20 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* E4 = new Map::EnemyTile(enemy4);
 
     Entities::Item* item4 = new Entities::Consumable("Holy water", "Finally something drinkable", 25);
-    Map::Tile* I4 = new Map::ItemTile(item4);
+    Map::Tile* C4 = new Map::ItemTile(item4);
+
+    Entities::Item* item4a = new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 15);
+    Map::Tile* W2 = new Map::ItemTile(item4a);
 
     Map::Tile* D8 = new Map::Door(3, false); tileEntities4.push_back(D8);
     Map::Tile* D9 = new Map::Door(5, true); tileEntities4.push_back(D9);
     Map::Map* map4 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, D9, W, W, W},
-             {D8, F, F, F, F, F, F, F, F, F, F, F, W},
+             {D8, F, F, F, F, W2, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, E4, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, I4, F, F, F, F, F, F, F, F, W},
+             {W, F, F, C4, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
 
