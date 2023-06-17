@@ -97,7 +97,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities1,new Map::Point{1, 3},new Map::Point{4, 5});
 
     //room2
-    
+    Entities::Enemy* enemy2 = new Entities::Enemy("Centipede", 50, 20, 20);
+    Map::Tile* E2 = new Map::EnemyTile(enemy2);
+
+    Entities::Item* item2 = new Entities::Consumable("Centipede juice", "It smells awful", 15);
+    Map::Tile* I2 = new Map::ItemTile(item2);
 
     Map::Tile* D4 = new Map::Door(1, false); tileEntities2.push_back(D4);
     Map::Tile* D5 = new Map::Door(3, true); tileEntities2.push_back(D5);
