@@ -141,15 +141,21 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities3, new Map::Point{1, 5}, new Map::Point{11, 1});
 
     //room4
+    Entities::Enemy* enemy4 = new Entities::Enemy("Necromancer", 70, 30, 30);
+    Map::Tile* E4 = new Map::EnemyTile(enemy4);
+
+    Entities::Item* item4 = new Entities::Consumable("Holy water", "Finally something drinkable", 25);
+    Map::Tile* I4 = new Map::ItemTile(item4);
+
     Map::Tile* D8 = new Map::Door(3, false); tileEntities4.push_back(D8);
     Map::Tile* D9 = new Map::Door(5, true); tileEntities4.push_back(D9);
     Map::Map* map4 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, D9, W, W, W},
              {D8, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, E4, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, I4, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
 
