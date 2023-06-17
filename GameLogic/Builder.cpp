@@ -103,6 +103,9 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Entities::Item* item2 = new Entities::Consumable("Centipede juice", "It smells awful", 15);
     Map::Tile* I2 = new Map::ItemTile(item2);
 
+    Entities::Item* item2a = new Entities::Relic("Sapphire ring", "It's shiny!", 10, 10 );
+    Map::Tile* R2 = new Map::ItemTile(item2a);
+
     Map::Tile* D4 = new Map::Door(1, false); tileEntities2.push_back(D4);
     Map::Tile* D5 = new Map::Door(3, true); tileEntities2.push_back(D5);
     Map::Map* map2 = new Map::Map(
@@ -110,7 +113,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, I2, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, E2, F, W},
+             {W, F, R2, F, F, F, F, F, F, F, E2, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, D5},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities2, new Map::Point{4, 1}, new Map::Point{11, 5});
