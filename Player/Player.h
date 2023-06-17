@@ -102,6 +102,8 @@ namespace Player {
         void changePlayerPosition(int x, int y);
 
         void equipItem(int InventoryIndex);
+
+        void addItemToInventory(Entities::Item* item);
     };
 }
 

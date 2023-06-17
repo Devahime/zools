@@ -201,3 +201,7 @@ void Player::Player::equipItem(int InventoryIndex) {
 Player::PlayerInventory *Player::Player::getPlayerInvenotry() {
     return m_playerInventory;
 }
+
+void Player::Player::addItemToInventory(Entities::Item *item) {
+    m_playerInventory->addItem(item);
+}

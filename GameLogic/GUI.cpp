@@ -5,6 +5,9 @@
 #include "GUI.h"
 #include "iostream"
 #include <conio.h>
+#include <chrono>
+#include <thread>
+
 
 void GameLogic::GUI::clearScreen() {
     system("cls");
@@ -103,3 +106,38 @@ void GameLogic::GUI::printTutorial(Player::Player *player) {
 
     std::cout << "Press any key to continue " << std::endl; //change to getch
 }
+
+
+void GameLogic::GUI::combatScreen(Player::Player *player, Entities::Enemy *enemy, bool isPlayersTurn) {
+    //overview of combat participants
+    std::cout << "          |--------Combat--------|\n" << std::endl;
+    std::cout << "   Enemy: " << enemy->getName() << " [" << enemy->getHealth() << "/" << enemy->getMaxHealth() << "]\n\n\n" << std::endl;
+    std::cout << "   You:   " << player->getName() << " [" << player->getHealth() << "/" << player->getMaxHealth() << "]\n" << std::endl;
+
+    if (isPlayersTurn) {
+        std::cout << "          Your turn" << std::endl;
+        printAbilityOverview(player);
+        std::cout << "'i' Inventory\n" << std::endl;
+        std::cout << "Enter your choice: ";
+
+    } else {
+        //enemy turn
+        std::cout << "          Enemy turn" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << "\n          Enemy used Punch!" << std::endl; //debug
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+}
+
+
+
+void GameLogic::GUI::printAbilityOverview(Player::Player *player) {
+    //function used in combat, to display all abilities player can cast
+    auto abilities = player->getAbilities();
+    std::cout << "Abilities:" << std::endl;
+    for (int i = 0; i < abilities.size(); ++i) {
+        std::cout << i+1 << ". " << abilities[i]->getName() << "  ";
+    }
+}
+

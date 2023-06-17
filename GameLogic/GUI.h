@@ -31,7 +31,9 @@ namespace GameLogic {
 
         void printConsumableInfo(Entities::Consumable* consumable);
 
-        void combatScreen(Player::Player* player, Entities::Enemy* enemy);
+        void combatScreen(Player::Player* player, Entities::Enemy* enemy, bool isPlayersTurn);
+
+        void printAbilityOverview(Player::Player* player);
 
         void printGameScreen(Player::Player* player, Map::Map* currentMap);
 

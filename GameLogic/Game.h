@@ -30,11 +30,11 @@ namespace GameLogic {
 
         void printMap();
 
-        void printGameScreen(); // todo
+        void printGameScreen();
 
         void InventoryGUI();
 
-        void printPlayer();
+        //void printPlayer();
 
         void combatGUI(Entities::Enemy* enemy);
 

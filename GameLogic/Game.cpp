@@ -93,9 +93,9 @@ void GameLogic::Game::clearScreen() {
     m_gui->clearScreen();
 }
 
-void GameLogic::Game::printPlayer() { //debug
+/*void GameLogic::Game::printPlayer() { //debug
     std::cout << m_player->getName();
-}
+}*/
 
 
 
@@ -118,7 +118,6 @@ bool GameLogic::Game::combat(Entities::Enemy* enemy) {
         }*/
         clearScreen();
     }
-
 
     if (m_combat->checkAliveStatus() == "playerDead") {
         delete m_combat;
@@ -187,7 +186,15 @@ void GameLogic::Game::InventoryGUI() {
             if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
                 m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]), pickedItemIndex);
             } else {
-                m_player->equipItem(pickedItemIndex);
+                if (inventory[pickedItemIndex] == PlayerInventory->getEquippedWeapon()) {
+                    m_player->dropWeapon();
+                } else if (inventory[pickedItemIndex] == PlayerInventory->getEquippedRelic()) {
+                    m_player->dropRelic();
+                } else if (inventory[pickedItemIndex] == PlayerInventory->getEquippedArmor()) {
+                    m_player->dropArmor();
+                } else {
+                    m_player->equipItem(pickedItemIndex);
+                }
             }
             /*if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
                m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
@@ -220,12 +227,8 @@ void GameLogic::Game::InventoryGUI() {
                     m_player->equipRelic(static_cast<Entities::Relic*>(inventory[pickedItemIndex]));
                 }
             }*/
-
         }
-
-
     }
-
     //after this the screen will be cleared so next event ifnromation can be shown
     clearScreen();
 
@@ -235,19 +238,11 @@ void GameLogic::Game::InventoryGUI() {
 
 
 void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
-
     std::string choice;
-    //overview of combat participants
-    std::cout << "          |--------Combat--------|\n" << std::endl;
-    std::cout << "   Enemy: " << enemy->getName() << " [" << enemy->getHealth() << "/" << enemy->getMaxHealth() << "]\n\n\n" << std::endl;
-    std::cout << "   You:   " << m_player->getName() << " [" << m_player->getHealth() << "/" << m_player->getMaxHealth() << "]\n" << std::endl;
 
     //checking if player has turn, if so, player can then cast ability or check inventory
     if (m_combat->isPlayersTurn()) {
-        std::cout << "          Your turn" << std::endl;
-        printAbilityOverview();
-        std::cout << "'i' Inventory\n" << std::endl;
-        std::cout << "Enter your choice: ";
+        m_gui->combatScreen(m_player, enemy, true);
         std::cin >> choice;
 
         if (choice=="i") {
@@ -259,23 +254,16 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
             if (ability->getName()!="Slash") {
                 enemy->takeDamage(ability->doDamage(0,m_player->getStrenght()));
             } else {
-//                enemy->takeDamage(ability->doDamage(m_player->getWeaponDamage(),m_player->getStrenght()));
+                enemy->takeDamage(ability->doDamage(m_player->getPlayerInvenotry()->getWeaponDamage() ,m_player->getStrenght()));
             }
             //if player chose ability, then enemy has the turn
             m_combat->nextTurn();
-
         }
 
     } else {
         //enemy turn
-        std::cout << "          Enemy turn" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-
+        m_gui->combatScreen(m_player, enemy, false);
         m_player->takeDamage(m_combat->enemyDamageFromAction());
-
-        std::cout << "\n          Enemy used Punch!" << std::endl; //debug
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-
         //once enemy finished casting his ability, player again will have turn in next function calling
         m_combat->nextTurn();
     }
@@ -285,21 +273,11 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
 
 }
 
-void GameLogic::Game::printAbilityOverview() {
-    //function used in combat, to display all abilities player can cast
-    auto abilities = m_player->getAbilities();
-         std::cout << "Abilities:" << std::endl;
-    for (int i = 0; i < abilities.size(); ++i) {
-        std::cout << i+1 << ". " << abilities[i]->getName() << "  ";
-    }
-}
-
 
 void GameLogic::Game::printTutorial() {
     std::string input;
 
     m_gui->printTutorial(m_player);
-
     input = _getch();
     clearScreen();
 
@@ -366,10 +344,8 @@ bool isItem(int x, int y, Map::Map* map) {
 
 void GameLogic::Game::mapMovement(char pressedKey) {
 
-
     Map::Point *cordinates = m_player->getPlayerPosition();
     auto map = m_level->getMap(m_currentMap);
-
 
     int xCordinate = cordinates->x;
     int yCordinate = cordinates->y;
@@ -393,7 +369,6 @@ void GameLogic::Game::mapMovement(char pressedKey) {
         xNewCordiante = xCordinate + 1;
         yNewCordinate = yCordinate;
     }
-
 
     if (isNotWall(xNewCordiante, yNewCordinate, map)) {
         //check if target tile is door
@@ -424,7 +399,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
 
         } else if (isItem(xNewCordiante, yNewCordinate, map)) {
             auto item = static_cast<Map::ItemTile *>(map->getTile(xNewCordiante, yNewCordinate))->takeItem();
-            //m_player->addItem(item);
+            m_player->addItemToInventory(item);
             map->swapTiles(xCordinate, yCordinate, xNewCordiante, yNewCordinate);
             m_player->changePlayerPosition(xNewCordiante, yNewCordinate);
             //already swapped tile, need to go back cordinate wise
