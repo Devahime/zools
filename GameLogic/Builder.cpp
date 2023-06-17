@@ -163,6 +163,12 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
 
     //room5
+    Entities::Enemy* enemy5 = new Entities::Enemy("Annoyed witch", 70, 30, 30);
+    Map::Tile* E5 = new Map::EnemyTile(enemy5);
+
+    Entities::Item* item5 = new Entities::Relic("Opal amulet", "It shall protect you", 25, 20);
+    Map::Tile* R5 = new Map::ItemTile(item5);
+
     Map::Tile* D10 = new Map::Door(4, false); tileEntities5.push_back(D10);
     Map::Tile* D11 = new Map::Door(6, true); tileEntities5.push_back(D11);
     Map::Map* map5 = new Map::Map(
@@ -170,8 +176,8 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, E5, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, R5, W},
              {W, W, W, W, W, W, W, W, W, D10, W, W, W}
             }, tileEntities5, new Map::Point{9, 5}, new Map::Point{2, 1});
 
