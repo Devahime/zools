@@ -63,7 +63,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     enemy0->addItemDrop(new Entities::Consumable("Dirty water", "its advised not to drink this", 5));
     Map::Tile* E0 = new Map::EnemyTile(enemy0);
 
-    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, this works?", 5);
+    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 5);
     Map::Tile* I0 = new Map::ItemTile(item0);
 
     Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
@@ -119,14 +119,23 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities2, new Map::Point{4, 1}, new Map::Point{11, 5});
 
     //room3
+    Entities::Enemy* enemy3 = new Entities::Enemy("Zombie mice", 60, 20, 20);
+    Map::Tile* E3 = new Map::EnemyTile(enemy3);
+
+    Entities::Item* item3 = new Entities::Armor("Leather vest", "Lookin' fancy", 15);
+    Map::Tile* I3 = new Map::ItemTile(item3);
+
+    Entities::Item* item3a = new Entities::Relic("Teddy bear", "How could it get here..?", 15, 15);
+    Map::Tile* R3 = new Map::ItemTile(item3a);
+
     Map::Tile* D6 = new Map::Door(2, false); tileEntities3.push_back(D6);
     Map::Tile* D7 = new Map::Door(4, true); tileEntities3.push_back(D7);
     Map::Map* map3 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, D7},
+             {W, F, F, F, F, F, E3, F, F, F, F, F, D7},
+             {W, F, R3, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, I3, F, F, F, W},
              {D6, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities3, new Map::Point{1, 5}, new Map::Point{11, 1});
