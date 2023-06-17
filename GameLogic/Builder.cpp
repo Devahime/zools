@@ -88,11 +88,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D3 = new Map::Door(2, true); tileEntities1.push_back(D3);
     Map::Map* map1 = new Map::Map(
             {{W,  W, W, W, W, W, W, W, W, W, W, W, W},
-             {W,  F, F, F, F, F, F, F, F, F, F, F, W},
+             {W,  F, F, W, F, F, F, F, F, W, F, F, W},
              {W,  F, F, F, F, F, F, F, F, F, W1, F, W},
              {D2, F, F, F, E1, F, F, F, F, F, F, F, W},
-             {W,  F, F, F, F, F, F, F, F, F, F, F, W},
-             {W,  F, F, F, F, F, F, F, F, F, F, F, W},
+             {W,  F, F, F, F, F, F, W, F, F, F, F, W},
+             {W,  F, F, F, F, F, F, W, F, F, F, F, W},
              {W,  W, W, W, D3, W, W, W, W, W, W, W, W}
             }, tileEntities1,new Map::Point{1, 3},new Map::Point{4, 5});
 
@@ -110,11 +110,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D5 = new Map::Door(3, true); tileEntities2.push_back(D5);
     Map::Map* map2 = new Map::Map(
             {{W, W, W, W, D4, W, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, W, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, C2, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, R2, F, F, F, F, F, F, F, E2, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, D5},
+             {W, W, W, F, F, F, F, F, F, F, F, F, W},
+             {W, F, R2, F, F, F, F, F, W, F, E2, F, W},
+             {W, F, F, F, F, W, W, F, W, F, F, F, D5},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities2, new Map::Point{4, 1}, new Map::Point{11, 5});
 
@@ -132,11 +132,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D7 = new Map::Door(4, true); tileEntities3.push_back(D7);
     Map::Map* map3 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, E3, F, F, F, F, F, D7},
+             {W, F, W, F, F, F, E3, F, W, F, F, F, D7},
              {W, F, R3, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, A3, F, F, F, W},
-             {D6, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, W, W, W},
+             {W, F, F, F, F, W, F, F, A3, F, F, F, W},
+             {D6, F, F, F, F, W, F, F, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities3, new Map::Point{1, 5}, new Map::Point{11, 1});
 
@@ -154,11 +154,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D9 = new Map::Door(5, true); tileEntities4.push_back(D9);
     Map::Map* map4 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, D9, W, W, W},
-             {D8, F, F, F, F, W2, F, F, F, F, F, F, W},
+             {D8, F, F, F, F, W2, W, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, E4, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, C4, F, F, F, F, F, F, F, F, W},
+             {W, W, W, F, F, F, F, F, E4, F, F, F, W},
+             {W, F, F, F, F, F, W, W, W, F, F, F, W},
+             {W, F, F, C4, F, F, F, F, W, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
 
@@ -173,15 +173,15 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D11 = new Map::Door(6, true); tileEntities5.push_back(D11);
     Map::Map* map5 = new Map::Map(
             {{W, W, D11, W, W, W, W, W, W, W, W, W, W},
+             {W, F, F, F, F, F, F, F, W, F, F, F, W},
+             {W, W, F, F, F, F, F, F, W, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, E5, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, R5, W},
+             {W, F, E5, F, F, W, F, F, F, F, F, F, W},
+             {W, F, F, F, F, W, F, F, F, F, F, R5, W},
              {W, W, W, W, W, W, W, W, W, D10, W, W, W}
             }, tileEntities5, new Map::Point{9, 5}, new Map::Point{2, 1});
 
-    //room6
+    //room6 - skončila sem tady (pro mé zítřejší já)
     Map::Tile* D12 = new Map::Door(5, false); tileEntities6.push_back(D12);
     Map::Tile* D13 = new Map::Door(7, true); tileEntities6.push_back(D13);
     Map::Map* map6 = new Map::Map(
