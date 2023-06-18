@@ -130,8 +130,6 @@ void GameLogic::GUI::combatScreen(Player::Player *player, Entities::Enemy *enemy
 
 }
 
-
-
 void GameLogic::GUI::printAbilityOverview(Player::Player *player) {
     //function used in combat, to display all abilities player can cast
     auto abilities = player->getAbilities();
@@ -146,5 +144,21 @@ void GameLogic::GUI::gameCompletionScreen(std::string playerName) {
     std::cout << "You have won!" << std::endl;
 
     std::cout << "\nPress any key to exit the game" << std::endl;
+}
+
+void GameLogic::GUI::printGameScreen(Player::Player *player, Map::Map *currentMap, int currentMapNumber) {
+    std::cout << "\n" << "      Room " << currentMapNumber+1 << std::endl;
+    std::cout << "\n";
+
+    currentMap->print();
+    std::cout << "\n";
+
+    std::cout << "    Player: " << player->getName() <<
+              "  [" << player->getHealth() << "/" << player->getMaxHealth() << "]\n" <<std::endl;
+
+    std::cout << "        Controls:" << std::endl
+              << "     w,a,s,d - Movement" << std::endl
+              << "     x - Exit game" << std::endl
+              << "     i - Inventory\n" << std::endl;
 }
 

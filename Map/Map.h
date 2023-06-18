@@ -33,6 +33,14 @@ namespace Map{
 
         Point* getExitPoint();
 
+        bool isItem(int x, int y);
+
+        bool isEnemy(int x, int y);
+
+        bool isNotWall(int x, int y);
+
+        bool isDoor(int x, int y);
+
     };
 }
 

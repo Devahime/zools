@@ -35,7 +35,7 @@ namespace GameLogic {
 
         void printAbilityOverview(Player::Player* player);
 
-        void printGameScreen(Player::Player* player, Map::Map* currentMap);
+        void printGameScreen(Player::Player* player, Map::Map* currentMap, int currentMapNumber);
 
         void printTutorial(Player::Player* player);
 

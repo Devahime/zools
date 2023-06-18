@@ -54,3 +54,35 @@ Map::Point* Map::Map::getEntryPoint() {
 Map::Point *Map::Map::getExitPoint() {
     return m_exitPoint;
 }
+
+bool Map::Map::isItem(int x, int y) {
+    if (m_tiles[y][x]->getType() == TileType::Item) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Map::Map::isEnemy(int x, int y) {
+    if (m_tiles[y][x]->getType() == TileType::EnemyTileType) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Map::Map::isDoor(int x, int y) {
+    if (m_tiles[y][x]->getType() == TileType::DoorType) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Map::Map::isNotWall(int x, int y) {
+    if (m_tiles[y][x]->getType() != TileType::WallType) {
+        return true;
+    } else {
+        return false;
+    }
+}

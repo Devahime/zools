@@ -23,6 +23,7 @@ void GameLogic::Combat::reset() {
 }
 
 void GameLogic::Combat::nextTurn() {
+
     m_turn += 1;
     m_playersTurn = !m_playersTurn;
 }

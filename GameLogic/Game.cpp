@@ -318,56 +318,7 @@ bool GameLogic::Game::isPlayerAlive() {
 
 
 void GameLogic::Game::printGameScreen() {
-    std::cout << "\n" << "      Room " << m_currentMap+1 << std::endl;
-    std::cout << "\n";
-
-    printMap();
-    std::cout << "\n";
-
-    std::cout << "    Player: " << m_player->getName() <<
-    "  [" << m_player->getHealth() << "/" << m_player->getMaxHealth() << "]\n" <<std::endl;
-
-    std::cout << "        Controls:" << std::endl
-              << "     w,a,s,d - Movement" << std::endl
-              << "     x - Exit game" << std::endl
-              << "     i - Inventory\n" << std::endl;
-}
-
-
-
-
-//map movement fucntions
-
-bool isNotWall(int x, int y, Map::Map* map){
-    if (map->getTile(x,y)->getType() != Map::TileType::WallType) {
-        return true;
-    } else {
-        return false;
-    }
-};
-
-bool isDoor(int x, int y, Map::Map* map){
-    if (map->getTile(x,y)->getType() == Map::TileType::DoorType) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool isEnemy(int x, int y, Map::Map* map) {
-    if (map->getTile(x, y)->getType() == Map::TileType::EnemyTileType) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool isItem(int x, int y, Map::Map* map) {
-    if (map->getTile(x, y)->getType() == Map::TileType::Item) {
-        return true;
-    } else {
-        return false;
-    }
+    m_gui->printGameScreen(m_player,m_level->getMap(m_currentMap),m_currentMap);
 }
 
 
@@ -399,9 +350,9 @@ void GameLogic::Game::mapMovement(char pressedKey) {
         yNewCordinate = yCordinate;
     }
 
-    if (isNotWall(xNewCordiante, yNewCordinate, map)) {
+    if (map->isNotWall(xNewCordiante, yNewCordinate)) {
         //check if target tile is door
-        if (isDoor(xNewCordiante, yNewCordinate, map)) {
+        if (map->isDoor(xNewCordiante, yNewCordinate)) {
             //cehck if the door is exit or entry one
             if (static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->isExitDoor()) {
                 m_currentMap = static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->getTargetRoom();
@@ -415,7 +366,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
                 newMapSetup(false);
             }
 
-        } else if (isEnemy(xNewCordiante, yNewCordinate, map)) {
+        } else if (map->isEnemy(xNewCordiante, yNewCordinate)) {
             Entities::Enemy *enemy = static_cast<Map::EnemyTile *>(map->getTile(xNewCordiante,
                                                                                 yNewCordinate))->getEnemy();
             bool combatResult = combat(enemy);
@@ -430,7 +381,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
             }
 
 
-        } else if (isItem(xNewCordiante, yNewCordinate, map)) {
+        } else if (map->isItem(xNewCordiante, yNewCordinate)) {
             auto item = static_cast<Map::ItemTile *>(map->getTile(xNewCordiante, yNewCordinate))->takeItem();
             m_player->addItemToInventory(item);
             map->swapTiles(xCordinate, yCordinate, xNewCordiante, yNewCordinate);
@@ -444,9 +395,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
             m_player->changePlayerPosition(xNewCordiante, yNewCordinate);
         }
     }
-
 }
-
 
 
 
