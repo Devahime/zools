@@ -147,7 +147,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Entities::Item* item4 = new Entities::Consumable("Holy water", "Finally something drinkable", 25);
     Map::Tile* C4 = new Map::ItemTile(item4);
 
-    Entities::Item* item4a = new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 15);
+    Entities::Item* item4a = new Entities::Weapon("Phoenix bow", "It looks..majestic.", 35);
     Map::Tile* W2 = new Map::ItemTile(item4a);
 
     Map::Tile* D8 = new Map::Door(3, false); tileEntities4.push_back(D8);
@@ -163,7 +163,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities4, new Map::Point{1, 1}, new Map::Point{9, 1});
 
     //room5
-    Entities::Enemy* enemy5 = new Entities::Enemy("Annoyed witch", 70, 30, 30);
+    Entities::Enemy* enemy5 = new Entities::Enemy("Dark witch", 70, 30, 30);
     Map::Tile* E5 = new Map::EnemyTile(enemy5);
 
     Entities::Item* item5 = new Entities::Relic("Opal amulet", "It shall protect you", 25, 20);
@@ -182,13 +182,19 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities5, new Map::Point{9, 5}, new Map::Point{2, 1});
 
     //room6 - skončila sem tady (pro mé zítřejší já)
+    Entities::Enemy* enemy6 = new Entities::Enemy("Suspicious tree", 80, 40, 25);
+    Map::Tile* E6 = new Map::EnemyTile(enemy6);
+
+    Entities::Item* item6a = new Entities::Armor("Chainmail armor", "It's pretty comfy", 25);
+    Map::Tile* A6 = new Map::ItemTile(item6a);
+
     Map::Tile* D12 = new Map::Door(5, false); tileEntities6.push_back(D12);
     Map::Tile* D13 = new Map::Door(7, true); tileEntities6.push_back(D13);
     Map::Map* map6 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
+             {W, F, F, F, F, F, F, F, F, F, F, A6, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, D13},
+             {W, F, F, F, F, F, F, F, F, E6, F, F, D13},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, D12, W, W, W, W, W, W, W, W, W, W}
