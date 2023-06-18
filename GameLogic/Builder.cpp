@@ -217,16 +217,16 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D15 = new Map::Door(8, true); tileEntities7.push_back(D15);
     Map::Map* map7 = new Map::Map(
             {{W, W, W, W, W, D15, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, W, F, F, F, F, F, F, W, F, W},
+             {W, F, F, W, F, F, F, F, F, F, F, F, W},
              {D14, F, F, F, F, F, E7, F, F, F, F, F, W},
-             {W, F, F, F, C7, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, R7, W},
+             {W, F, F, F, C7, F, F, F, F, W, W, W, W},
+             {W, F, F, F, W, F, F, F, F, F, F, R7, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities7, new Map::Point{1, 3}, new Map::Point{5, 1});
 
-    //room 8
-    Entities::Enemy* enemy8 = new Entities::Enemy("The guardian", 90, 50, 60);
+    //room 8 - přidat itemy na mapu
+    Entities::Enemy* enemy8 = new Entities::Enemy("The last guardian", 90, 50, 60);
     Map::Tile* E8 = new Map::EnemyTile(enemy8);
 
     Entities::Item* item8 = new Entities::Relic("Fancy mask", "If I can't see them, they can't see me!", 35, 30);
@@ -238,7 +238,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Entities::Item* item8b = new Entities::Consumable("Old wine bottle", "Should I really drink before battle?", 50);
     Map::Tile* C9 = new Map::ItemTile(item8b);
 
-    Entities::Item* item8c = new Entities::Weapon("Soul-eater", "It's hungry'", 80);
+    Entities::Item* item8c = new Entities::Weapon("Soul-eater", "It's screaming..", 80);
     Map::Tile* W8 = new Map::ItemTile(item8c);
 
     Entities::Item* item8d = new Entities::Armor("Dragon wing cape", "Only the strongest warriors got to wear it", 50);
@@ -248,11 +248,11 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Tile* D17 = new Map::Door(9, true); tileEntities8.push_back(D17);
     Map::Map* map8 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, D17},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, R8, A8, F, F, W, W, F, F, F, C9, W, W},
+             {W, W, W, F, F, F, W8, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, E8, F, D17},
+             {W, F, C8, F, F, F, F, F, F, F, F, F, W},
+             {W, F, W, F, F, F, F, F, F, W, F, W, W},
              {W, W, W, W, W, D16, W, W, W, W, W, W, W}
             }, tileEntities8, new Map::Point{5, 5}, new Map::Point{11, 3});
 
