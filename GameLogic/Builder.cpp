@@ -59,7 +59,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
 
     //room0
-    Entities::Enemy* enemy0 = new Entities::Enemy("Skeletonus", 50, 10, 10);
+    Entities::Enemy* enemy0 = new Entities::Enemy("Skeletonus", 30, 10, 10);
     enemy0->addItemDrop(new Entities::Consumable("Dirty water", "its advised not to drink this", 5));
     Map::Tile* E0 = new Map::EnemyTile(enemy0);
 
@@ -181,22 +181,25 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, W, W, W, W, W, W, W, W, D10, W, W, W}
             }, tileEntities5, new Map::Point{9, 5}, new Map::Point{2, 1});
 
-    //room6 - skončila sem tady (pro mé zítřejší já)
+    //room6
     Entities::Enemy* enemy6 = new Entities::Enemy("Suspicious tree", 80, 40, 25);
     Map::Tile* E6 = new Map::EnemyTile(enemy6);
 
-    Entities::Item* item6a = new Entities::Armor("Chainmail armor", "It's pretty comfy", 25);
-    Map::Tile* A6 = new Map::ItemTile(item6a);
+    Entities::Item* item6 = new Entities::Armor("Chainmail armor", "It's pretty comfy", 25);
+    Map::Tile* A6 = new Map::ItemTile(item6);
+
+    Entities::Item* item6a = new Entities::Weapon("Reclining moon blade", "It looks..majestic.", 55);
+    Map::Tile* W6 = new Map::ItemTile(item6a);
 
     Map::Tile* D12 = new Map::Door(5, false); tileEntities6.push_back(D12);
     Map::Tile* D13 = new Map::Door(7, true); tileEntities6.push_back(D13);
     Map::Map* map6 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, F, F, F, F, F, A6, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, E6, F, F, D13},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, W, F, F, F, W, F, A6, W},
+             {W, F, F, W6, F, F, F, F, F, W, F, F, W},
+             {W, W, W, F, F, F, F, F, F, E6, F, F, D13},
+             {W, F, F, F, F, F, F, F, F, W, F, F, W},
+             {W, F, F, F, W, F, F, F, F, W, F, F, W},
              {W, W, D12, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities6, new Map::Point{2, 5}, new Map::Point{2, 11});
 
