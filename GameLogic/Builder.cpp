@@ -226,6 +226,24 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities7, new Map::Point{1, 3}, new Map::Point{5, 1});
 
     //room 8
+    Entities::Enemy* enemy8 = new Entities::Enemy("The guardian", 90, 50, 60);
+    Map::Tile* E8 = new Map::EnemyTile(enemy8);
+
+    Entities::Item* item8 = new Entities::Relic("Fancy mask", "If I can't see them, they can't see me!", 35, 30);
+    Map::Tile* R8 = new Map::ItemTile(item8);
+
+    Entities::Item* item8a = new Entities::Consumable("Potion of vengeance", "Im getting mad", 50);
+    Map::Tile* C8 = new Map::ItemTile(item8a);
+
+    Entities::Item* item8b = new Entities::Consumable("Old wine bottle", "Should I really drink before battle?", 50);
+    Map::Tile* C9 = new Map::ItemTile(item8b);
+
+    Entities::Item* item8c = new Entities::Weapon("Soul-eater", "It's hungry'", 80);
+    Map::Tile* W8 = new Map::ItemTile(item8c);
+
+    Entities::Item* item8d = new Entities::Armor("Dragon wing cape", "Only the strongest warriors got to wear it", 50);
+    Map::Tile* A8 = new Map::ItemTile(item8d);
+
     Map::Tile* D16 = new Map::Door(7, false); tileEntities8.push_back(D16);
     Map::Tile* D17 = new Map::Door(9, true); tileEntities8.push_back(D17);
     Map::Map* map8 = new Map::Map(
