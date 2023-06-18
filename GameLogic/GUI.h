@@ -38,6 +38,8 @@ namespace GameLogic {
         void printGameScreen(Player::Player* player, Map::Map* currentMap);
 
         void printTutorial(Player::Player* player);
+
+        void gameCompletionScreen(std::string playerName);
     };
 }
 

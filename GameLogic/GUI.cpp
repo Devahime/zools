@@ -24,7 +24,7 @@ void GameLogic::GUI::printInventory(std::vector<Entities::Item *> inventory, Pla
     for (int i = 0; i < inventory.size(); ++i) {
         std::cout <<"          " << i+1 << "    " << inventory[i]->getName() << std::endl;
     }
-    std::cout << "\nEnter item number to make item action or 'q' to exit: ";
+    std::cout << "\nEnter item number to show item details or 'q' to exit: ";
 }
 
 void GameLogic::GUI::printArmorInfo(Entities::Armor *armor, bool isEquipped) {
@@ -35,7 +35,7 @@ void GameLogic::GUI::printArmorInfo(Entities::Armor *armor, bool isEquipped) {
     if (isEquipped) {
         std::cout << "Item status:      " << "equipped" << std::endl;
     } else {
-        std::cout << "Item status:      " << "   -" << std::endl;
+        std::cout << "Item status:      " << "unequipped" << std::endl;
     }
 }
 
@@ -47,7 +47,7 @@ void GameLogic::GUI::printWeaponInfo(Entities::Weapon *weapon, bool isEquipped) 
     if (isEquipped) {
         std::cout << "Item status:      " << "equipped" << std::endl;
     } else {
-        std::cout << "Item status:      " << "   -" << std::endl;
+        std::cout << "Item status:      " << "unequipped" << std::endl;
     }
 }
 
@@ -60,7 +60,7 @@ void GameLogic::GUI::printRelicInfo(Entities::Relic *relic, bool isEquipped) {
     if (isEquipped) {
         std::cout << "Item status:      " << "equipped" << std::endl;
     } else {
-        std::cout << "Item status:      " << "   -" << std::endl;
+        std::cout << "Item status:      " << "unequipped" << std::endl;
     }
 }
 
@@ -139,5 +139,12 @@ void GameLogic::GUI::printAbilityOverview(Player::Player *player) {
     for (int i = 0; i < abilities.size(); ++i) {
         std::cout << i+1 << ". " << abilities[i]->getName() << "  ";
     }
+}
+
+void GameLogic::GUI::gameCompletionScreen(std::string playerName) {
+    std::cout << "Congratulations, ou have made it through the dungeon, " << playerName << "!" << std::endl;
+    std::cout << "You have won!" << std::endl;
+
+    std::cout << "\nPress any key to exit the game" << std::endl;
 }
 

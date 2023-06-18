@@ -20,6 +20,7 @@ namespace GameLogic {
         int m_currentMap;
         GameLogic::Combat* m_combat;
         GameLogic::GUI* m_gui;
+        bool m_gameComplete;
 
     public:
         Game(Player::Player* player, Map::Level* level);
@@ -40,8 +41,6 @@ namespace GameLogic {
 
         bool combat(Entities::Enemy* enemy);
 
-        void printAbilityOverview();
-
         void printTutorial();
 
         bool isPlayerAlive();
@@ -50,12 +49,15 @@ namespace GameLogic {
 
         void newMapSetup(bool isExitDoor);
 
+        bool isGameCompleted();
+
+
     private: //second private sections
         void printItemDetails(std::string type, Entities::Item *item);
 
         void takeItemFromTile(Entities::Item *item);
 
-
+        void completeTheGame();
     };
 }
 

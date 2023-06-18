@@ -66,9 +66,12 @@ int main() {
     }
 
 
-    if (gameRunning == false and playerAlive == true) {
+    if (gameRunning == false and playerAlive == true and !game->isGameCompleted()) {
         std::cout << "You ended the game, press any key to exit the aplication";
         input = _getch();
+
+    } else if (gameRunning == false and game->isGameCompleted()){
+        //game proceeds to turn off
     } else {
         std::cout << "You died! \nPress any key to exit!" << std::endl;
         input = _getch();

@@ -24,30 +24,47 @@ GameLogic::Game::Game(Player::Player *player, Map::Level* level) {
     m_currentMap = 0;
     m_level = level;
     m_gui = new GUI();
+    m_gameComplete = false;
 }
 
 bool GameLogic::Game::checkForAction(char input) {
     //Could be done by case switch
     //Checking pressedkey (input), then doing action acording to controls
+    if (m_gameComplete) {
+        return false;
+    }
+
     if (input == 'w') {
         //std::cout << "Nahoru" << std::endl;
         mapMovement(input);
+        if (m_gameComplete) {
+            return false;
+        }
         printGameScreen();
         return true;
 
     } else if(input == 'a') {
         mapMovement(input);
+        if (m_gameComplete) {
+            return false;
+        }
         printGameScreen();
         return true;
 
     } else if(input == 's') {
         //std::cout << "Dolu" << std::endl;
         mapMovement(input);
+        if (m_gameComplete) {
+            return false;
+        }
         printGameScreen();
         return true;
 
     } else if(input == 'd') {
         mapMovement(input);
+        if (m_gameComplete) {
+            return false;
+        }
         //std::cout << "Doprava" << std::endl;
         printGameScreen();
         return true;
@@ -376,7 +393,11 @@ void GameLogic::Game::mapMovement(char pressedKey) {
             //cehck if the door is exit or entry one
             if (static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->isExitDoor()) {
                 m_currentMap = static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->getTargetRoom();
-                newMapSetup(true);
+                if (m_currentMap+1>m_level->getLevelSize()) {
+                    completeTheGame();
+                } else {
+                    newMapSetup(true);
+                }
             } else {
                 m_currentMap = static_cast<Map::Door *>(map->getTile(xNewCordiante, yNewCordinate))->getTargetRoom();
                 newMapSetup(false);
@@ -431,4 +452,15 @@ void GameLogic::Game::newMapSetup(bool isExitDoor) {
         map->replaceTile(point->x, point->y, new Map::PlayerTile());
     }
 
+}
+
+bool GameLogic::Game::isGameCompleted() {
+    return m_gameComplete;
+}
+
+void GameLogic::Game::completeTheGame() {
+    char input;
+    m_gui->gameCompletionScreen(m_player->getName());
+    m_gameComplete = true;
+    input = _getch();
 }

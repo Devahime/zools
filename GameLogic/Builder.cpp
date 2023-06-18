@@ -273,7 +273,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
              {W, F, W, F, W, F, W, W, F, F, F, F, W},
              {W, F, F, F, F, F, F, E9, F, F, F, F, W},
-             {D18, F, F, F, F, F, F, W, F, F, B, F, D19},
+             {D18, F, F, F, F, F, F, W, F, F, F, B, D19},
              {W, F, F, F, F, F, F, E10, F, F, F, F, W},
              {W, F, W, F, W, F, W, W, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
