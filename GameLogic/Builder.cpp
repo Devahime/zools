@@ -203,16 +203,25 @@ Map::Level *GameLogic::Builder::buildLevel() {
              {W, W, D12, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities6, new Map::Point{2, 5}, new Map::Point{2, 11});
 
-    //room 7 (boss room? naa later)
+    //room 7
+    Entities::Enemy* enemy7 = new Entities::Enemy("Tensen", 70, 40, 50);
+    Map::Tile* E7 = new Map::EnemyTile(enemy7);
+
+    Entities::Item* item7 = new Entities::Relic("Crystal crown", "It shines through the darkness", 35, 30);
+    Map::Tile* R7 = new Map::ItemTile(item7);
+
+    Entities::Item* item7a = new Entities::Consumable("Full teapot", "It's time for a nice cup of tea", 40);
+    Map::Tile* C7 = new Map::ItemTile(item7a);
+
     Map::Tile* D14 = new Map::Door(6, false); tileEntities7.push_back(D14);
     Map::Tile* D15 = new Map::Door(8, true); tileEntities7.push_back(D15);
     Map::Map* map7 = new Map::Map(
             {{W, W, W, W, W, D15, W, W, W, W, W, W, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {D14, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {D14, F, F, F, F, F, E7, F, F, F, F, F, W},
+             {W, F, F, F, C7, F, F, F, F, F, F, F, W},
+             {W, F, F, F, F, F, F, F, F, F, F, R7, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities7, new Map::Point{1, 3}, new Map::Point{5, 1});
 
