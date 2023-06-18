@@ -257,15 +257,25 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities8, new Map::Point{5, 5}, new Map::Point{11, 3});
 
     //room 9 - boss room?
+    Entities::Enemy* enemy9 = new Entities::Enemy("Dungeon master", 100, 50, 70);
+    enemy9->addItemDrop(new Entities::Consumable("Dungeon key", "I can finally leave this place", 5));
+    Map::Tile* B = new Map::EnemyTile(enemy9);
+
+    Entities::Enemy* enemy9a = new Entities::Enemy("Golem", 60, 40, 20);
+    Map::Tile* E9 = new Map::EnemyTile(enemy9a);
+
+    Entities::Enemy* enemy9b = new Entities::Enemy("Golem", 60, 40, 20);
+    Map::Tile* E10 = new Map::EnemyTile(enemy9b);
+
     Map::Tile* D18 = new Map::Door(8, false); tileEntities9.push_back(D18);
     Map::Tile* D19 = new Map::Door(10, true); tileEntities9.push_back(D19);
     Map::Map* map9 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {D18, F, F, F, F, F, F, F, F, F, F, F, D19},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
-             {W, F, F, F, F, F, F, F, F, F, F, F, W},
+             {W, F, W, F, W, F, W, W, F, F, F, F, W},
+             {W, F, F, F, F, F, F, E9, F, F, F, F, W},
+             {D18, F, F, F, F, F, F, W, F, F, B, F, D19},
+             {W, F, F, F, F, F, F, E10, F, F, F, F, W},
+             {W, F, W, F, W, F, W, W, F, F, F, F, W},
              {W, W, W, W, W, W, W, W, W, W, W, W, W}
             }, tileEntities9, new Map::Point{1, 3}, new Map::Point{11, 3});
 
