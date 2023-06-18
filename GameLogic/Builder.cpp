@@ -79,17 +79,15 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     //room1
     Entities::Enemy* enemy1 = new Entities::Enemy("Poisonous spider", 35, 20, 15);
+    enemy1->addItemDrop(new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 20));
     Map::Tile* E1 = new Map::EnemyTile(enemy1);
-
-    Entities::Item* item1 = new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 20);
-    Map::Tile* W1 = new Map::ItemTile(item1);
 
     Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2);
     Map::Tile* D3 = new Map::Door(2, true); tileEntities1.push_back(D3);
     Map::Map* map1 = new Map::Map(
             {{W,  W, W, W, W, W, W, W, W, W, W, W, W},
              {W,  F, F, W, F, F, F, F, F, W, F, F, W},
-             {W,  F, F, F, F, F, F, F, F, F, W1, F, W},
+             {W,  F, F, F, F, F, F, F, F, F, F, F, W},
              {D2, F, F, F, E1, F, F, F, F, F, F, F, W},
              {W,  F, F, F, F, F, F, W, F, F, F, F, W},
              {W,  F, F, F, F, F, F, W, F, F, F, F, W},
@@ -142,19 +140,17 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     //room4
     Entities::Enemy* enemy4 = new Entities::Enemy("Necromancer", 60, 30, 30);
+    enemy4->addItemDrop(new Entities::Weapon("Phoenix bow", "It looks..majestic.", 35));
     Map::Tile* E4 = new Map::EnemyTile(enemy4);
 
     Entities::Item* item4 = new Entities::Consumable("Holy water", "Finally something drinkable", 25);
     Map::Tile* C4 = new Map::ItemTile(item4);
 
-    Entities::Item* item4a = new Entities::Weapon("Phoenix bow", "It looks..majestic.", 35);
-    Map::Tile* W2 = new Map::ItemTile(item4a);
-
     Map::Tile* D8 = new Map::Door(3, false); tileEntities4.push_back(D8);
     Map::Tile* D9 = new Map::Door(5, true); tileEntities4.push_back(D9);
     Map::Map* map4 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, D9, W, W, W},
-             {D8, F, F, F, F, W2, W, F, F, F, F, F, W},
+             {D8, F, F, F, F, F, W, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, F, F, W},
              {W, W, W, F, F, F, F, F, E4, F, F, F, W},
              {W, F, F, F, F, F, W, W, W, F, F, F, W},
@@ -183,20 +179,18 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     //room6
     Entities::Enemy* enemy6 = new Entities::Enemy("Suspicious tree", 80, 40, 25);
+    enemy6->addItemDrop(new Entities::Weapon("Reclining moon blade", "It looks..majestic.", 55));
     Map::Tile* E6 = new Map::EnemyTile(enemy6);
 
     Entities::Item* item6 = new Entities::Armor("Chainmail armor", "It's pretty comfy", 25);
     Map::Tile* A6 = new Map::ItemTile(item6);
-
-    Entities::Item* item6a = new Entities::Weapon("Reclining moon blade", "It looks..majestic.", 55);
-    Map::Tile* W6 = new Map::ItemTile(item6a);
 
     Map::Tile* D12 = new Map::Door(5, false); tileEntities6.push_back(D12);
     Map::Tile* D13 = new Map::Door(7, true); tileEntities6.push_back(D13);
     Map::Map* map6 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
              {W, F, F, F, F, W, F, F, F, W, F, A6, W},
-             {W, F, F, W6, F, F, F, F, F, W, F, F, W},
+             {W, F, F, F, F, F, F, F, F, W, F, F, W},
              {W, W, W, F, F, F, F, F, F, E6, F, F, D13},
              {W, F, F, F, F, F, F, F, F, W, F, F, W},
              {W, F, F, F, W, F, F, F, F, W, F, F, W},
@@ -227,6 +221,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     //room 8 - přidat itemy na mapu
     Entities::Enemy* enemy8 = new Entities::Enemy("The last guardian", 90, 50, 60);
+    enemy8->addItemDrop(new Entities::Weapon("Soul-eater", "It's screaming..", 65));
     Map::Tile* E8 = new Map::EnemyTile(enemy8);
 
     Entities::Item* item8 = new Entities::Relic("Fancy mask", "If I can't see them, they can't see me!", 35, 30);
@@ -238,9 +233,6 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Entities::Item* item8b = new Entities::Consumable("Old wine bottle", "Should I really drink before battle?", 50);
     Map::Tile* C9 = new Map::ItemTile(item8b);
 
-    Entities::Item* item8c = new Entities::Weapon("Soul-eater", "It's screaming..", 65);
-    Map::Tile* W8 = new Map::ItemTile(item8c);
-
     Entities::Item* item8d = new Entities::Armor("Dragon wing cape", "Only the strongest warriors got to wear it", 40);
     Map::Tile* A8 = new Map::ItemTile(item8d);
 
@@ -249,7 +241,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Map::Map* map8 = new Map::Map(
             {{W, W, W, W, W, W, W, W, W, W, W, W, W},
              {W, R8, A8, F, F, W, W, F, F, F, C9, W, W},
-             {W, W, W, F, F, F, W8, F, F, F, F, F, W},
+             {W, W, W, F, F, F, F, F, F, F, F, F, W},
              {W, F, F, F, F, F, F, F, F, F, E8, F, D17},
              {W, F, C8, F, F, F, F, F, F, F, F, F, W},
              {W, F, W, F, F, F, F, F, F, W, F, W, W},
