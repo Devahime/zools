@@ -63,7 +63,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     enemy0->addItemDrop(new Entities::Consumable("Dirty water", "its advised not to drink this", 5));
     Map::Tile* E0 = new Map::EnemyTile(enemy0);
 
-    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 5);
+    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 10);
     Map::Tile* A0 = new Map::ItemTile(item0);
 
     Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
@@ -78,10 +78,10 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities0, new Map::Point{1, 3}, new Map::Point{11,3});
 
     //room1
-    Entities::Enemy* enemy1 = new Entities::Enemy("Poisonous spider", 40, 20, 15);
+    Entities::Enemy* enemy1 = new Entities::Enemy("Poisonous spider", 35, 20, 15);
     Map::Tile* E1 = new Map::EnemyTile(enemy1);
 
-    Entities::Item* item1 = new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 15);
+    Entities::Item* item1 = new Entities::Weapon("Sharp stick", "Wish I had some marshmallows..", 20);
     Map::Tile* W1 = new Map::ItemTile(item1);
 
     Map::Tile* D2 = new Map::Door(0, false); tileEntities1.push_back(D2);
@@ -97,7 +97,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities1,new Map::Point{1, 3},new Map::Point{4, 5});
 
     //room2
-    Entities::Enemy* enemy2 = new Entities::Enemy("Centipede", 50, 20, 20);
+    Entities::Enemy* enemy2 = new Entities::Enemy("Centipede", 40, 20, 20);
     Map::Tile* E2 = new Map::EnemyTile(enemy2);
 
     Entities::Item* item2 = new Entities::Consumable("Centipede juice", "It smells awful", 15);
@@ -119,7 +119,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities2, new Map::Point{4, 1}, new Map::Point{11, 5});
 
     //room3
-    Entities::Enemy* enemy3 = new Entities::Enemy("Zombie mice", 60, 20, 20);
+    Entities::Enemy* enemy3 = new Entities::Enemy("Zombie mice", 50, 20, 20);
     Map::Tile* E3 = new Map::EnemyTile(enemy3);
 
     Entities::Item* item3 = new Entities::Armor("Leather vest", "Lookin' fancy", 15);
@@ -141,7 +141,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities3, new Map::Point{1, 5}, new Map::Point{11, 1});
 
     //room4
-    Entities::Enemy* enemy4 = new Entities::Enemy("Necromancer", 70, 30, 30);
+    Entities::Enemy* enemy4 = new Entities::Enemy("Necromancer", 60, 30, 30);
     Map::Tile* E4 = new Map::EnemyTile(enemy4);
 
     Entities::Item* item4 = new Entities::Consumable("Holy water", "Finally something drinkable", 25);
@@ -238,10 +238,10 @@ Map::Level *GameLogic::Builder::buildLevel() {
     Entities::Item* item8b = new Entities::Consumable("Old wine bottle", "Should I really drink before battle?", 50);
     Map::Tile* C9 = new Map::ItemTile(item8b);
 
-    Entities::Item* item8c = new Entities::Weapon("Soul-eater", "It's screaming..", 80);
+    Entities::Item* item8c = new Entities::Weapon("Soul-eater", "It's screaming..", 65);
     Map::Tile* W8 = new Map::ItemTile(item8c);
 
-    Entities::Item* item8d = new Entities::Armor("Dragon wing cape", "Only the strongest warriors got to wear it", 50);
+    Entities::Item* item8d = new Entities::Armor("Dragon wing cape", "Only the strongest warriors got to wear it", 40);
     Map::Tile* A8 = new Map::ItemTile(item8d);
 
     Map::Tile* D16 = new Map::Door(7, false); tileEntities8.push_back(D16);
