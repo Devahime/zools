@@ -75,10 +75,6 @@ void Player::Player::takeDamage(int damage) {
         m_health = m_health - damageWithArmor;
     }
 
-    if (m_health <= 0) {
-        //solve how to make player dead
-    }
-
 }
 
 bool Player::Player::isAlive() {
@@ -183,17 +179,34 @@ void Player::Player::equipItem(int InventoryIndex) {
     } else if (itemToEquip->getItemType() == Entities::ItemType::armor) {
         if (m_playerInventory->isArmorSlotEmpty()) {
             m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
+            m_armor = static_cast<Entities::Armor*>(itemToEquip)->getArmorValue();
         } else {
             dropArmor();
             m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
+            m_armor = static_cast<Entities::Armor*>(itemToEquip)->getArmorValue();
         }
 
     } else if (itemToEquip->getItemType() == Entities::ItemType::relic) {
         if (m_playerInventory->isRelicSlotEmpty()){
             m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
+            m_strenght += static_cast<Entities::Relic*>(itemToEquip)->getStrenghtBonus();
+            if (m_health == m_maxHealth) {
+                m_maxHealth += static_cast<Entities::Relic*>(itemToEquip)->getHealthBonus();
+                m_health = m_maxHealth;
+            } else {
+                m_maxHealth += static_cast<Entities::Relic*>(itemToEquip)->getHealthBonus();
+            }
+
         } else {
             dropRelic();
             m_playerInventory->equipRelic(static_cast<Entities::Relic*>(itemToEquip));
+            m_strenght += static_cast<Entities::Relic*>(itemToEquip)->getStrenghtBonus();
+            if (m_health == m_maxHealth) {
+                m_maxHealth += static_cast<Entities::Relic*>(itemToEquip)->getHealthBonus();
+                m_health = m_maxHealth;
+            } else {
+                m_maxHealth += static_cast<Entities::Relic*>(itemToEquip)->getHealthBonus();
+            }
         }
     }
 }

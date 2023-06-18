@@ -56,7 +56,7 @@ void GameLogic::GUI::printRelicInfo(Entities::Relic *relic, bool isEquipped) {
     std::cout << "Item description: " << relic->getInfo() << std::endl;
     std::cout << "Item type:        " << "Relic" << std::endl;
     std::cout << "Strenght bonus:   " << relic->getStrenghtBonus() << std::endl;
-    std::cout << "Health bonus:   " << relic->getHealthBonus() << std::endl;
+    std::cout << "Health bonus:     " << relic->getHealthBonus() << std::endl;
     if (isEquipped) {
         std::cout << "Item status:      " << "equipped" << std::endl;
     } else {
