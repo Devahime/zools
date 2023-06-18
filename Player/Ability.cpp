@@ -22,6 +22,10 @@ int Player::Ability::getCooldown() {
     return m_cooldown;
 }
 
+int Player::Ability::getCooldownTimer() {
+    return m_cooldownTimer;
+}
+
 void Player::Ability::lowerCooldown() {
     if (m_cooldown != 0) {
         if ((m_cooldownTimer-1)==-1) {

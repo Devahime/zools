@@ -16,6 +16,7 @@
 #include "../Map/Door.h"
 #include "../Map/EnemyTile.h"
 #include "../Map/ItemTile.h"
+#include "../Player/Kick.h"
 
 
 GameLogic::Game::Game(Player::Player *player, Map::Level* level) {
@@ -268,13 +269,24 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
             //inventory again)
         } else if (std::stoi(choice) > 0 and std::stoi(choice) <= m_player->getAbilities().size()) {
             auto ability = m_player->getAbility(std::stoi(choice)-1);
-            if (ability->getName()!="Slash") {
+            if (ability->getName() =="Punch") {
                 enemy->takeDamage(ability->doDamage(0,m_player->getStrenght()));
+                m_combat->nextTurn();
+            } else if (ability->getName() == "Kick") {
+                if (static_cast<Player::Kick*>(ability)->getCooldownTimer() == 0) {
+                    enemy->takeDamage((static_cast<Player::Kick*>(ability)->doDamage(0, m_player->getStrenght())));
+                    m_combat->nextTurn();
+                } else {
+                    std::cout << "There is a cooldown on this ability in this turn! Use another one." << std::endl;
+                    std::this_thread::sleep_for(std::chrono::seconds(3));
+                }
+
             } else {
+                //slash
                 enemy->takeDamage(ability->doDamage(m_player->getPlayerInvenotry()->getWeaponDamage() ,m_player->getStrenght()));
+                m_combat->nextTurn();
             }
             //if player chose ability, then enemy has the turn
-            m_combat->nextTurn();
         }
 
     } else {

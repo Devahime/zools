@@ -6,6 +6,7 @@
 #include "Ability.h"
 #include "Punch.h"
 #include "Slash.h"
+#include "Kick.h"
 
 
 
@@ -15,7 +16,7 @@ Player::Player::Player(std::string name) {
     m_maxHealth = 100;
     m_armor = 0;
     m_strenght = 10;
-    m_abilities = {new Punch()};
+    m_abilities = {new Punch(), new Kick()};
     /*m_armorSlot = nullptr;
     m_relicSlot = nullptr;
     m_weaponSlot = nullptr;

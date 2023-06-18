@@ -11,5 +11,6 @@ Player::Kick::Kick(): Ability("Kick", "Hit hard with your leg") {
 }
 
 int Player::Kick::doDamage(int damage, int strenght) {
-    return int(round(strenght*1.2));
+    m_cooldownTimer = 1;
+    return int(round(strenght*1.4));
 }
