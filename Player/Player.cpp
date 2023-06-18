@@ -17,20 +17,12 @@ Player::Player::Player(std::string name) {
     m_armor = 0;
     m_strenght = 10;
     m_abilities = {new Punch(), new Kick()};
-    /*m_armorSlot = nullptr;
-    m_relicSlot = nullptr;
-    m_weaponSlot = nullptr;
-    m_inventory = {};*/
     m_playerInventory = new PlayerInventory();
     m_position = new Map::Point{1,3}; //debug
 }
 
 int Player::Player::getHealth() {
     return m_health;
-}
-
-int Player::Player::getArmor() {
-    return m_armor;
 }
 
 int Player::Player::getStrenght() {
@@ -49,10 +41,6 @@ void Player::Player::dropRelic() {
     m_playerInventory->dropRelic();
 }
 
-/*void Player::Player::equipWeapon(Entities::Weapon *weapon) {
-    m_weaponSlot = weapon;
-    addAbility(new Slash());
-}*/
 
 void Player::Player::dropWeapon() {
     m_playerInventory->dropWeapon();
@@ -64,9 +52,11 @@ void Player::Player::dropWeapon() {
     }
 }
 
+
 std::string Player::Player::getName() {
     return m_name;
 }
+
 
 void Player::Player::takeDamage(int damage) {
     int damageWithArmor = damage - m_armor;
@@ -77,6 +67,7 @@ void Player::Player::takeDamage(int damage) {
     }
 
 }
+
 
 bool Player::Player::isAlive() {
     if(m_health>0) {
@@ -96,6 +87,7 @@ std::vector<Player::Ability *> Player::Player::getAbilities() {
     return m_abilities;
 }
 
+
 void Player::Player::useReplenishment(Entities::Consumable *consumable, int itemIndex) {
     if (m_health+consumable->getReplenishemntValue()>m_maxHealth) {
         m_health = m_maxHealth;
@@ -105,9 +97,6 @@ void Player::Player::useReplenishment(Entities::Consumable *consumable, int item
     m_playerInventory->deleteItemFromInventory(itemIndex);
 }
 
-void Player::Player::setHealth(int health) { //debug
-    m_health = health;
-}
 
 void Player::Player::lowerAbilityCooldown() {
     for (int i = 0; i < m_abilities.size(); ++i) {
@@ -115,55 +104,29 @@ void Player::Player::lowerAbilityCooldown() {
             m_abilities[i]->lowerCooldown();
         }
     }
-
 }
 
-/*void Player::Player::deleteItemFromInvenotry(int itemIndex) {
-    delete getItemFromInvenotry(itemIndex);
-    m_inventory.erase(itemIndex+m_inventory.begin());
-}*/
-
-/*std::vector<Entities::Item *> Player::Player::getInvenotry() {
-    return m_inventory;
-}
-
-Entities::Armor* Player::Player::getEquippedArmor() {
-    return m_armorSlot;
-}
-
-Entities::Relic* Player::Player::getEquippedRelic() {
-    return m_relicSlot;
-}
-
-Entities::Weapon* Player::Player::getEquippedWeapon() {
-    return m_weaponSlot;
-}
-
-void Player::Player::addItem(Entities::Item *item) {
-    m_inventory.push_back(item);
-}
-
-Entities::Item *Player::Player::getItemFromInvenotry(int itemIndex) {
-    return m_inventory[itemIndex];
-}
-*/
 
 int Player::Player::getMaxHealth() {
     return m_maxHealth;
 }
 
+
 Player::Ability* Player::Player::getAbility(int abilityIndex) {
     return m_abilities[abilityIndex];
 }
+
 
 Map::Point* Player::Player::getPlayerPosition() {
     return m_position;
 }
 
+
 void Player::Player::changePlayerPosition(int x, int y) {
     m_position->x = x;
     m_position->y = y;
 }
+
 
 void Player::Player::equipItem(int InventoryIndex) {
     auto itemToEquip = m_playerInventory->getItemByIndex(InventoryIndex);
@@ -174,8 +137,10 @@ void Player::Player::equipItem(int InventoryIndex) {
             m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
         } else {
             dropWeapon();
+            addAbility(new Slash());
             m_playerInventory->equipWeapon(static_cast<Entities::Weapon*>(itemToEquip));
         }
+
 
     } else if (itemToEquip->getItemType() == Entities::ItemType::armor) {
         if (m_playerInventory->isArmorSlotEmpty()) {
@@ -186,6 +151,7 @@ void Player::Player::equipItem(int InventoryIndex) {
             m_playerInventory->equipArmor(static_cast<Entities::Armor*>(itemToEquip));
             m_armor = static_cast<Entities::Armor*>(itemToEquip)->getArmorValue();
         }
+
 
     } else if (itemToEquip->getItemType() == Entities::ItemType::relic) {
         if (m_playerInventory->isRelicSlotEmpty()){
@@ -212,10 +178,22 @@ void Player::Player::equipItem(int InventoryIndex) {
     }
 }
 
+
 Player::PlayerInventory *Player::Player::getPlayerInvenotry() {
     return m_playerInventory;
 }
 
+
 void Player::Player::addItemToInventory(Entities::Item *item) {
     m_playerInventory->addItem(item);
 }
+
+
+void Player::Player::resetAbilityCooldowns() {
+    for (int i = 0; i < m_abilities.size(); ++i) {
+        if(m_abilities[i]->getCooldown() != 0) {
+            m_abilities[i]->resetCooldown();
+        }
+    }
+}
+

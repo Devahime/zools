@@ -47,19 +47,9 @@ namespace Player {
 
         int getStrenght();
 
-        int getArmor();
-
-        //void equipArmor(Entities::Armor *armor);
-
         void dropArmor();
 
-        //void equipRelic(Entities::Relic *relic);
-
         void dropRelic();
-
-        //void equipWeapon(Entities::Weapon *weapon);
-
-        //int getWeaponDamage();
 
         void dropWeapon();
 
@@ -75,23 +65,9 @@ namespace Player {
 
         void useReplenishment(Entities::Consumable *consumable, int itemindex);
 
-        void setHealth(int health); //debug
-
         void lowerAbilityCooldown();
 
-        //void deleteItemFromInvenotry(int itemIndex);
-
         PlayerInventory* getPlayerInvenotry();
-
-        //Entities::Armor* getEquippedArmor();
-
-        //Entities::Weapon* getEquippedWeapon();
-
-        //Entities::Relic* getEquippedRelic();
-
-        //void addItem(Entities::Item * item);
-
-        //Entities::Item* getItemFromInvenotry(int itemIndex);
 
         int getMaxHealth();
 
@@ -104,6 +80,8 @@ namespace Player {
         void equipItem(int InventoryIndex);
 
         void addItemToInventory(Entities::Item* item);
+
+        void resetAbilityCooldowns();
     };
 }
 

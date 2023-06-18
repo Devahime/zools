@@ -9,7 +9,7 @@ GameLogic::Combat::Combat() {
 }
 
 void GameLogic::Combat::beginCombat(Player::Player *player, Entities::Enemy *enemy) {
-    m_turn = 1; //maybe will be needed to change it to zero rather
+    m_turn = 1;
     m_playersTurn = true;
     m_player = player;
     m_enemy = enemy;
@@ -25,6 +25,9 @@ void GameLogic::Combat::reset() {
 void GameLogic::Combat::nextTurn() {
 
     m_turn += 1;
+    if ((m_turn % 2) == 0) {
+        m_player->lowerAbilityCooldown();
+    }
     m_playersTurn = !m_playersTurn;
 }
 

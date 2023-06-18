@@ -26,17 +26,19 @@ GameLogic::Game::Game(Player::Player *player, Map::Level* level) {
     m_level = level;
     m_gui = new GUI();
     m_gameComplete = false;
+    m_killedEnemies = 0;
+    m_pickedItems = 0;
+    m_potionsUsed = 0;
 }
 
+
 bool GameLogic::Game::checkForAction(char input) {
-    //Could be done by case switch
     //Checking pressedkey (input), then doing action acording to controls
     if (m_gameComplete) {
         return false;
     }
 
     if (input == 'w') {
-        //std::cout << "Nahoru" << std::endl;
         mapMovement(input);
         if (m_gameComplete) {
             return false;
@@ -53,7 +55,6 @@ bool GameLogic::Game::checkForAction(char input) {
         return true;
 
     } else if(input == 's') {
-        //std::cout << "Dolu" << std::endl;
         mapMovement(input);
         if (m_gameComplete) {
             return false;
@@ -66,13 +67,11 @@ bool GameLogic::Game::checkForAction(char input) {
         if (m_gameComplete) {
             return false;
         }
-        //std::cout << "Doprava" << std::endl;
         printGameScreen();
         return true;
 
     } else if(input == 'x') {
         //exits the game
-        //std::cout << "Exit" << std::endl;
         return false;
 
     } else if(input == 'i') {
@@ -81,74 +80,16 @@ bool GameLogic::Game::checkForAction(char input) {
         printGameScreen();
         return true;
 
-    } else if (input == 'e') { //debug
-        auto abilitites = m_player->getAbilities();
-        for (int i = 0; i < abilitites.size(); ++i) {
-            std::cout << abilitites[i]->getName() << std::endl;
-        }
-        return true;
-
-    } /*else if (input == 'c') { //debug
-        if (combat()){
-            return true;
-        } else {
-            return false;
-        }
-
-    }*/ else {
+    } else {
         //if the keypressed is not found in this if tree, map is refreshed
         printGameScreen();
     }
 }
 
 
-void GameLogic::Game::printMap() {
-    Map::Map* map = m_level->getMap(m_currentMap);
-    map->print();
-}
-
 void GameLogic::Game::clearScreen() {
     m_gui->clearScreen();
 }
-
-/*void GameLogic::Game::printPlayer() { //debug
-    std::cout << m_player->getName();
-}*/
-
-
-
-bool GameLogic::Game::combat(Entities::Enemy* enemy) {
-    bool combat = true;
-    //auto enemy = new Entities::Enemy("skeleton", 80, 10, 5); //debug
-    m_combat = new Combat();
-    m_combat->beginCombat(m_player,enemy); //debug
-
-    while (combat) {
-        combatGUI(enemy);
-
-        if (m_combat->checkAliveStatus() != "bothAlive") {
-            combat = false;
-        }
-        /*if (m_combat->isPlayersTurn()) {
-
-        } else {
-            m_combat->nextTurn();
-        }*/
-        clearScreen();
-    }
-
-    if (m_combat->checkAliveStatus() == "playerDead") {
-        delete m_combat;
-        m_combat = nullptr;
-        return false;
-
-    } else if (m_combat->checkAliveStatus() == "enemyDead") {
-        delete m_combat;
-        m_combat = nullptr;
-        return true;
-    }
-}
-
 
 
 void GameLogic::Game::InventoryGUI() {
@@ -203,6 +144,7 @@ void GameLogic::Game::InventoryGUI() {
 
             if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
                 m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]), pickedItemIndex);
+                m_potionsUsed+= 1;
             } else {
                 if (inventory[pickedItemIndex] == PlayerInventory->getEquippedWeapon()) {
                     m_player->dropWeapon();
@@ -214,45 +156,41 @@ void GameLogic::Game::InventoryGUI() {
                     m_player->equipItem(pickedItemIndex);
                 }
             }
-            /*if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::consumable) {
-               m_player->useReplenishment(static_cast<Entities::Consumable*>(inventory[pickedItemIndex]));
-               m_player->deleteItemFromInvenotry(pickedItemIndex);
-
-
-            } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::weapon) {
-                if (inventory[pickedItemIndex] == m_player->getEquippedWeapon()) {
-                    m_player->dropWeapon();
-                } else {
-                    m_player->dropWeapon();
-                    m_player->equipWeapon(static_cast<Entities::Weapon*>(inventory[pickedItemIndex]));
-                }
-
-
-            } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::armor){
-                if (inventory[pickedItemIndex] == m_player->getEquippedArmor()) {
-                    m_player->dropArmor();
-                } else {
-                    m_player->dropArmor();
-                    m_player->equipWeapon(static_cast<Entities::Weapon*>(inventory[pickedItemIndex]));
-                }
-
-
-            } else if (inventory[pickedItemIndex]->getItemType() == Entities::ItemType::relic) {
-                if (inventory[pickedItemIndex] == m_player->getEquippedRelic()) {
-                    m_player->dropRelic();
-                } else {
-                    m_player->dropRelic();
-                    m_player->equipRelic(static_cast<Entities::Relic*>(inventory[pickedItemIndex]));
-                }
-            }*/
         }
     }
     //after this the screen will be cleared so next event ifnromation can be shown
     clearScreen();
-
 }
 
 
+bool GameLogic::Game::combat(Entities::Enemy* enemy) {
+    bool combat = true;
+    m_combat = new Combat();
+    m_combat->beginCombat(m_player,enemy); //debug
+
+    while (combat) {
+        combatGUI(enemy);
+
+        if (m_combat->checkAliveStatus() != "bothAlive") {
+            combat = false;
+        }
+
+        clearScreen();
+    }
+
+    if (m_combat->checkAliveStatus() == "playerDead") {
+        delete m_combat;
+        m_combat = nullptr;
+        return false;
+
+    } else if (m_combat->checkAliveStatus() == "enemyDead") {
+        delete m_combat;
+        m_combat = nullptr;
+        m_player->resetAbilityCooldowns();
+        m_killedEnemies +=1;
+        return true;
+    }
+}
 
 
 void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
@@ -297,9 +235,6 @@ void GameLogic::Game::combatGUI(Entities::Enemy *enemy) {
         m_combat->nextTurn();
     }
 
-
-
-
 }
 
 
@@ -311,6 +246,7 @@ void GameLogic::Game::printTutorial() {
     clearScreen();
 
 }
+
 
 bool GameLogic::Game::isPlayerAlive() {
     return m_player->isAlive();
@@ -388,6 +324,7 @@ void GameLogic::Game::mapMovement(char pressedKey) {
             m_player->changePlayerPosition(xNewCordiante, yNewCordinate);
             //already swapped tile, need to go back cordinate wise
             map->replaceTile(xCordinate, yCordinate, new Map::Floor());
+            m_pickedItems += 1;
 
 
         } else {
@@ -415,13 +352,15 @@ void GameLogic::Game::newMapSetup(bool isExitDoor) {
 
 }
 
+
 bool GameLogic::Game::isGameCompleted() {
     return m_gameComplete;
 }
 
+
 void GameLogic::Game::completeTheGame() {
     char input;
-    m_gui->gameCompletionScreen(m_player->getName());
+    m_gui->gameCompletionScreen(m_player->getName(),m_killedEnemies, m_pickedItems, m_potionsUsed);
     m_gameComplete = true;
     input = _getch();
 }

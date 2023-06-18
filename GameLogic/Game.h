@@ -21,21 +21,16 @@ namespace GameLogic {
         GameLogic::Combat* m_combat;
         GameLogic::GUI* m_gui;
         bool m_gameComplete;
+        int m_killedEnemies;
+        int m_pickedItems;
+        int m_potionsUsed;
 
     public:
         Game(Player::Player* player, Map::Level* level);
 
         bool checkForAction(char input);
 
-        void clearScreen();
-
-        void printMap();
-
-        void printGameScreen();
-
         void InventoryGUI();
-
-        //void printPlayer();
 
         void combatGUI(Entities::Enemy* enemy);
 
@@ -51,11 +46,10 @@ namespace GameLogic {
 
         bool isGameCompleted();
 
+        void clearScreen();
 
-    private: //second private sections
-        void printItemDetails(std::string type, Entities::Item *item);
-
-        void takeItemFromTile(Entities::Item *item);
+        void printGameScreen();
+    private: //second private section
 
         void completeTheGame();
     };

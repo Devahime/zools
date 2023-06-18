@@ -139,9 +139,11 @@ void GameLogic::GUI::printAbilityOverview(Player::Player *player) {
     }
 }
 
-void GameLogic::GUI::gameCompletionScreen(std::string playerName) {
+void GameLogic::GUI::gameCompletionScreen(std::string playerName, int killedEnemies, int pickedItems, int potionsUsed) {
     std::cout << "Congratulations, ou have made it through the dungeon, " << playerName << "!" << std::endl;
     std::cout << "You have won!" << std::endl;
+    std::cout << "\nIn your jorney you killed " << killedEnemies << " Enemies, picked up " << pickedItems <<
+    " items in the dungeon, and drank " << potionsUsed << " potions!" <<std::endl;
 
     std::cout << "\nPress any key to exit the game" << std::endl;
 }

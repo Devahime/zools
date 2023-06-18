@@ -18,7 +18,6 @@ namespace GameLogic {
     class GUI {
 
     public:
-
         void clearScreen();
 
         void printInventory(std::vector<Entities::Item*> inventory, Player::Player* player);
@@ -39,7 +38,7 @@ namespace GameLogic {
 
         void printTutorial(Player::Player* player);
 
-        void gameCompletionScreen(std::string playerName);
+        void gameCompletionScreen(std::string playerName, int killedEnemies, int pickedItems, int potionsUsed);
     };
 }
 
