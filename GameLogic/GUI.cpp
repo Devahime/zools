@@ -77,8 +77,8 @@ void GameLogic::GUI::printTutorial(Player::Player *player) {
     std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
     std::cout << "Welcome to the game "<< player->getName() << "!" << std::endl;
     std::cout << "In this game your task is to make it through the dungeon!" << std::endl;
-    std::cout << "Be careful as there will be many thigs that will try to stop you!" << std::endl;
-    std::cout << "Press any key to continue" << std::endl; //change to getch
+    std::cout << "Be careful as there will be many things that will try to stop you!" << std::endl;
+    std::cout << "Press any key to continue" << std::endl;
     input = _getch();
     clearScreen();
 

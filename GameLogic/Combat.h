@@ -40,6 +40,10 @@ namespace GameLogic {
 
         bool isPlayersTurn();
 
+        void playerCombatAction(int abilityIndex);
+
+        void enemyCombatAction();
+
         int enemyDamageFromAction();
     };
 }

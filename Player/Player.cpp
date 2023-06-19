@@ -9,7 +9,6 @@
 #include "Kick.h"
 
 
-
 Player::Player::Player(std::string name) {
     m_name = name;
     m_health = 100;
