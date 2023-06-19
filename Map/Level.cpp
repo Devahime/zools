@@ -20,3 +20,9 @@ int Map::Level::getLevelSize() {
 std::string Map::Level::getLevelName() {
     return m_levelName;
 }
+
+Map::Level::~Level() {
+    for (int map = 0; map < m_maps.size(); ++map) {
+        delete m_maps.at(map);
+    }
+}

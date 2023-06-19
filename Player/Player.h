@@ -43,6 +43,8 @@ namespace Player {
 
         Player(std::string name);
 
+        ~Player();
+
         int getHealth();
 
         int getStrenght();

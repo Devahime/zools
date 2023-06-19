@@ -16,11 +16,14 @@ namespace Map {
     public:
         Level(std::string name, std::vector<Map*> maps);
 
+        ~Level();
+
         Map* getMap(int mapNumber);
 
         int getLevelSize();
 
         std::string getLevelName();
+
     };
 }
 

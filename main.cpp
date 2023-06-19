@@ -11,16 +11,15 @@ int main() {
     //Creation of builder
     GameLogic::Builder* builder = new GameLogic::Builder();
 
-    //building the game and retuning it to object game here in main
+    //building the game and returning it to object game here in main
     //buildGame() calls function where user input for his name is required
     GameLogic::Game* game = builder->buildGame();
 
     game->clearScreen();
 
-
-
     //Deleting the builder class as it is no longer necessary 
     delete builder;
+
 
     bool gameRunning = true;
     bool playerAlive = true;
@@ -40,6 +39,7 @@ int main() {
 
         if (!game->isPlayerAlive()) {
             playerAlive = false;
+            game->clearScreen();
         }
     }
 
@@ -48,13 +48,13 @@ int main() {
         std::cout << "You ended the game, press any key to exit the application";
         input = _getch();
 
-    } else if (gameRunning == false and game->isGameCompleted()){
+    } else if (gameRunning == false and game->isGameCompleted() and playerAlive == true){
         //game proceeds to turn off
-    } else {
+    } else if (playerAlive == false){
         std::cout << "You died! \nPress any key to exit!" << std::endl;
         input = _getch();
-    }
 
+    }
 
     delete game;
 

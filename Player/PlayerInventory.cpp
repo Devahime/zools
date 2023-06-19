@@ -95,3 +95,12 @@ bool Player::PlayerInventory::isWeaponSlotEmpty() {
         return false;
     }
 }
+
+Player::PlayerInventory::~PlayerInventory() {
+    m_weaponSlot == nullptr;
+    m_relicSlot == nullptr;
+    m_armorSlot == nullptr;
+    for (int item = 0; item < m_itemInventory.size(); ++item) {
+        delete m_itemInventory.at(item);
+    }
+}

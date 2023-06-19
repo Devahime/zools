@@ -13,6 +13,7 @@ namespace Map{
         Entities::Item* m_item;
     public:
         ItemTile(Entities::Item* item);
+        ~ItemTile();
         void print();
         Entities::Item* takeItem();
     };

@@ -15,7 +15,9 @@ Map::Map::Map(std::vector<std::vector<Tile *>> tiles, std::vector<Tile*> tileEnt
 }
 
 Map::Map::~Map() {
-    //todo
+    for (int tileEntity = m_tileEntitites.size()-1; tileEntity >=0; tileEntity--) {
+        delete m_tileEntitites.at(tileEntity);
+    }
 }
 
 Map::Tile *Map::Map::getTile(int x, int y) {
@@ -25,6 +27,7 @@ Map::Tile *Map::Map::getTile(int x, int y) {
 void Map::Map::replaceTile(int x, int y, Tile *tile) {
     m_tiles[y][x] = nullptr;
     m_tiles[y][x] = tile;
+    m_tileEntitites.push_back(tile);
 }
 
 void Map::Map::print() {

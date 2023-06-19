@@ -75,7 +75,7 @@ void GameLogic::GUI::printConsumableInfo(Entities::Consumable *consumable) {
 void GameLogic::GUI::printTutorial(Player::Player *player) {
     std::string input;
     std::cout << "|---------Tutorial and controls---------|\n" << std::endl;
-    std::cout << "Welcome to the game "<< player->getName() << "!" << std::endl;
+    std::cout << "Welcome to the game, "<< player->getName() << "!" << std::endl;
     std::cout << "In this game your task is to make it through the dungeon!" << std::endl;
     std::cout << "Be careful as there will be many things that will try to stop you!" << std::endl;
     std::cout << "Press any key to continue" << std::endl;
@@ -140,9 +140,9 @@ void GameLogic::GUI::printAbilityOverview(Player::Player *player) {
 }
 
 void GameLogic::GUI::gameCompletionScreen(std::string playerName, int killedEnemies, int pickedItems, int potionsUsed) {
-    std::cout << "Congratulations, ou have made it through the dungeon, " << playerName << "!" << std::endl;
+    std::cout << "Congratulations, you have made it through the dungeon, " << playerName << "!" << std::endl;
     std::cout << "You have won!" << std::endl;
-    std::cout << "\nIn your jorney you killed " << killedEnemies << " Enemies, picked up " << pickedItems <<
+    std::cout << "\nOn your journey you killed " << killedEnemies << " Enemies, picked up " << pickedItems <<
     " items in the dungeon, and drank " << potionsUsed << " potions!" <<std::endl;
 
     std::cout << "\nPress any key to exit the game" << std::endl;

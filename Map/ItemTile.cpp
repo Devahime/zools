@@ -19,3 +19,7 @@ Entities::Item *Map::ItemTile::takeItem() {
     m_item = nullptr;
     return item;
 }
+
+Map::ItemTile::~ItemTile() {
+    delete m_item;
+}

@@ -23,6 +23,8 @@ namespace Player {
 
         PlayerInventory();
 
+        ~PlayerInventory();
+
         std::vector<Entities::Item*> getAllItems();
 
         void equipArmor(Entities::Armor* armor);

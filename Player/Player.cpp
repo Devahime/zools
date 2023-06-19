@@ -196,3 +196,10 @@ void Player::Player::resetAbilityCooldowns() {
     }
 }
 
+
+Player::Player::~Player() {
+    delete m_playerInventory;
+    for (int ability = 0; ability < m_abilities.size(); ++ability) {
+        delete m_abilities.at(ability);
+    }
+}

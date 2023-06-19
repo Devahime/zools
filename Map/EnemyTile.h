@@ -14,6 +14,7 @@ namespace Map{
         Entities::Enemy* m_enemy;
     public:
         EnemyTile(Entities:: Enemy* enemy);
+        ~EnemyTile();
         void print();
         Entities::Enemy* getEnemy();
     };

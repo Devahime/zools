@@ -17,3 +17,7 @@ void Map::EnemyTile::print() {
 Entities::Enemy *Map::EnemyTile::getEnemy() {
     return m_enemy;
 }
+
+Map::EnemyTile::~EnemyTile() {
+    delete m_enemy;
+}

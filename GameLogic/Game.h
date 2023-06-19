@@ -28,6 +28,8 @@ namespace GameLogic {
     public:
         Game(Player::Player* player, Map::Level* level);
 
+        ~Game();
+
         bool checkForAction(char input);
 
         void InventoryGUI();

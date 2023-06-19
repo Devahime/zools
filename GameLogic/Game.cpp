@@ -345,3 +345,9 @@ void GameLogic::Game::completeTheGame() {
     m_gameComplete = true;
     input = _getch();
 }
+
+GameLogic::Game::~Game() {
+    delete m_player;
+    delete m_level;
+    delete m_gui;
+}

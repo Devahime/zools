@@ -19,13 +19,14 @@ namespace Map{
         std::vector<Tile*> m_tileEntitites;
     public:
         Map(std::vector<std::vector<Tile*>> tiles, std::vector<Tile*> tileEntities, Point* entryPoint, Point* exitPoint);
+
         ~Map();
 
         Tile* getTile(int x, int y);
 
-       void replaceTile(int x, int y, Tile* tile);
+        void replaceTile(int x, int y, Tile* tile);
 
-       void swapTiles(int xOrigin, int yOrigin, int xDestination, int yDestination);
+        void swapTiles(int xOrigin, int yOrigin, int xDestination, int yDestination);
 
         void print();
 
