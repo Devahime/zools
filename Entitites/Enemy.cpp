@@ -58,3 +58,7 @@ Entities::Item *Entities::Enemy::dropItem() {
     m_itemDrop = nullptr;
     return item;
 }
+
+Entities::Enemy::~Enemy() {
+    delete m_ability;
+}

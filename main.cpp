@@ -53,8 +53,8 @@ int main() {
     } else if (playerAlive == false){
         std::cout << "You died! \nPress any key to exit!" << std::endl;
         input = _getch();
-
     }
+
 
     delete game;
 

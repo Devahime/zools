@@ -24,6 +24,8 @@ namespace Entities {
     public:
         Enemy(std::string name, int health, int armor, int strenght);
 
+        ~Enemy();
+
         void addItemDrop(Item* item);
 
         int getHealth();

@@ -15,9 +15,11 @@ Map::Map::Map(std::vector<std::vector<Tile *>> tiles, std::vector<Tile*> tileEnt
 }
 
 Map::Map::~Map() {
-    for (int tileEntity = m_tileEntitites.size()-1; tileEntity >=0; tileEntity--) {
+    for (int tileEntity = 0; tileEntity < m_tileEntitites.size(); ++tileEntity) {
         delete m_tileEntitites.at(tileEntity);
     }
+    delete m_exitPoint;
+    delete m_entryPoint;
 }
 
 Map::Tile *Map::Map::getTile(int x, int y) {

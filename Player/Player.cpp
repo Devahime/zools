@@ -202,4 +202,5 @@ Player::Player::~Player() {
     for (int ability = 0; ability < m_abilities.size(); ++ability) {
         delete m_abilities.at(ability);
     }
+    delete m_position;
 }

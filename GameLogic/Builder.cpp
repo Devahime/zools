@@ -65,8 +65,6 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 10);
     Map::Tile* A0 = new Map::ItemTile(item0); tileEntities0.push_back(A0);
-    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 5);
-    Map::Tile* A0 = new Map::ItemTile(item0);
 
     Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
     Map::Map* map0 = new Map::Map(
@@ -98,10 +96,10 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     //room2
     Entities::Enemy* enemy2 = new Entities::Enemy("Centipede", 40, 20, 20);
-    Map::Tile* E2 = new Map::EnemyTile(enemy2); tileEntities0.push_back(E2);
+    Map::Tile* E2 = new Map::EnemyTile(enemy2); tileEntities2.push_back(E2);
 
     Entities::Item* item2 = new Entities::Consumable("Centipede juice", "It smells awful", 15);
-    Map::Tile* C2 = new Map::ItemTile(item2); tileEntities2.push_back(A0);
+    Map::Tile* C2 = new Map::ItemTile(item2); tileEntities2.push_back(C2);
 
     Entities::Item* item2a = new Entities::Relic("Sapphire ring", "It's shiny!", 10, 10 );
     Map::Tile* R2 = new Map::ItemTile(item2a); tileEntities2.push_back(R2);
