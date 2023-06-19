@@ -65,6 +65,8 @@ Map::Level *GameLogic::Builder::buildLevel() {
 
     Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 10);
     Map::Tile* A0 = new Map::ItemTile(item0); tileEntities0.push_back(A0);
+    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 5);
+    Map::Tile* A0 = new Map::ItemTile(item0);
 
     Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
     Map::Map* map0 = new Map::Map(
@@ -249,7 +251,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
             }, tileEntities8, new Map::Point{5, 5}, new Map::Point{11, 3});
 
     //room 9 - boss room?
-    Entities::Enemy* enemy9 = new Entities::Enemy("Dungeon master", 100, 50, 70);
+    Entities::Enemy* enemy9 = new Entities::Enemy("Dungeon master", 150, 50, 100);
     enemy9->addItemDrop(new Entities::Consumable("Dungeon key", "I can finally leave this place", 5));
     Map::Tile* B = new Map::EnemyTile(enemy9); tileEntities9.push_back(B);
 
