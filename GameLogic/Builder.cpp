@@ -63,7 +63,7 @@ Map::Level *GameLogic::Builder::buildLevel() {
     enemy0->addItemDrop(new Entities::Consumable("Dirty water", "its advised not to drink this", 5));
     Map::Tile* E0 = new Map::EnemyTile(enemy0);
 
-    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 10);
+    Entities::Item* item0 = new Entities::Armor("dirt helmet", "Wait, it works?", 5);
     Map::Tile* A0 = new Map::ItemTile(item0);
 
     Map::Tile* D1 = new Map::Door(1, true); tileEntities0.push_back(D1);
